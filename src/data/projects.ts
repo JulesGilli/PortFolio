@@ -1,3 +1,5 @@
+import type { GameTheme } from '../theme';
+
 export interface Project {
   id: number;
   slug?: string;
@@ -27,6 +29,8 @@ export interface Project {
   award?: string;
   /** URL that can be iframed to play inside the site (itch "embed-upload" URL or a hosted web build) */
   embedUrl?: string;
+  /** Page theme while this game is on screen */
+  theme?: GameTheme;
 }
 
 const base = import.meta.env.BASE_URL;
@@ -118,6 +122,7 @@ export const allProjects: Project[] = [
     },
     genre: 'Platformer',
     browser: false,
+    theme: { accent: '#d9b25c', ink: '#0f0d08', font: 'serif' },
   },
   {
     id: 4,
@@ -147,6 +152,7 @@ export const allProjects: Project[] = [
     },
     genre: 'Rhythm',
     browser: false,
+    theme: { accent: '#e06c6c', ink: '#120909', font: 'display' },
     platforms: ['win'],
   },
   {
@@ -183,6 +189,7 @@ export const allProjects: Project[] = [
     },
     genre: 'Fighting',
     browser: true,
+    theme: { accent: '#7fb7c9', ink: '#070c10', font: 'serif' },
     embedUrl: 'https://itch.io/embed-upload/17516645?color=0b0b0c',
     platforms: ['win', 'mac', 'linux'],
   },
@@ -254,6 +261,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     },
     genre: 'Interactive Fiction',
     browser: false,
+    theme: { accent: '#9ccf6a', ink: '#0b1009', font: 'serif' },
   },
   {
     id: 8,
@@ -284,6 +292,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     platforms: ['win'],
     featured: 3,
     award: "Jury's Favorite — GGJ 2026",
+    theme: { accent: '#f2c230', ink: '#131210', font: 'display' },
   },
   {
     id: 9,
@@ -311,6 +320,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     },
     genre: 'Platformer',
     browser: true,
+    theme: { accent: '#e2a94b', ink: '#120e0a', font: 'display' },
     embedUrl: 'https://itch.io/embed-upload/15700409?color=0b0b0c',
   },
   {
@@ -328,6 +338,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     embedUrl: 'https://itch.io/embed-upload/18917203?color=0b0b0c',
     platforms: ['win', 'mac', 'linux'],
     featured: 1,
+    theme: { accent: '#5cc8ff', ink: '#070b16', font: 'pixel' },
   },
   {
     id: 11,
@@ -343,6 +354,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     browser: true,
     embedUrl: 'https://itch.io/embed-upload/18921834?color=0b0b0c',
     featured: 2,
+    theme: { accent: '#e8735a', ink: '#0a0c17', font: 'pixel' },
   },
   {
     id: 12,
@@ -356,6 +368,7 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     links: { demo: 'https://jules-gilli.itch.io/tour-infinie' },
     genre: 'Action',
     browser: true,
+    theme: { accent: '#f0b84a', ink: '#0b0d1c', font: 'pixel' },
     embedUrl: 'https://itch.io/embed-upload/19432964?color=0b0b0c',
     platforms: ['win', 'mac', 'linux'],
   },

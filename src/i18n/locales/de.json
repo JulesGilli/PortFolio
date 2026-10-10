@@ -138,6 +138,10 @@
       "insistent": {
         "title": "Hartnäckig",
         "desc": "Fünfmal auf das Logo klicken"
+      },
+      "finisher": {
+        "title": "Durchspieler",
+        "desc": "Ein Spiel auf der Seite durchspielen"
       }
     }
   }

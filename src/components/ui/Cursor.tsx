@@ -66,13 +66,17 @@ export function Cursor() {
           width: hasText ? 88 : active ? 44 : 28,
           height: hasText ? 88 : active ? 44 : 28,
           opacity: hidden ? 0 : 1,
-          backgroundColor: hasText ? 'rgba(166,108,255,1)' : 'rgba(166,108,255,0)',
-          borderColor: hasText ? 'rgba(166,108,255,0)' : 'rgba(236,232,225,0.7)',
+          borderColor: hasText ? 'rgb(var(--accent-rgb) / 0)' : 'rgb(var(--bone-rgb) / 0.7)',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 24 }}
       >
         <motion.span
-          className="meta font-medium"
+          className="absolute inset-0 rounded-full bg-accent"
+          animate={{ opacity: hasText ? 1 : 0 }}
+          transition={{ duration: 0.2 }}
+        />
+        <motion.span
+          className="meta relative font-medium"
           style={{ color: '#ece8e1' }}
           animate={{ opacity: hasText ? 1 : 0, scale: hasText ? 1 : 0.6 }}
           transition={{ duration: 0.2 }}

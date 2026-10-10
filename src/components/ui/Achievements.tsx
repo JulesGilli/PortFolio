@@ -25,7 +25,8 @@ export type AchievementId =
   | 'patient'
   | 'night-owl'
   | 'konami'
-  | 'insistent';
+  | 'insistent'
+  | 'finisher';
 
 export const ACHIEVEMENTS: { id: AchievementId; icon: string; secret?: boolean }[] = [
   { id: 'first-play', icon: '🎮' },
@@ -34,6 +35,7 @@ export const ACHIEVEMENTS: { id: AchievementId; icon: string; secret?: boolean }
   { id: 'scroll-end', icon: '🏁' },
   { id: 'polyglot', icon: '🌍' },
   { id: 'tools-peek', icon: '🔧' },
+  { id: 'finisher', icon: '🏆' },
   { id: 'patient', icon: '⏳' },
   { id: 'night-owl', icon: '🦉', secret: true },
   { id: 'konami', icon: '👾', secret: true },

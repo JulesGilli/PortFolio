@@ -138,6 +138,10 @@
       "insistent": {
         "title": "Insistent",
         "desc": "Click the logo five times"
+      },
+      "finisher": {
+        "title": "Finisher",
+        "desc": "Finish a game inside the site"
       }
     }
   }

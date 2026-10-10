@@ -8,6 +8,7 @@ import { useIntroDone } from './ui/Intro';
 import { usePlayer } from './ui/Player';
 import { featuredProjects } from '../data/projects';
 import { useReducedMotion } from '../hooks/useMediaQuery';
+import { applyTheme } from '../theme';
 
 const AUTO_MS = 7000;
 
@@ -22,6 +23,10 @@ export function Hero() {
 
   const games = featuredProjects;
   const game = games[index];
+
+  useEffect(() => {
+    if (ready) applyTheme(game.theme);
+  }, [ready, game]);
 
   // Auto-advance.
   useEffect(() => {
@@ -110,7 +115,7 @@ export function Hero() {
             animate={ready ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: EASE }}
           >
-              <h1 className="font-display font-bold display-tight text-[clamp(3.5rem,11vw,10rem)]">{game.title}</h1>
+              <h1 className="game-title font-bold display-tight">{game.title}</h1>
 
               <div className="mt-5 flex flex-wrap items-center gap-2">
                 {game.genre && <span className="meta rounded-full border border-bone/20 px-2.5 py-1 !text-bone">{game.genre}</span>}

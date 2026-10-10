@@ -4,13 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0b0b0c',
-        bone: '#ece8e1',
+        ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+        bone: 'rgb(var(--bone-rgb) / <alpha-value>)',
         muted: '#8b877f',
-        accent: '#a66cff',
+        accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
       },
       fontFamily: {
         display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+        pixel: ['Silkscreen', '"Bricolage Grotesque"', 'monospace'],
         serif: ['"Instrument Serif"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
         sans: ['Inter', 'system-ui', 'sans-serif'],

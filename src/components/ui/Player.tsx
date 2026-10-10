@@ -6,6 +6,7 @@ import type { Project } from '../../data/projects';
 import { EASE } from './Reveal';
 import { useLenis } from './SmoothScroll';
 import { useAchievements } from './Achievements';
+import { applyTheme } from '../../theme';
 
 type PlayerApi = {
   /** Open the in-site player if the project can be embedded; otherwise open its itch/web page in a new tab. */
@@ -23,7 +24,10 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
 
   const play = useCallback(
     (p: Project) => {
-      if (p.embedUrl) setCurrent(p);
+      if (p.embedUrl) {
+        setCurrent(p);
+        applyTheme(p.theme, 0.6);
+      }
       else if (p.links?.demo) window.open(p.links.demo, '_blank', 'noopener,noreferrer');
       trackPlay(p.slug ?? String(p.id), !!p.featured);
     },
@@ -45,6 +49,20 @@ function PlayerOverlay() {
   const { t } = useTranslation();
   const { current, close } = usePlayer();
   const lenis = useLenis();
+  const { unlock } = useAchievements();
+
+  // Self-hosted builds can talk to the page:
+  //   window.parent.postMessage({ source: 'jules-portfolio', event: 'finished' }, '*')
+  useEffect(() => {
+    if (!current) return;
+    const onMessage = (e: MessageEvent) => {
+      const d = e.data as { source?: string; event?: string } | null;
+      if (!d || d.source !== 'jules-portfolio') return;
+      if (d.event === 'finished') unlock('finisher');
+    };
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, [current, unlock]);
 
   useEffect(() => {
     if (!current) return;

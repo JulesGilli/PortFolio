@@ -3,11 +3,14 @@
 @import 'tailwindcss/utilities';
 
 :root {
-  --ink: #0b0b0c;
-  --bone: #ece8e1;
+  --ink-rgb: 11 11 12;
+  --bone-rgb: 236 232 225;
+  --accent-rgb: 166 108 255;
+  --ink: rgb(var(--ink-rgb));
+  --bone: rgb(var(--bone-rgb));
   --muted: #8b877f;
-  --line: rgba(236, 232, 225, 0.14);
-  --accent: #a66cff;
+  --line: rgb(var(--bone-rgb) / 0.14);
+  --accent: rgb(var(--accent-rgb));
   --ease-out: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
@@ -74,6 +77,26 @@ body {
     -webkit-text-stroke: 1px var(--bone);
     color: transparent;
   }
+}
+
+/* ===== Game title face (set by theme.ts via data-font) ===== */
+.game-title {
+  --title-scale: 1;
+  font-family: 'Bricolage Grotesque', Inter, system-ui, sans-serif;
+  font-size: calc(clamp(3.5rem, 11vw, 10rem) * var(--title-scale));
+}
+:root[data-font='pixel'] .game-title {
+  --title-scale: 0.7;
+  font-family: Silkscreen, 'Bricolage Grotesque', monospace;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+:root[data-font='serif'] .game-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
 }
 
 /* ===== Grain ===== */
