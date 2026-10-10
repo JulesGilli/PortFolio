@@ -1,58 +1,81 @@
 {
   "nav": {
+    "label": "Navigation",
     "about": "About",
     "games": "Games",
     "tools": "Tools",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menu": "Menu",
+    "close": "Close"
   },
-  "hero": {
-    "subtitle": "Game Developer & Unity Tool Creator",
-    "tagline": "Building interactive experiences and developer tools",
-    "cta": "See my games",
-    "kicker": "Portfolio — 2026",
-    "role1": "Game developer",
-    "role2": "& Unity tool maker",
-    "marquee": "Game Design — Unity Tools — C# — Prototypes — Game Jams — Asset Store — React",
-    "featured": "Featured",
-    "play": "Play now",
-    "download": "Get it on itch.io",
-    "itch": "View on itch.io",
-    "inBrowser": "In browser",
-    "role": "Game developer"
+  "cover": {
+    "kicker": "Portfolio — issue 01 — 2026",
+    "role": "Game developer · Unity · C#",
+    "deck": "I make short, tense games, and tools when the games need them.",
+    "bio": "Unity developer, C#. My games are built around one strong mechanic: an echo replaying your moves eight seconds later, a wolf that learns from your traps, a world that only exists one colour at a time. Three of them play right here in this page. On the side, six editor tools published on the Asset Store, downloaded more than thirteen thousand times.",
+    "cta": "Read the issue",
+    "toc": "In this issue",
+    "tocLabels": {
+      "index": "All games",
+      "tools": "Tools",
+      "contact": "Contact"
+    },
+    "note": "Games marked “playable here” run inside the page, nothing to install. Keyboard recommended.",
+    "stats": "{{games}} games · {{playable}} playable here · {{tools}} Asset Store tools · {{downloads}},000+ downloads"
   },
-  "about": {
-    "title": "About",
-    "description": "A Unity developer passionate about creating games and tools for developers. I design interactive experiences and plugins that streamline the development workflow in Unity.",
-    "label": "Who",
-    "stats": {
-      "games": "Games built",
-      "tools": "Tools published",
-      "downloads": "Downloads"
+  "cahier": {
+    "label": "Chapter",
+    "next": "Next",
+    "play": "Play here",
+    "download": "Download on itch.io",
+    "dossier": "Full dossier",
+    "figures": "Figures",
+    "specs": {
+      "role": "Role",
+      "team": "Team",
+      "engine": "Engine",
+      "duration": "Duration",
+      "year": "Year",
+      "platforms": "Platforms",
+      "award": "Award",
+      "players": "Players",
+      "controls": "Controls",
+      "size": "Build"
     }
   },
-  "games": {
-    "title": "Games",
-    "playOnItch": "Play on Itch.io",
-    "descriptions": {
-      "cursum": "Solo runner/FPS prototype built in one month in full autonomy.",
-      "keep-dancing": "Rhythm-based dodging game made in 48h for the Global Game Jam 2024.",
-      "echoes": "Action-adventure prototype in confined arenas, focused on fast combat and oppressive atmosphere.",
-      "whispers": "Narrative time-loop adventure in a peaceful low-poly village, where each loop uncovers new clues.",
-      "color-gap": "A minimalist platformer driven by color, rhythm, and perception. 🏆 Jury's Favorite — GGJ 2026.",
-      "mirapyde": "2D parkour platformer with time manipulation: create a clone that replays your moves in reverse.",
-      "eco": "A puzzle-platformer where your past catches up with you, eight seconds late. My biggest project, playable in co-op.",
-      "dig-or-die": "The wolf learns. The shepherd traps. Short, tense, and fun.",
-      "tour-infinie": "A pixel-art roguelite auto-battler with online co-op. The tower has no top.",
-      "speed-typo": "Fast typing game with several modes and dynamic effects. Built with React."
+  "controls": {
+    "keyboard": "Keyboard",
+    "touch": "Touch",
+    "both": "Keyboard or gamepad"
+  },
+  "index": {
+    "title": "All games",
+    "cols": {
+      "title": "Title",
+      "genre": "Genre",
+      "year": "Year",
+      "platforms": "Platforms",
+      "action": "Action"
     },
-    "label": "Selected work",
-    "view": "Play",
-    "all": "All games",
-    "browser": "Browser"
+    "playableHere": "Playable here",
+    "play": "Play",
+    "contactSheet": "Contact sheet"
   },
   "tools": {
+    "label": "Tools",
     "title": "Also: Unity tools",
-    "viewOnAssetStore": "View on Asset Store",
+    "lead": "Six editor tools published on the Asset Store, built for my own projects and then shared. Kept here as proof that I can also build for other developers.",
+    "meta": "{{n}} tools · {{downloads}}+ downloads",
+    "cols": {
+      "name": "Tool",
+      "category": "Category",
+      "downloads": "Downloads",
+      "price": "Price",
+      "links": "Links"
+    },
+    "new": "new",
+    "free": "Free",
+    "viewOnAssetStore": "Asset Store",
     "documentation": "Documentation",
     "descriptions": {
       "project-organizer": "Restructure your Assets folder in one click into a clean, standard, professional file tree.",
@@ -61,43 +84,43 @@
       "animation-path-visualizer": "Visualize and edit animation paths directly in the Scene view. Drag keyframes, tweak tangents, display the speed gradient, and lock your selection. Works with Animation & Animator. Editor only.",
       "smart-localization": "Editor-driven localization workflow for TextMeshPro: one-click translation via multiple providers (DeepL, Azure, Google, Amazon, MyMemory…), per-language locks, placeholder checks and dashboard.",
       "smart-localization-lite": "Free, plug-and-play Lite version for TextMeshPro: LocalizedTMP, one-click translation via MyMemory, per-language locks and a daily quota managed from the Editor."
-    },
-    "label": "Asset Store",
-    "downloads": "downloads",
-    "intro": "Editor tools that save you an afternoon.",
-    "hint": "Keep scrolling →",
-    "lead": "Editor tools published on the Asset Store. Kept here as examples of what I can build."
+    }
   },
   "contact": {
-    "title": "Contact",
-    "labels": {
-      "email": "Email",
-      "github": "GitHub",
-      "linkedin": "LinkedIn",
-      "itch": "Itch.io"
-    },
     "label": "Contact",
-    "title1": "Let's",
-    "title2": "talk.",
-    "subtitle": "A game, a tool idea, or a jam to crash? My inbox is open."
+    "title": "Let’s talk",
+    "subtitle": "A game, a tool idea, a jam to join? Write to me.",
+    "copy": "Copy",
+    "copied": "Copied"
   },
   "footer": {
     "rights": "© {{year}} Jules Gilli",
-    "localTime": "Paris",
+    "colophon": "Set in Archivo & Newsreader · React, Vite, Tailwind · self-hosted games (Unity WebGL)",
     "top": "Back to top"
-  },
-  "language": {
-    "label": "Language"
   },
   "player": {
     "close": "Close",
-    "hint": "Esc to close"
+    "hint": "Esc to close",
+    "load": "Load the build · {{size}} MB",
+    "wifi": "Wi-Fi recommended",
+    "keyboardOnly": "This game needs a keyboard. Open this link on a computer.",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "loading": "Loading the build",
+    "selfHosted": "Self-hosted build",
+    "closeHint": "The game captures the keyboard: use the Close button, top right"
+  },
+  "dossier": {
+    "label": "Dossier",
+    "back": "Contents",
+    "inGame": "In the game",
+    "gallery": "Gallery"
   },
   "achievements": {
     "title": "Achievements",
     "unlocked": "Achievement unlocked",
     "secret": "Secret achievement",
-    "secretHint": "Keep exploring…",
+    "secretHint": "Keep exploring",
     "items": {
       "first-play": {
         "title": "Press start",
@@ -109,11 +132,11 @@
       },
       "all-featured": {
         "title": "Fan",
-        "desc": "Play the three featured games"
+        "desc": "Play the three chapter games"
       },
       "scroll-end": {
         "title": "Completionist",
-        "desc": "Scroll all the way down"
+        "desc": "Read the issue to the colophon"
       },
       "polyglot": {
         "title": "Polyglot",
@@ -123,13 +146,17 @@
         "title": "Behind the scenes",
         "desc": "Take a look at a Unity tool"
       },
+      "finisher": {
+        "title": "Finisher",
+        "desc": "Finish a game inside the site"
+      },
       "patient": {
         "title": "Patient",
         "desc": "Stay five minutes"
       },
       "night-owl": {
         "title": "Night owl",
-        "desc": "Visit between midnight and 5am"
+        "desc": "Visit between midnight and 5 am"
       },
       "konami": {
         "title": "Cheater",
@@ -137,12 +164,127 @@
       },
       "insistent": {
         "title": "Insistent",
-        "desc": "Click the logo five times"
-      },
-      "finisher": {
-        "title": "Finisher",
-        "desc": "Finish a game inside the site"
+        "desc": "Click the name five times"
       }
+    }
+  },
+  "language": {
+    "label": "Language"
+  },
+  "games": {
+    "eco": {
+      "hook": "Your past catches up with you, eight seconds late.",
+      "body": "ECO is a puzzle-platformer where every move is recorded and replayed by an echo eight seconds later. A button to hold, a door that needs two: your self from eight seconds ago does the job while you move on. My longest project, playable solo or in co-op, with a level editor whose creations are shared online from inside the game.",
+      "long": "ECO is a puzzle-platformer built on a single rule: everything you do is replayed by an echo eight seconds later. A button that must stay pressed, a platform to hold up, a passage that only opens for two: your double from eight seconds ago does the work while you move ahead.\n\nIt plays solo or in co-op, and ships with a level editor: levels you build go online from inside the game, and everyone else's show up in the Community menu. Nothing to zip, no folder to find.\n\nIt is my longest project. It runs in the browser and on Windows, macOS and Linux.",
+      "captions": [
+        "Session 1 — your echo (blue) replays the path you just traced, eight seconds behind.",
+        "Session 3 — the echo holds the button while you pass: the line shows what it triggers.",
+        "Session 7 — each session changes palette and rule; here, a pillar to hold up.",
+        "Session 6 — two characters, two timelines, one clock.",
+        "The echo chain: a level is solved by orchestrating several versions of yourself."
+      ],
+      "inGame": [
+        "Echo: your inputs are recorded and replayed by a double, eight seconds later.",
+        "Local or online co-op: two players, four timelines.",
+        "Built-in level editor, online sharing from the game and a Community menu.",
+        "Browser, Windows, macOS and Linux builds."
+      ]
+    },
+    "dig-or-die": {
+      "hook": "The wolf learns. The shepherd traps.",
+      "body": "An eleven-level puzzle where you place traps before the wolf arrives. It dies, it learns, it comes back avoiding what it saw. Kill it when it thinks it knows everything. Short, tense, pixel art, and playable in the page.",
+      "long": "DIG or DIE is a trap game in eleven levels. You are the shepherd: before each wave you lay spikes, blocks, arrows and traps on the terrain. Then the wolf comes.\n\nThe rule that makes the game: the wolf remembers. When it dies on a trap, it returns avoiding it. Traps that worked become decoys, and the solution is never last turn's. Kill it when it thinks it knows everything.\n\nShort, tense, pixel art, with a CRT screen. Keyboard only, straight in the page.",
+      "captions": [
+        "Level 6 — lay your traps on the blocks before the wolf arrives; the inventory below counts what is left.",
+        "Level complete — the wolf has learned; next turn it will walk around what killed it.",
+        "The bare terrain: each level is a small placement puzzle.",
+        "Available traps change from one level to the next.",
+        "Eleven levels, one night, an ever smarter wolf."
+      ],
+      "inGame": [
+        "Eleven trap-placement levels, a few minutes each.",
+        "A wolf that memorises the traps it met and adapts its path.",
+        "Pixel art and CRT rendering, keyboard only.",
+        "Browser build, playable here."
+      ]
+    },
+    "color-gap": {
+      "hook": "A world that only exists one colour at a time.",
+      "body": "A minimalist platformer driven by colour, rhythm and perception. A pristine world fractures into three primary colours; every jump cycles the visible one, and the other two's platforms vanish. Jumping means choosing what exists when you land. Jury's Favorite at the Global Game Jam 2026.",
+      "long": "Color GAP is a minimalist platformer driven by colour, rhythm and perception. You explore a pristine world built around precise platforming and environmental puzzles. Early on, an event fractures that space and splits reality into three primary colours: yellow, red, blue.\n\nFrom then on the world exists as overlapping fragments. Every jump shifts your perception and cycles colour masks that only reveal the elements matching the active colour. The platforms are always there, but only one colour is visible at a time. A badly timed jump does not only change your trajectory: it changes what exists when you land.\n\nThe music evolves with your actions. Mastering the game means learning when to jump, not only how. Made in 48 hours for the Global Game Jam 2026, where it received the Jury's Favorite award.",
+      "captions": [
+        "The world before the fracture: white, low-poly, silent.",
+        "The first colour. The yellow tree only exists while yellow is active.",
+        "Every jump cycles the mask: anything not in the active colour disappears."
+      ],
+      "inGame": [
+        "Colour cycle triggered on every jump: one colour of platforms visible at a time.",
+        "Music that reacts to gameplay.",
+        "Made in 48 h for the Global Game Jam 2026 — Jury's Favorite."
+      ],
+      "duration": "48 h — Global Game Jam 2026"
+    },
+    "tour-infinie": {
+      "hook": "The tower has no top.",
+      "body": "A pixel-art roguelite auto-battler with online co-op. Floor after floor, you compose your build and watch the fight play out. Playable in the page.",
+      "captions": [
+        "Floor 1 — first boss, the Spider Queen.",
+        "Picked-up items compose the character's build.",
+        "Higher, denser: the tower never stops.",
+        "In co-op, two players climb the same tower."
+      ]
+    },
+    "mirapyde": {
+      "hook": "Freeze time. Your clone replays your moves in reverse.",
+      "body": "A 2D parkour platformer inside a pyramid. Each room is a closed puzzle: freeze time to create a clone that replays your moves in reverse, and orchestrate two timelines to open the way.",
+      "long": "Mirapyde is a 2D platformer built on parkour and time manipulation. Each room is a closed puzzle: one door, one goal, no filler.\n\nThe principle: freeze time to create a clone that replays your moves in reverse. That double can press a button while you climb elsewhere, hold a pressure plate, or sync an action you could never do alone. If you fail, you restart instantly.\n\nClean movement, strict timing, planning: climb the pyramid floor after floor.",
+      "captions": [
+        "One room, one door, one goal.",
+        "The clone replays your moves in reverse while you climb.",
+        "Traps are unforgiving: you restart immediately.",
+        "Title screen and level select."
+      ]
+    },
+    "echoes": {
+      "hook": "A fast descent into hostile arenas.",
+      "body": "An action prototype in closed arenas, focused on fast combat and an oppressive atmosphere. Written in Java with libGDX, playable in the page.",
+      "captions": [
+        "Closed arena, melee combat, no respite."
+      ]
+    },
+    "whispers": {
+      "hook": "Every loop reveals a new clue.",
+      "body": "A narrative time-loop adventure in a peaceful low-poly village. Each loop brings you closer to the truth behind a fallen sacred tree.",
+      "captions": [
+        "The village at the start of the loop.",
+        "The villagers repeat their days; only you remember.",
+        "The sacred tree, fallen."
+      ]
+    },
+    "keep-dancing": {
+      "hook": "Dodge to the beat or die.",
+      "body": "A rhythm-based dodging game made in 48 hours for the Global Game Jam 2024.",
+      "captions": [
+        "Platforms move to the beat; stay on them.",
+        "The arena."
+      ],
+      "duration": "48 h — Global Game Jam 2024"
+    },
+    "cursum": {
+      "hook": "A first-person race against the clock.",
+      "body": "First solo project: hub, tutorial, timed levels, wall-run, slide and jump. One month to do everything, from design to integration.",
+      "captions": [
+        "The central hub and its portals.",
+        "Wall-run between two walls.",
+        "The clock, always on top."
+      ],
+      "duration": "1 month",
+      "role": "Solo"
+    },
+    "speed-typo": {
+      "hook": "Type fast.",
+      "body": "A fast typing game, built with React.",
+      "captions": []
     }
   }
 }

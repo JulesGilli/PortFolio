@@ -1,17 +1,6 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ReactNode,
-} from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { TrophyIcon, XIcon, LockIcon } from 'lucide-react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EASE } from './Reveal';
+import { useScrollLock } from '../../lib/useScrollLock';
 
 /* ---------- Definitions ---------- */
 
@@ -22,24 +11,24 @@ export type AchievementId =
   | 'scroll-end'
   | 'polyglot'
   | 'tools-peek'
+  | 'finisher'
   | 'patient'
   | 'night-owl'
   | 'konami'
-  | 'insistent'
-  | 'finisher';
+  | 'insistent';
 
-export const ACHIEVEMENTS: { id: AchievementId; icon: string; secret?: boolean }[] = [
-  { id: 'first-play', icon: '🎮' },
-  { id: 'three-games', icon: '🕹️' },
-  { id: 'all-featured', icon: '⭐' },
-  { id: 'scroll-end', icon: '🏁' },
-  { id: 'polyglot', icon: '🌍' },
-  { id: 'tools-peek', icon: '🔧' },
-  { id: 'finisher', icon: '🏆' },
-  { id: 'patient', icon: '⏳' },
-  { id: 'night-owl', icon: '🦉', secret: true },
-  { id: 'konami', icon: '👾', secret: true },
-  { id: 'insistent', icon: '🔁', secret: true },
+export const ACHIEVEMENTS: { id: AchievementId; secret?: boolean }[] = [
+  { id: 'first-play' },
+  { id: 'three-games' },
+  { id: 'all-featured' },
+  { id: 'scroll-end' },
+  { id: 'polyglot' },
+  { id: 'tools-peek' },
+  { id: 'finisher' },
+  { id: 'patient' },
+  { id: 'night-owl', secret: true },
+  { id: 'konami', secret: true },
+  { id: 'insistent', secret: true },
 ];
 
 const STORAGE_KEY = 'achievements';
@@ -61,12 +50,36 @@ function save(key: string, value: unknown) {
   }
 }
 
-/* ---------- Context ---------- */
+/* ---------- State ---------- */
+
+type State = { unlocked: AchievementId[]; queue: AchievementId[]; current: AchievementId | null; panel: boolean };
+type Action =
+  | { type: 'unlock'; id: AchievementId }
+  | { type: 'show' }
+  | { type: 'hide' }
+  | { type: 'panel'; open: boolean };
+
+function reducer(s: State, a: Action): State {
+  switch (a.type) {
+    case 'unlock': {
+      if (s.unlocked.includes(a.id)) return s;
+      const unlocked = [...s.unlocked, a.id];
+      save(STORAGE_KEY, unlocked);
+      return { ...s, unlocked, queue: [...s.queue, a.id] };
+    }
+    case 'show':
+      if (s.current || s.queue.length === 0) return s;
+      return { ...s, current: s.queue[0], queue: s.queue.slice(1) };
+    case 'hide':
+      return { ...s, current: null };
+    case 'panel':
+      return { ...s, panel: a.open };
+  }
+}
 
 type Api = {
   unlocked: AchievementId[];
   unlock: (id: AchievementId) => void;
-  /** Call when a game is launched; handles play-count achievements. */
   trackPlay: (slug: string, featured: boolean) => void;
   openPanel: () => void;
 };
@@ -76,27 +89,16 @@ export const useAchievements = () => useContext(Ctx);
 
 const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
-export function AchievementsProvider({
-  children,
-  featuredSlugs,
-}: {
-  children: ReactNode;
-  featuredSlugs: string[];
-}) {
-  const [unlocked, setUnlocked] = useState<AchievementId[]>(() => load(STORAGE_KEY, []));
-  const [queue, setQueue] = useState<AchievementId[]>([]);
-  const [panelOpen, setPanelOpen] = useState(false);
+export function AchievementsProvider({ children, featuredSlugs }: { children: ReactNode; featuredSlugs: string[] }) {
+  const [state, dispatch] = useReducer(reducer, undefined, () => ({
+    unlocked: load<AchievementId[]>(STORAGE_KEY, []),
+    queue: [],
+    current: null,
+    panel: false,
+  }));
   const played = useRef<{ slugs: string[]; featured: string[] }>(load(PLAYED_KEY, { slugs: [], featured: [] }));
 
-  const unlock = useCallback((id: AchievementId) => {
-    setUnlocked((cur) => {
-      if (cur.includes(id)) return cur;
-      const next = [...cur, id];
-      save(STORAGE_KEY, next);
-      setQueue((q) => [...q, id]);
-      return next;
-    });
-  }, []);
+  const unlock = useCallback((id: AchievementId) => dispatch({ type: 'unlock', id }), []);
 
   const trackPlay = useCallback(
     (slug: string, featured: boolean) => {
@@ -111,12 +113,10 @@ export function AchievementsProvider({
     [unlock, featuredSlugs],
   );
 
-  // Passive achievements: time on site, night visit, Konami code.
+  // Passive achievements.
   useEffect(() => {
-    const hour = new Date().getHours();
-    if (hour < 5) unlock('night-owl');
-    const patient = setTimeout(() => unlock('patient'), 5 * 60 * 1000);
-
+    if (new Date().getHours() < 5) unlock('night-owl');
+    const patient = window.setTimeout(() => unlock('patient'), 5 * 60 * 1000);
     let pos = 0;
     const onKey = (e: KeyboardEvent) => {
       const key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
@@ -128,183 +128,126 @@ export function AchievementsProvider({
     };
     window.addEventListener('keydown', onKey);
     return () => {
-      clearTimeout(patient);
+      window.clearTimeout(patient);
       window.removeEventListener('keydown', onKey);
     };
   }, [unlock]);
 
-  // Toast queue: show one at a time.
-  const [current, setCurrent] = useState<AchievementId | null>(null);
+  // Toast queue: one at a time, 4.2 s each. Two separate effects so the timer never cancels itself.
   useEffect(() => {
-    if (current || queue.length === 0) return;
-    setCurrent(queue[0]);
-    setQueue((q) => q.slice(1));
-    const id = setTimeout(() => setCurrent(null), 4200);
-    return () => clearTimeout(id);
-  }, [queue, current]);
+    if (!state.current && state.queue.length) dispatch({ type: 'show' });
+  }, [state.current, state.queue]);
+  useEffect(() => {
+    if (!state.current) return;
+    const id = window.setTimeout(() => dispatch({ type: 'hide' }), 4200);
+    return () => window.clearTimeout(id);
+  }, [state.current]);
 
   const api = useMemo<Api>(
-    () => ({ unlocked, unlock, trackPlay, openPanel: () => setPanelOpen(true) }),
-    [unlocked, unlock, trackPlay],
+    () => ({ unlocked: state.unlocked, unlock, trackPlay, openPanel: () => dispatch({ type: 'panel', open: true }) }),
+    [state.unlocked, unlock, trackPlay],
   );
 
   return (
     <Ctx.Provider value={api}>
       {children}
-      <Toast id={current} />
-      <Panel open={panelOpen} onClose={() => setPanelOpen(false)} unlocked={unlocked} />
+      <Toast id={state.current} count={state.unlocked.length} />
+      <Panel open={state.panel} onClose={() => dispatch({ type: 'panel', open: false })} unlocked={state.unlocked} />
     </Ctx.Provider>
   );
 }
 
-/* ---------- Toast ---------- */
+/* ---------- Toast: a printed sticker ---------- */
 
-function Toast({ id }: { id: AchievementId | null }) {
+function Toast({ id, count }: { id: AchievementId | null; count: number }) {
   const { t } = useTranslation();
-  const def = ACHIEVEMENTS.find((a) => a.id === id);
+  const index = id ? ACHIEVEMENTS.findIndex((a) => a.id === id) + 1 : 0;
   return (
-    <div className="pointer-events-none fixed bottom-5 left-5 z-[85] md:bottom-8 md:left-8">
-      <AnimatePresence>
-        {id && def && (
-          <motion.div
-            key={id}
-            className="flex items-center gap-4 rounded-xl border border-accent/40 bg-ink/90 p-3 pr-5 shadow-2xl shadow-black/50 backdrop-blur"
-            initial={{ x: -40, opacity: 0, scale: 0.95 }}
-            animate={{ x: 0, opacity: 1, scale: 1 }}
-            exit={{ x: -20, opacity: 0 }}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
-            <motion.span
-              className="grid h-12 w-12 place-items-center rounded-lg bg-accent text-2xl"
-              initial={{ rotate: -20, scale: 0.6 }}
-              animate={{ rotate: 0, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 14, delay: 0.15 }}
-            >
-              {def.icon}
-            </motion.span>
-            <div>
-              <div className="meta !text-accent">{t('achievements.unlocked')}</div>
-              <div className="font-display text-base font-semibold tracking-tight">{t(`achievements.items.${id}.title`)}</div>
-              <div className="text-xs text-muted">{t(`achievements.items.${id}.desc`)}</div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div role="status" aria-live="polite" className="pointer-events-none fixed bottom-5 right-5 z-[90] md:bottom-8 md:right-8">
+      {id && (
+        <div key={id} className="toast-in flex w-[calc(100vw-40px)] max-w-[320px] items-stretch border border-ink bg-spot text-onspot">
+          <span className="t-mast flex w-16 shrink-0 items-center justify-center border-r border-ink [--mast-size:28px]">{String(index).padStart(2, '0')}</span>
+          <div className="px-4 py-3">
+            <p className="t-meta">
+              {t('achievements.unlocked')} — {String(count).padStart(2, '0')}/{ACHIEVEMENTS.length}
+            </p>
+            <p className="t-cell-strong mt-1">{t(`achievements.items.${id}.title`)}</p>
+            <p className="t-cell">{t(`achievements.items.${id}.desc`)}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-/* ---------- Trophy button + panel ---------- */
+/* ---------- Trophy chip + drawer ---------- */
 
 export function TrophyButton() {
   const { unlocked, openPanel } = useAchievements();
   const { t } = useTranslation();
   return (
-    <button
-      type="button"
-      onClick={openPanel}
-      data-cursor=""
-      aria-label={t('achievements.title')}
-      className="meta inline-flex items-center gap-1.5 rounded-full border border-bone/20 px-3 py-1.5 !text-bone transition-colors hover:border-bone/50"
-    >
-      <TrophyIcon size={12} className={unlocked.length ? 'text-accent' : ''} />
-      {unlocked.length}/{ACHIEVEMENTS.length}
+    <button type="button" onClick={openPanel} aria-label={t('achievements.title')} className="t-ui flex h-11 items-center gap-2 border border-ink px-3 hover:bg-ink hover:text-paper">
+      <span className="hidden sm:inline">{t('achievements.title')}</span>
+      <span className="tabular-nums">
+        {String(unlocked.length).padStart(2, '0')}/{ACHIEVEMENTS.length}
+      </span>
     </button>
   );
 }
 
 function Panel({ open, onClose, unlocked }: { open: boolean; onClose: () => void; unlocked: AchievementId[] }) {
   const { t } = useTranslation();
+  useScrollLock(open);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose]);
+  if (!open) return null;
+  const pct = Math.round((unlocked.length / ACHIEVEMENTS.length) * 100);
 
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          className="fixed inset-0 z-[86] flex justify-end bg-ink/60 backdrop-blur-sm"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-        >
-          <motion.aside
-            className="flex h-full w-full max-w-md flex-col border-l border-bone/10 bg-ink"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.6, ease: EASE }}
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-label={t('achievements.title')}
-            data-lenis-prevent
-          >
-            <div className="flex items-center justify-between border-b border-bone/10 px-5 py-4">
-              <div>
-                <div className="font-display text-xl font-semibold tracking-tight">{t('achievements.title')}</div>
-                <div className="meta mt-1">
-                  {unlocked.length}/{ACHIEVEMENTS.length} · {Math.round((unlocked.length / ACHIEVEMENTS.length) * 100)}%
+    <div className="fixed inset-0 z-[86] flex justify-end bg-ink/40" onClick={onClose}>
+      <aside
+        className="flex h-full w-full max-w-[420px] flex-col border-l border-ink bg-paper text-ink"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('achievements.title')}
+      >
+        <div className="flex items-center justify-between border-b border-ink px-5 py-4">
+          <div>
+            <p className="t-section">{t('achievements.title')}</p>
+            <p className="t-meta ink2 mt-1">
+              {String(unlocked.length).padStart(2, '0')}/{ACHIEVEMENTS.length} · {pct} %
+            </p>
+          </div>
+          <button type="button" onClick={onClose} className="btn btn-ghost btn-sm">
+            {t('player.close')}
+          </button>
+        </div>
+        <div className="h-2 border-b border-ink">
+          <div className="h-full bg-ink" style={{ width: `${pct}%` }} />
+        </div>
+        <ol className="flex-1 overflow-y-auto px-5">
+          {ACHIEVEMENTS.map((a, i) => {
+            const done = unlocked.includes(a.id);
+            const hidden = a.secret && !done;
+            return (
+              <li key={a.id} className="rule-in flex items-center gap-4 py-3">
+                <span className={`t-cell-strong flex h-10 w-10 shrink-0 items-center justify-center border border-ink tabular-nums ${done ? 'bg-spot text-onspot' : 'ink2'}`}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div className={done ? '' : 'ink2'}>
+                  <p className="t-cell-strong">{hidden ? t('achievements.secret') : t(`achievements.items.${a.id}.title`)}</p>
+                  <p className="t-cell">{hidden ? '— — —' : t(`achievements.items.${a.id}.desc`)}</p>
                 </div>
-              </div>
-              <button
-                type="button"
-                onClick={onClose}
-                data-cursor=""
-                aria-label={t('player.close')}
-                className="grid h-9 w-9 place-items-center rounded-full border border-bone/20 text-bone"
-              >
-                <XIcon size={14} />
-              </button>
-            </div>
-
-            <div className="h-1 bg-bone/10">
-              <motion.div
-                className="h-full bg-accent"
-                initial={{ width: 0 }}
-                animate={{ width: `${(unlocked.length / ACHIEVEMENTS.length) * 100}%` }}
-                transition={{ duration: 0.8, ease: EASE, delay: 0.3 }}
-              />
-            </div>
-
-            <ul className="flex-1 overflow-y-auto px-5 py-3">
-              {ACHIEVEMENTS.map((a, i) => {
-                const done = unlocked.includes(a.id);
-                const hidden = a.secret && !done;
-                return (
-                  <motion.li
-                    key={a.id}
-                    className={`flex items-center gap-4 border-b border-bone/10 py-4 ${done ? '' : 'opacity-50'}`}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: done ? 1 : 0.5, x: 0 }}
-                    transition={{ delay: 0.2 + i * 0.04, duration: 0.5, ease: EASE }}
-                  >
-                    <span
-                      className={`grid h-11 w-11 shrink-0 place-items-center rounded-lg text-xl ${
-                        done ? 'bg-accent' : 'border border-bone/15'
-                      }`}
-                    >
-                      {hidden ? <LockIcon size={14} /> : done ? a.icon : <span className="grayscale opacity-60">{a.icon}</span>}
-                    </span>
-                    <div className="min-w-0">
-                      <div className="font-display text-sm font-semibold tracking-tight">
-                        {hidden ? t('achievements.secret') : t(`achievements.items.${a.id}.title`)}
-                      </div>
-                      <div className="text-xs text-muted">
-                        {hidden ? t('achievements.secretHint') : t(`achievements.items.${a.id}.desc`)}
-                      </div>
-                    </div>
-                  </motion.li>
-                );
-              })}
-            </ul>
-          </motion.aside>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              </li>
+            );
+          })}
+        </ol>
+      </aside>
+    </div>
   );
 }

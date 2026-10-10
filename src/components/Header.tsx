@@ -1,110 +1,152 @@
-import { useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './ui/LanguageSelector';
-import { EASE } from './ui/Reveal';
-import { useIntroDone } from './ui/Intro';
 import { TrophyButton, useAchievements } from './ui/Achievements';
+import { useScrollLock } from '../lib/useScrollLock';
+import { bySlug } from '../data/games';
 
-const navItems = [
-  { key: 'about', href: '#hero', index: '01' },
-  { key: 'games', href: '#games', index: '02' },
-  { key: 'tools', href: '#tools', index: '03' },
-  { key: 'contact', href: '#contact', index: '04' },
+const NAV = [
+  { key: 'about', href: '#hero', id: 'hero' },
+  { key: 'games', href: '#games', id: 'games' },
+  { key: 'tools', href: '#tools', id: 'tools' },
+  { key: 'contact', href: '#contact', id: 'contact' },
 ] as const;
+
+/** Reads the cahier currently printed on :root (set by issue.ts). */
+function useCurrentCahier() {
+  const [id, setId] = useState<string>('base');
+  useEffect(() => {
+    const root = document.documentElement;
+    const read = () => setId(root.dataset.cahier ?? 'base');
+    read();
+    const mo = new MutationObserver(read);
+    mo.observe(root, { attributes: true, attributeFilter: ['data-cahier'] });
+    return () => mo.disconnect();
+  }, []);
+  return id;
+}
+
+/** Which section covers the middle of the viewport, for the nav underline. */
+function useActiveSection() {
+  const [active, setActive] = useState<string>('hero');
+  useEffect(() => {
+    const ids = ['hero', 'games', 'tools', 'contact'];
+    const onScroll = () => {
+      const mid = window.innerHeight / 2;
+      let cur = 'hero';
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= mid) cur = id;
+      }
+      // the three cahiers sit between hero and the index: count them as "games"
+      const first = document.getElementById('cahier-eco');
+      if (first && cur === 'hero' && first.getBoundingClientRect().top <= mid) cur = 'games';
+      setActive(cur);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  return active;
+}
 
 export function Header() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const ready = useIntroDone();
+  const cahier = useCurrentCahier();
+  const active = useActiveSection();
   const { unlock } = useAchievements();
-  const logoClicks = useRef(0);
+  const clicks = useRef(0);
+  useScrollLock(open);
+
+  const game = cahier !== 'base' ? bySlug(cahier) : undefined;
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open]);
 
   return (
     <>
-      <motion.header
-        className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8"
-        initial={{ y: -20, opacity: 0 }}
-        animate={ready ? { y: 0, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
-      >
-        <a
-          href="#hero"
-          className="flex items-center gap-3"
-          data-cursor=""
-          onClick={() => {
-            logoClicks.current += 1;
-            if (logoClicks.current >= 5) unlock('insistent');
-          }}
-        >
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-bone font-display text-[11px] font-bold text-ink">
-            JG
-          </span>
-          <span className="hidden font-display text-sm font-medium tracking-tight sm:block">
-            Jules Gilli
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="group flex items-baseline gap-1.5 text-sm text-bone/80 transition-colors hover:text-bone"
-              data-cursor=""
-            >
-              <span className="meta !text-[9px] text-muted transition-colors group-hover:text-accent">
-                {item.index}
-              </span>
-              <span className="flip">
-                <span>{t(`nav.${item.key}`)}</span>
-                <span>{t(`nav.${item.key}`)}</span>
-              </span>
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-2 md:gap-3">
-          <TrophyButton />
-          <LanguageSelector />
-          <button
-            type="button"
-            className="meta rounded-full border border-bone/20 px-3 py-1.5 !text-bone md:hidden"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-label="Menu"
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-ink bg-paper text-ink">
+        <div className="page flex h-12 items-center justify-between md:h-14">
+          <a
+            href="#hero"
+            className="t-ui flex items-center gap-2"
+            style={{ fontStretch: '75%' }}
+            onClick={() => {
+              clicks.current += 1;
+              if (clicks.current >= 5) unlock('insistent');
+            }}
           >
-            {open ? 'Close' : 'Menu'}
-          </button>
-        </div>
-      </motion.header>
+            <span>Jules Gilli</span>
+            {game && (
+              <span className="ink2 hidden sm:inline">
+                — {t('cahier.label')} {game.title}
+              </span>
+            )}
+          </a>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="fixed inset-0 z-40 flex flex-col justify-end bg-ink px-5 pb-14 md:hidden"
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            exit={{ clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.7, ease: EASE }}
-          >
-            {navItems.map((item, i) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="flex items-baseline gap-4 border-t border-bone/10 py-4 font-display text-5xl font-semibold display-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 + i * 0.06, duration: 0.6, ease: EASE }}
+          <nav aria-label={t('nav.label')} className="hidden items-center gap-8 md:flex">
+            {NAV.map((n) => (
+              <a
+                key={n.key}
+                href={n.href}
+                className={`t-ui border-b-2 py-1 ${active === n.id ? 'border-spot' : 'border-transparent hover:border-ink'}`}
+                aria-current={active === n.id ? 'true' : undefined}
               >
-                <span className="meta">{item.index}</span>
-                {t(`nav.${item.key}`)}
-              </motion.a>
+                {t(`nav.${n.key}`)}
+              </a>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </nav>
+
+          <div className="flex items-center gap-2 md:gap-3">
+            <TrophyButton />
+            <div className="hidden md:block">
+              <LanguageSelector />
+            </div>
+            <button
+              type="button"
+              className="t-ui flex h-11 items-center border border-ink px-3 md:hidden"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+            >
+              {open ? t('nav.close') : t('nav.menu')}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {open && (
+        <div
+          id="mobile-menu"
+          className="fixed inset-0 z-40 flex flex-col pt-16 md:hidden"
+          style={{ background: 'var(--ink)', color: 'var(--paper)' }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <nav className="page flex flex-1 flex-col" aria-label={t('nav.label')}>
+            {NAV.map((n, i) => (
+              <a
+                key={n.key}
+                href={n.href}
+                onClick={() => setOpen(false)}
+                className="flex items-baseline gap-4 border-t py-4 font-archivo text-[40px] font-bold uppercase leading-none"
+                style={{ borderColor: 'var(--paper)' }}
+              >
+                <span className="t-meta">0{i + 1}</span>
+                {t(`nav.${n.key}`)}
+              </a>
+            ))}
+          </nav>
+          <div className="page border-t py-5" style={{ borderColor: 'var(--paper)', ['--ink' as string]: 'var(--paper)' }}>
+            <LanguageSelector inverted />
+          </div>
+        </div>
+      )}
     </>
   );
 }

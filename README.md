@@ -1,101 +1,39 @@
-# 🎮 Jules Gilli — Portfolio Développeur & Game Designer
+# Jules Gilli — portfolio
 
-Bienvenue sur mon portfolio en ligne ! Ce projet présente mes dernières créations en **développement de jeux vidéo**, **expériences interactives** et **projets web**. Il a été conçu avec passion pour offrir une navigation fluide, responsive et immersive.
+Portfolio de Jules Gilli, développeur de jeux (Unity, C#), en ligne sur [gillijules.com](https://gillijules.com).
 
-## 🚀 Tech Stack
+Le site est conçu comme un numéro de magazine jouable : une couverture, un cahier par jeu mis en avant
+(ECO, DIG or DIE, Color GAP), un index de tous les jeux, les outils Asset Store en colophon, le contact.
+Chaque cahier est imprimé sur son propre papier (fond, encre, couleur d'accompagnement, coupe du titre) ;
+le chrome du site adopte le cahier qui couvre le milieu de l'écran, par coupe franche.
+Les jeux qui ont un build navigateur se jouent dans la page.
 
-- ⚛️ [React](https://reactjs.org/)
-- 🌬️ [Tailwind CSS](https://tailwindcss.com/)
-- 🔁 [React Router](https://reactrouter.com/)
-- 🌀 [Framer Motion](https://www.framer.com/motion/) pour les animations
-- 💡 [Lucide Icons](https://lucide.dev/) pour les icônes modernes
-- 🎯 TypeScript
-- ⚙️ Vite (build ultra-rapide)
+## Stack
 
----
+- React 18, Vite 5, TypeScript, Tailwind 3
+- i18next (FR et EN complets ; ES et DE retombent sur EN)
+- Polices auto-hébergées : Archivo (axes largeur/graisse) et Newsreader, via Fontsource
+- Aucune bibliothèque d'animation : cinq mouvements en CSS (entrée de titre, tourner la page, inversion de ligne, coupe de planche, toast)
 
-## ✨ Fonctionnalités
+## Structure
 
-- **Présentation interactive** de mes projets Unity & web
-- **Système de succès (Achievements)** débloqués en fonction des actions de l'utilisateur
-- **Design responsive** avec animations subtiles
-- **Filtrage et recherche** de projets
-- **Navigation fluide** entre les sections
+- `src/data/games.ts` — modèle de contenu des jeux (specs, captures, build, cahier)
+- `src/i18n/locales/*.json` — toute la copie (accroches, textes, légendes), clé par slug
+- `src/issue.ts` — tokens d'impression (papier, encre, spot) et observateur de cahier
+- `src/components/` — Cover, Cahier, GameIndex, Tools, Contact, Dossier (route `/jeux/<slug>`), Header
+- `src/components/ui/` — Player (lecteur in-site), Achievements (succès), Figure, Masthead, MetaRow, SpecTable
+- `public/games/<slug>/` — builds navigateur servis par le site (voir `public/games/README.md`)
+- `public/images/shots-web/<slug>/` — captures de gameplay en WebP 800 et 1600 px
+- `lfs/shots-src/` — captures sources (non déployées)
 
----
-
-## 🏁 Démarrer le projet
-
-### ⚙️ Installation
+## Développement
 
 ```bash
-git clone https://github.com/JulesGilli/PortFolio.git
-cd PortFolio
 npm install
-```
-
-### 🔄 Lancer en mode développement
-
-```bash
 npm run dev
-```
-
-### 🛠️ Build de production
-
-```bash
 npm run build
+npm run deploy   # gh-pages -d dist
 ```
 
-### 🔍 Aperçu de la build
-
-```bash
-npm run preview
-```
-
----
-
-## 📁 Structure du projet
-
-```
-.
-├── public/               # Images et ressources statiques
-├── src/
-│   ├── components/       # Tous les composants réutilisables (Hero, Footer, Header, etc.)
-│   ├── context/          # Gestion du contexte pour les succès
-│   ├── data/             # Données des projets
-│   ├── pages/            # Pages principales : Accueil, Projets, Détails
-│   └── index.tsx         # Point d'entrée principal
-```
-
----
-
-## 🏆 Système de Succès
-
-Chaque action que tu fais sur le site peut débloquer un **succès** (comme dans un vrai jeu) :
-- Visite d’une section
-- Scroll jusqu’en bas
-- Interaction avec les projets
-- Envoi d’un message
-- Et bien plus à découvrir...
-
----
-
-## 🔗 Liens utiles
-
-- [Mon LinkedIn](https://www.linkedin.com/in/jules-gilli/)
-- [Mon GitHub](https://github.com/JulesGilli)
-- [Version live du site](https://julesgilli.github.io/PortFolio/) *(si hébergé sur GitHub Pages)*
-
----
-
-## 👤 Auteur
-
-**Jules Gilli**  
-Game Designer & Développeur Unity  
-Étudiant en Master Systèmes Immersifs & Réalités Virtuelles à Epitech Toulouse
-
----
-
-## 📄 Licence
-
-Ce projet est open-source. Tu peux t'en inspirer, mais pense à me créditer si tu réutilises une grosse partie du code.
+Les routes `/jeux/<slug>` fonctionnent sur GitHub Pages grâce à `public/404.html`, qui renvoie vers `index.html`
+avec le chemin en paramètre.

@@ -35,3 +35,6 @@ node_modules/
 *.sln
 *.sw?
 *.tsbuildinfo
+
+# Source captures (reproducible from itch.io)
+lfs/shots-src/

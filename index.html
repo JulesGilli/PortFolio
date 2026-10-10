@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=2" />
@@ -7,19 +7,19 @@
     <link rel="apple-touch-icon" href="/favicon.png?v=2" />
     <link rel="shortcut icon" href="/favicon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Primary Meta Tags -->
-    <title>Jules Gilli — Game & Tools Developer</title>
-    <meta name="title" content="Jules Gilli — Game & Tools Developer" />
-    <meta name="description" content="Portfolio de Jules Gilli — développeur Unity, créateur de jeux et d'outils Asset Store." />
+    <title>Jules Gilli — Développeur de jeux</title>
+    <meta name="description" content="Jules Gilli, développeur de jeux (Unity, C#). Trois jeux jouables directement dans le site, dont ECO, DIG or DIE et Color GAP (Jury's Favorite, Global Game Jam 2026)." />
     <meta name="author" content="Jules Gilli" />
 
     <!-- Open Graph / Facebook / Discord -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.gillijules.com/" />
+    <meta property="og:url" content="https://gillijules.com/" />
     <meta property="og:title" content="Jules Gilli — Game & Tools Developer" />
-    <meta property="og:description" content="Portfolio de Jules Gilli — développeur Unity, créateur de jeux et d'outils Asset Store." />
-    <meta property="og:image" content="https://www.gillijules.com/og-image.png" />
+    <meta property="og:description" content="Jules Gilli, développeur de jeux (Unity, C#). Trois jeux jouables directement dans le site, dont ECO, DIG or DIE et Color GAP (Jury's Favorite, Global Game Jam 2026)." />
+    <meta property="og:image" content="https://gillijules.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Jules Gilli — Portfolio" />
@@ -28,24 +28,28 @@
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.gillijules.com/" />
+    <meta name="twitter:url" content="https://gillijules.com/" />
     <meta name="twitter:title" content="Jules Gilli — Game & Tools Developer" />
-    <meta name="twitter:description" content="Portfolio de Jules Gilli — développeur Unity, créateur de jeux et d'outils Asset Store." />
-    <meta name="twitter:image" content="https://www.gillijules.com/og-image.png" />
+    <meta name="twitter:description" content="Jules Gilli, développeur de jeux (Unity, C#). Trois jeux jouables directement dans le site, dont ECO, DIG or DIE et Color GAP (Jury's Favorite, Global Game Jam 2026)." />
+    <meta name="twitter:image" content="https://gillijules.com/og-image.png" />
 
     <!-- Theme color (Discord embed accent + mobile browser bar) -->
-    <meta name="theme-color" content="#a78bfa" />
+    <meta name="theme-color" content="#f2efe6" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=Silkscreen:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="canonical" href="https://www.gillijules.com/" />
+    <link rel="canonical" href="https://gillijules.com/" />
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Restore a /jeux/<slug> URL rewritten by 404.html (GitHub Pages SPA fallback).
+      (function () {
+        var q = window.location.search;
+        if (q && q.indexOf('?/') === 0) {
+          var path = q.slice(2).split('&')[0].replace(/~and~/g, '&');
+          window.history.replaceState(null, '', '/' + path + window.location.hash);
+        }
+      })();
+    </script>
     <script type="module" src="./src/index.tsx"></script>
   </body>
 </html>

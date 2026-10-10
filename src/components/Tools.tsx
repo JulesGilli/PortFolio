@@ -1,85 +1,81 @@
-import { ArrowUpRightIcon, BookOpenIcon } from 'lucide-react';
+import { useRef, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FadeUp, MaskLine } from './ui/Reveal';
-import { toolsData } from '../data/toolsData';
+import { MetaRow } from './ui/MetaRow';
+import { BASE_CAHIER } from '../data/games';
+import { cahierStyle, useCahierSection } from '../issue';
 import { useAchievements } from './ui/Achievements';
+import { toolsData } from '../data/toolsData';
+import { FEATURED } from '../data/games';
 
-/** Compact credit list: tools are kept as proof of skill, not as a showcase. */
+function count(s: string): number {
+  return parseInt(s.replace(/[^\d]/g, ''), 10) || 0;
+}
+
+/** Page 06: the colophon of tools. Proof of craft, not a shop. */
 export function Tools() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const baseRef = useRef<HTMLElement>(null);
+  useCahierSection(baseRef, BASE_CAHIER);
   const { unlock } = useAchievements();
-  const totalDownloads = toolsData.reduce((sum, tool) => {
-    const n = parseInt(tool.downloads.replace(/[^\d]/g, ''), 10);
-    return sum + (Number.isFinite(n) ? n : 0);
-  }, 0);
+  const n = FEATURED.length + 3;
+  const tools = [...toolsData].sort((a, b) => count(b.downloads) - count(a.downloads));
+  const total = tools.reduce((s, tool) => s + count(tool.downloads), 0);
+  const fmt = (v: number) => new Intl.NumberFormat(i18n.language).format(v);
 
   return (
-    <section id="tools" className="relative z-10 px-5 py-24 md:px-8 md:py-32">
-      <FadeUp>
-        <div className="mb-6 flex items-center gap-4">
-          <span className="meta">03</span>
-          <span className="rule flex-1" />
-          <span className="meta">{t('tools.label')}</span>
-        </div>
-      </FadeUp>
+    <section ref={baseRef} style={cahierStyle(BASE_CAHIER) as CSSProperties} id="tools" className="border-t border-ink bg-paper pt-12 text-ink md:pt-14" aria-labelledby="tools-title">
+      <div className="page">
+        <MetaRow left={`${String(n).padStart(2, '0')} — ${t('tools.label')}`} right={`p. ${String(n).padStart(2, '0')}`} />
 
-      <div className="grid gap-8 md:grid-cols-12 md:gap-12">
-        <div className="md:col-span-5">
-          <MaskLine as="h2" className="font-display text-[clamp(2rem,5vw,4rem)] font-semibold display-tight">
-            {t('tools.title')}
-          </MaskLine>
-          <FadeUp delay={0.1}>
-            <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted">{t('tools.lead')}</p>
-            <p className="meta mt-6">
-              {toolsData.length} {t('about.stats.tools').toLowerCase()} · {Math.floor(totalDownloads / 1000)}k+ {t('tools.downloads')}
-            </p>
-          </FadeUp>
-        </div>
+        <div className="grid-12 gap-y-8 py-8 md:py-12">
+          <div className="col-span-4 md:col-span-3">
+            <h2 id="tools-title" className="t-section">
+              {t('tools.title')}
+            </h2>
+            <p className="t-body mt-5 text-[17px] leading-[26px]">{t('tools.lead')}</p>
+            <p className="t-meta ink2 mt-6">{t('tools.meta', { n: tools.length, downloads: fmt(Math.floor(total / 1000) * 1000) })}</p>
+          </div>
 
-        <div className="md:col-span-7" onClickCapture={() => unlock('tools-peek')}>
-          {toolsData.map((tool, i) => (
-            <FadeUp key={tool.id} delay={Math.min(i * 0.05, 0.25)}>
-              <div className="group grid grid-cols-[1fr_auto] items-center gap-4 border-t border-bone/10 py-4 md:grid-cols-[1fr_auto_auto] md:gap-8">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap items-baseline gap-x-3">
-                    <h3 className="font-display text-lg font-medium tracking-tight">{tool.name}</h3>
-                    <span className="meta">{tool.category}</span>
-                  </div>
-                  <p className="mt-1 line-clamp-1 text-sm text-muted">
-                    {t(`tools.descriptions.${tool.slug}`, { defaultValue: tool.summary })}
-                  </p>
-                </div>
-                <span className="meta hidden md:block">
-                  {tool.downloads} · {tool.price}
-                </span>
-                <div className="flex items-center gap-1.5">
-                  {tool.documentationLink && (
-                    <a
-                      href={tool.documentationLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-cursor=""
-                      aria-label={t('tools.documentation')}
-                      className="grid h-9 w-9 place-items-center rounded-full border border-bone/15 text-bone/70 transition-colors hover:border-bone/50 hover:text-bone"
-                    >
-                      <BookOpenIcon size={14} />
-                    </a>
-                  )}
-                  <a
-                    href={tool.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cursor=""
-                    aria-label={t('tools.viewOnAssetStore')}
-                    className="grid h-9 w-9 place-items-center rounded-full border border-bone/15 text-bone/70 transition-colors hover:bg-bone hover:text-ink"
-                  >
-                    <ArrowUpRightIcon size={14} />
-                  </a>
-                </div>
-              </div>
-            </FadeUp>
-          ))}
-          <div className="border-t border-bone/10" />
+          <div className="col-span-4 md:col-span-9" onClickCapture={() => unlock('tools-peek')}>
+            <div className="t-meta ink2 rule-in hidden grid-cols-[1fr_120px_120px_80px_200px] gap-4 py-2 md:grid">
+              <span>{t('tools.cols.name')}</span>
+              <span>{t('tools.cols.category')}</span>
+              <span className="text-right">{t('tools.cols.downloads')}</span>
+              <span className="text-right">{t('tools.cols.price')}</span>
+              <span className="text-right">{t('tools.cols.links')}</span>
+            </div>
+            <ul>
+              {tools.map((tool) => {
+                const c = count(tool.downloads);
+                const free = /gratuit|free/i.test(tool.price);
+                return (
+                  <li key={tool.id} className="row-inv rule-in">
+                    <div className="grid min-h-[64px] grid-cols-1 gap-2 py-3 md:grid-cols-[1fr_120px_120px_80px_200px] md:items-center md:gap-4 md:py-2">
+                      <div className="min-w-0">
+                        <p className="t-cell-strong">{tool.name}</p>
+                        <p className="t-cell ink2 truncate" title={t(`tools.descriptions.${tool.slug}`, { defaultValue: tool.summary })}>
+                          {t(`tools.descriptions.${tool.slug}`, { defaultValue: tool.summary })}
+                        </p>
+                      </div>
+                      <span className="t-meta">{tool.category}</span>
+                      <span className="t-cell md:text-right">{c >= 100 ? `${fmt(c)}+` : t('tools.new')}</span>
+                      <span className="t-cell md:text-right">{free ? t('tools.free') : tool.price}</span>
+                      <span className="t-ui flex gap-4 whitespace-nowrap md:justify-end">
+                        {tool.documentationLink && (
+                          <a href={tool.documentationLink} target="_blank" rel="noopener noreferrer" className="u-link">
+                            Doc ↗
+                          </a>
+                        )}
+                        <a href={tool.link} target="_blank" rel="noopener noreferrer" className="u-link">
+                          Asset Store ↗
+                        </a>
+                      </span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

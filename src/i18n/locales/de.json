@@ -5,94 +5,6 @@
     "tools": "Tools",
     "contact": "Kontakt"
   },
-  "hero": {
-    "subtitle": "Spieleentwickler & Unity-Tool-Ersteller",
-    "tagline": "Interaktive Erlebnisse und Entwickler-Tools gestalten",
-    "cta": "Meine Spiele ansehen",
-    "kicker": "Portfolio — 2026",
-    "role1": "Spieleentwickler",
-    "role2": "& Unity-Tool-Macher",
-    "marquee": "Game Design — Unity Tools — C# — Prototypen — Game Jams — Asset Store — React",
-    "featured": "Ausgewählt",
-    "play": "Jetzt spielen",
-    "download": "Auf itch.io holen",
-    "itch": "Auf itch.io ansehen",
-    "inBrowser": "Im Browser",
-    "role": "Spieleentwickler"
-  },
-  "about": {
-    "title": "Über mich",
-    "description": "Unity-Entwickler mit Leidenschaft für die Erstellung von Spielen und Tools für Entwickler. Ich gestalte interaktive Erlebnisse und Plugins, die den Entwicklungs-Workflow in Unity vereinfachen.",
-    "label": "Wer",
-    "stats": {
-      "games": "Spiele gebaut",
-      "tools": "Tools veröffentlicht",
-      "downloads": "Downloads"
-    }
-  },
-  "games": {
-    "title": "Spiele",
-    "playOnItch": "Auf Itch.io spielen",
-    "descriptions": {
-      "cursum": "Solo Runner/FPS-Prototyp, in einem Monat eigenständig entwickelt.",
-      "keep-dancing": "Rhythmisches Ausweichspiel, in 48 Stunden für die Global Game Jam 2024 entwickelt.",
-      "echoes": "Action-Adventure-Prototyp in geschlossenen Arenen, mit schnellen Kämpfen und bedrückender Atmosphäre.",
-      "whispers": "Narratives Zeitschleifen-Abenteuer in einem ruhigen Low-Poly-Dorf, in dem jede Schleife neue Hinweise enthüllt.",
-      "color-gap": "Minimalistischer Platformer, geprägt von Farbe, Rhythmus und Wahrnehmung. 🏆 Liebling der Jury — GGJ 2026.",
-      "mirapyde": "2D-Parkour-Platformer mit Zeitmanipulation: Erstelle einen Klon, der deine Bewegungen rückwärts abspielt.",
-      "eco": "Ein Puzzle-Platformer, in dem dich deine Vergangenheit einholt, acht Sekunden später. Mein größtes Projekt, im Koop spielbar.",
-      "dig-or-die": "Der Wolf lernt. Der Hirte stellt Fallen. Kurz, nervös und spaßig.",
-      "tour-infinie": "Ein Pixel-Art-Roguelite-Auto-Battler mit Online-Koop. Der Turm hat keine Spitze.",
-      "speed-typo": "Schnelles Tippspiel mit mehreren Modi und dynamischen Effekten. Mit React gebaut."
-    },
-    "label": "Ausgewählte Arbeiten",
-    "view": "Spielen",
-    "all": "Alle Spiele",
-    "browser": "Browser"
-  },
-  "tools": {
-    "title": "Außerdem: Unity-Tools",
-    "viewOnAssetStore": "Im Asset Store ansehen",
-    "documentation": "Dokumentation",
-    "descriptions": {
-      "project-organizer": "Strukturiere deinen Assets-Ordner mit einem Klick in einen sauberen, professionellen Standard-Baum.",
-      "code-harvest": "Exportiere, dokumentiere und strukturiere deinen Unity-Code mit einem Klick. Ideal für Reviews, technische Doku oder KI-Training.",
-      "class-diagram-generator": "Generiere automatisch UML-Klassendiagramme aus deinen Unity-Skripten. Perfekt zum Dokumentieren und Visualisieren deiner Projekte.",
-      "animation-path-visualizer": "Visualisiere und bearbeite Animationspfade direkt in der Scene-Ansicht. Verschiebe Keys, justiere Tangenten, zeige den Geschwindigkeitsverlauf und sperre deine Auswahl. Kompatibel mit Animation & Animator. Nur im Editor.",
-      "smart-localization": "Editor-getriebener Lokalisierungs-Workflow für TextMeshPro: Ein-Klick-Übersetzung mit mehreren Anbietern (DeepL, Azure, Google, Amazon, MyMemory…), Sperren pro Sprache, Platzhalterprüfung und Dashboard.",
-      "smart-localization-lite": "Kostenlose, Plug-and-Play-Lite-Version für TextMeshPro: LocalizedTMP, Ein-Klick-Übersetzung über MyMemory, Sperren pro Sprache und tägliches Kontingent direkt im Editor."
-    },
-    "label": "Asset Store",
-    "downloads": "Downloads",
-    "intro": "Editor-Tools, die dir einen Nachmittag sparen.",
-    "hint": "Weiter scrollen →",
-    "lead": "Editor-Tools, veröffentlicht im Asset Store. Hier als Beispiele dafür, was ich bauen kann."
-  },
-  "contact": {
-    "title": "Kontakt",
-    "labels": {
-      "email": "E-Mail",
-      "github": "GitHub",
-      "linkedin": "LinkedIn",
-      "itch": "Itch.io"
-    },
-    "label": "Kontakt",
-    "title1": "Lass uns",
-    "title2": "reden.",
-    "subtitle": "Ein Spiel, eine Tool-Idee oder eine Jam? Mein Postfach ist offen."
-  },
-  "footer": {
-    "rights": "© {{year}} Jules Gilli",
-    "localTime": "Paris",
-    "top": "Nach oben"
-  },
-  "language": {
-    "label": "Sprache"
-  },
-  "player": {
-    "close": "Schließen",
-    "hint": "Esc zum Schließen"
-  },
   "achievements": {
     "title": "Erfolge",
     "unlocked": "Erfolg freigeschaltet",
@@ -143,6 +55,19 @@
         "title": "Durchspieler",
         "desc": "Ein Spiel auf der Seite durchspielen"
       }
+    }
+  },
+  "language": {
+    "label": "Sprache"
+  },
+  "tools": {
+    "descriptions": {
+      "project-organizer": "Strukturiere deinen Assets-Ordner mit einem Klick in einen sauberen, professionellen Standard-Baum.",
+      "code-harvest": "Exportiere, dokumentiere und strukturiere deinen Unity-Code mit einem Klick. Ideal für Reviews, technische Doku oder KI-Training.",
+      "class-diagram-generator": "Generiere automatisch UML-Klassendiagramme aus deinen Unity-Skripten. Perfekt zum Dokumentieren und Visualisieren deiner Projekte.",
+      "animation-path-visualizer": "Visualisiere und bearbeite Animationspfade direkt in der Scene-Ansicht. Verschiebe Keys, justiere Tangenten, zeige den Geschwindigkeitsverlauf und sperre deine Auswahl. Kompatibel mit Animation & Animator. Nur im Editor.",
+      "smart-localization": "Editor-getriebener Lokalisierungs-Workflow für TextMeshPro: Ein-Klick-Übersetzung mit mehreren Anbietern (DeepL, Azure, Google, Amazon, MyMemory…), Sperren pro Sprache, Platzhalterprüfung und Dashboard.",
+      "smart-localization-lite": "Kostenlose, Plug-and-Play-Lite-Version für TextMeshPro: LocalizedTMP, Ein-Klick-Übersetzung über MyMemory, Sperren pro Sprache und tägliches Kontingent direkt im Editor."
     }
   }
 }

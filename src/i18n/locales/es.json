@@ -5,94 +5,6 @@
     "tools": "Herramientas",
     "contact": "Contacto"
   },
-  "hero": {
-    "subtitle": "Desarrollador de videojuegos y creador de herramientas Unity",
-    "tagline": "Creación de experiencias interactivas y herramientas para desarrolladores",
-    "cta": "Ver mis juegos",
-    "kicker": "Portfolio — 2026",
-    "role1": "Desarrollador de juegos",
-    "role2": "& creador de herramientas Unity",
-    "marquee": "Game Design — Herramientas Unity — C# — Prototipos — Game Jams — Asset Store — React",
-    "featured": "Destacados",
-    "play": "Jugar",
-    "download": "Conseguir en itch.io",
-    "itch": "Ver en itch.io",
-    "inBrowser": "Navegador",
-    "role": "Desarrollador de juegos"
-  },
-  "about": {
-    "title": "Sobre mí",
-    "description": "Desarrollador Unity apasionado por crear juegos y herramientas para desarrolladores. Diseño experiencias interactivas y plugins que simplifican el flujo de trabajo en Unity.",
-    "label": "Quién",
-    "stats": {
-      "games": "Juegos creados",
-      "tools": "Herramientas publicadas",
-      "downloads": "Descargas"
-    }
-  },
-  "games": {
-    "title": "Juegos",
-    "playOnItch": "Jugar en Itch.io",
-    "descriptions": {
-      "cursum": "Prototipo solo de runner/FPS desarrollado en un mes con total autonomía.",
-      "keep-dancing": "Juego de esquiva rítmica creado en 48h para la Global Game Jam 2024.",
-      "echoes": "Prototipo de acción-aventura en arenas cerradas, centrado en combate rápido y atmósfera opresiva.",
-      "whispers": "Aventura narrativa con bucle temporal en un tranquilo pueblo low-poly, donde cada bucle revela nuevas pistas.",
-      "color-gap": "Plataformas minimalistas guiadas por el color, el ritmo y la percepción. 🏆 Favorito del jurado — GGJ 2026.",
-      "mirapyde": "Plataformas 2D parkour con manipulación del tiempo: crea un clon que repite tus movimientos al revés.",
-      "eco": "Puzzle-platformer donde tu pasado te alcanza, ocho segundos más tarde. Mi mayor proyecto, jugable en cooperativo.",
-      "dig-or-die": "El lobo aprende. El pastor atrapa. Corto, tenso y divertido.",
-      "tour-infinie": "Roguelite auto-battler en pixel-art con cooperativo en línea. La torre no tiene cima.",
-      "speed-typo": "Juego de mecanografía rápida con varios modos y efectos dinámicos. Hecho con React."
-    },
-    "label": "Selección",
-    "view": "Jugar",
-    "all": "Todos los juegos",
-    "browser": "Navegador"
-  },
-  "tools": {
-    "title": "También: herramientas Unity",
-    "viewOnAssetStore": "Ver en el Asset Store",
-    "documentation": "Documentación",
-    "descriptions": {
-      "project-organizer": "Reestructura tu carpeta Assets con un clic en un árbol limpio, estándar y profesional.",
-      "code-harvest": "Exporta, documenta y estructura tu código Unity con un clic. Ideal para revisiones, documentación técnica o entrenamiento de IA.",
-      "class-diagram-generator": "Genera automáticamente diagramas de clases UML a partir de tus scripts Unity. Ideal para documentar y visualizar proyectos.",
-      "animation-path-visualizer": "Visualiza y edita trayectorias de animación directamente en la vista de Escena. Mueve keyframes, ajusta tangentes, muestra el gradiente de velocidad y bloquea la selección. Compatible con Animation y Animator. Solo Editor.",
-      "smart-localization": "Flujo de localización orientado al Editor para TextMeshPro: traducción en un clic con múltiples proveedores (DeepL, Azure, Google, Amazon, MyMemory…), bloqueos por idioma, verificación de placeholders y dashboard.",
-      "smart-localization-lite": "Versión Lite gratuita y plug-and-play para TextMeshPro: LocalizedTMP, traducción en un clic con MyMemory, bloqueos por idioma y cuota diaria gestionada desde el Editor."
-    },
-    "label": "Asset Store",
-    "downloads": "descargas",
-    "intro": "Herramientas de editor que te ahorran una tarde.",
-    "hint": "Sigue desplazando →",
-    "lead": "Herramientas de editor publicadas en la Asset Store. Aquí como ejemplos de lo que sé construir."
-  },
-  "contact": {
-    "title": "Contacto",
-    "labels": {
-      "email": "Correo",
-      "github": "GitHub",
-      "linkedin": "LinkedIn",
-      "itch": "Itch.io"
-    },
-    "label": "Contacto",
-    "title1": "¿Hablamos",
-    "title2": "un rato?",
-    "subtitle": "¿Un juego, una idea de herramienta o una jam? Mi bandeja está abierta."
-  },
-  "footer": {
-    "rights": "© {{year}} Jules Gilli",
-    "localTime": "París",
-    "top": "Volver arriba"
-  },
-  "language": {
-    "label": "Idioma"
-  },
-  "player": {
-    "close": "Cerrar",
-    "hint": "Esc para cerrar"
-  },
   "achievements": {
     "title": "Logros",
     "unlocked": "Logro desbloqueado",
@@ -143,6 +55,19 @@
         "title": "Finalista",
         "desc": "Terminar un juego dentro del sitio"
       }
+    }
+  },
+  "language": {
+    "label": "Idioma"
+  },
+  "tools": {
+    "descriptions": {
+      "project-organizer": "Reestructura tu carpeta Assets con un clic en un árbol limpio, estándar y profesional.",
+      "code-harvest": "Exporta, documenta y estructura tu código Unity con un clic. Ideal para revisiones, documentación técnica o entrenamiento de IA.",
+      "class-diagram-generator": "Genera automáticamente diagramas de clases UML a partir de tus scripts Unity. Ideal para documentar y visualizar proyectos.",
+      "animation-path-visualizer": "Visualiza y edita trayectorias de animación directamente en la vista de Escena. Mueve keyframes, ajusta tangentes, muestra el gradiente de velocidad y bloquea la selección. Compatible con Animation y Animator. Solo Editor.",
+      "smart-localization": "Flujo de localización orientado al Editor para TextMeshPro: traducción en un clic con múltiples proveedores (DeepL, Azure, Google, Amazon, MyMemory…), bloqueos por idioma, verificación de placeholders y dashboard.",
+      "smart-localization-lite": "Versión Lite gratuita y plug-and-play para TextMeshPro: LocalizedTMP, traducción en un clic con MyMemory, bloqueos por idioma y cuota diaria gestionada desde el Editor."
     }
   }
 }

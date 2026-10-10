@@ -2,23 +2,25 @@
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    // Print system: no radius, no shadow, no gradient.
+    borderRadius: { none: '0', DEFAULT: '0', full: '0' },
+    boxShadow: { none: 'none', DEFAULT: 'none' },
     extend: {
       colors: {
-        ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
-        bone: 'rgb(var(--bone-rgb) / <alpha-value>)',
-        muted: '#8b877f',
-        accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+        paper: 'var(--paper)',
+        ink: 'var(--ink)',
+        ink2: 'var(--ink2)',
+        spot: 'var(--spot)',
+        onspot: 'var(--on-spot)',
+        rule: 'var(--rule)',
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
-        pixel: ['Silkscreen', '"Bricolage Grotesque"', 'monospace'],
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        archivo: ['"Archivo Variable"', 'Archivo', 'Arial Narrow', 'Arial', 'sans-serif'],
+        news: ['"Newsreader Variable"', 'Newsreader', 'Georgia', 'serif'],
       },
-      transitionTimingFunction: {
-        out: 'cubic-bezier(0.76, 0, 0.24, 1)',
-      },
+      maxWidth: { page: '1344px' },
+      spacing: { gutter: '24px', margin: '48px' },
+      transitionTimingFunction: { print: 'cubic-bezier(0.76, 0, 0.24, 1)' },
     },
   },
   plugins: [],

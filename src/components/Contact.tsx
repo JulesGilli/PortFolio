@@ -1,41 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRightIcon, ArrowUpIcon } from 'lucide-react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MaskLine, FadeUp } from './ui/Reveal';
+import { MetaRow } from './ui/MetaRow';
+import { BASE_CAHIER } from '../data/games';
+import { cahierStyle, useCahierSection } from '../issue';
+import { Masthead } from './ui/Masthead';
 import { useAchievements } from './ui/Achievements';
+import { FEATURED } from '../data/games';
 
 const EMAIL = 'jules.gilli@live.fr';
+const LINKS = [
+  { key: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/jules-gilli/' },
+  { key: 'github', label: 'GitHub', href: 'https://github.com/JulesGilli' },
+  { key: 'itch', label: 'itch.io', href: 'https://jules-gilli.itch.io' },
+];
 
-const socials = [
-  { key: 'github', href: 'https://github.com/JulesGilli' },
-  { key: 'linkedin', href: 'https://www.linkedin.com/in/jules-gilli/' },
-  { key: 'itch', href: 'https://jules-gilli.itch.io' },
-] as const;
-
-function useClock() {
-  const [time, setTime] = useState('');
-  useEffect(() => {
-    const tick = () =>
-      setTime(
-        new Intl.DateTimeFormat('fr-FR', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          timeZone: 'Europe/Paris',
-        }).format(new Date()),
-      );
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time;
-}
-
+/** Page 07: contact, then the colophon. */
 export function Contact() {
   const { t } = useTranslation();
-  const time = useClock();
+  const baseRef = useRef<HTMLElement>(null);
+  useCahierSection(baseRef, BASE_CAHIER);
   const { unlock } = useAchievements();
+  const [copied, setCopied] = useState(false);
   const footerRef = useRef<HTMLElement>(null);
+  const n = FEATURED.length + 4;
 
   useEffect(() => {
     const el = footerRef.current;
@@ -53,72 +40,68 @@ export function Contact() {
     return () => io.disconnect();
   }, [unlock]);
 
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* clipboard unavailable: the mailto link still works */
+    }
+  };
+
   return (
-    <section id="contact" className="relative z-10 flex min-h-screen flex-col justify-between px-5 pt-28 md:px-8 md:pt-40">
-      <div>
-        <FadeUp>
-          <div className="mb-6 flex items-center gap-4">
-            <span className="meta">04</span>
-            <span className="rule flex-1" />
-            <span className="meta">{t('contact.label')}</span>
-          </div>
-        </FadeUp>
+    <>
+      <section ref={baseRef} style={cahierStyle(BASE_CAHIER) as CSSProperties} id="contact" className="border-t border-ink bg-paper pt-12 text-ink md:pt-14" aria-labelledby="contact-title">
+        <div className="page">
+          <MetaRow left={`${String(n).padStart(2, '0')} — ${t('contact.label')}`} right={`p. ${String(n).padStart(2, '0')}`} />
 
-        <h2 className="font-display font-bold display-tight text-[clamp(3.5rem,13vw,13rem)]">
-          <MaskLine>{t('contact.title1')}</MaskLine>
-          <MaskLine delay={0.12}>
-            <span className="font-serif font-normal italic text-muted">{t('contact.title2')}</span>
-          </MaskLine>
-        </h2>
+          <div className="py-10 md:py-16">
+            <Masthead as="h2" lines={[t('contact.title')]} className="[--mast-size:clamp(48px,11vw,160px)]" />
+            <span id="contact-title" className="sr-only">
+              {t('contact.title')}
+            </span>
 
-        <div className="mt-12 grid gap-10 md:mt-20 md:grid-cols-12">
-          <FadeUp className="md:col-span-6">
-            <p className="max-w-md text-base leading-relaxed text-muted md:text-lg">{t('contact.subtitle')}</p>
-            <a
-              href={`mailto:${EMAIL}`}
-              data-cursor=""
-              className="link-swipe mt-8 inline-block font-display text-2xl font-medium tracking-tight text-bone md:text-4xl"
-            >
-              {EMAIL}
-            </a>
-          </FadeUp>
+            <div className="grid-12 mt-10 gap-y-10 md:mt-16">
+              <div className="col-span-4 md:col-span-7">
+                <p className="t-body">{t('contact.subtitle')}</p>
+                <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-3">
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="font-archivo text-[24px] font-semibold leading-tight underline decoration-spot decoration-2 underline-offset-8 md:text-[48px]"
+                  >
+                    {EMAIL}
+                  </a>
+                  <button type="button" onClick={copy} className="t-ui u-link" aria-live="polite">
+                    {copied ? t('contact.copied') : t('contact.copy')}
+                  </button>
+                </div>
+              </div>
 
-          <div className="md:col-span-5 md:col-start-8">
-            {socials.map((s, i) => (
-              <FadeUp key={s.key} delay={i * 0.06}>
-                <a
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor=""
-                  className="group flex items-center justify-between border-t border-bone/10 py-5 font-display text-xl font-medium tracking-tight transition-colors hover:text-accent"
-                >
-                  <span className="flip">
-                    <span>{t(`contact.labels.${s.key}`)}</span>
-                    <span>{t(`contact.labels.${s.key}`)}</span>
-                  </span>
-                  <ArrowUpRightIcon
-                    size={18}
-                    className="transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:translate-x-1"
-                  />
-                </a>
-              </FadeUp>
-            ))}
-            <div className="border-t border-bone/10" />
+              <ul className="col-span-4 border-t border-ink md:col-span-4 md:col-start-9">
+                {LINKS.map((l) => (
+                  <li key={l.key} className="row-inv rule-in">
+                    <a href={l.href} target="_blank" rel="noopener noreferrer" className="flex min-h-[56px] items-center justify-between px-1">
+                      <span className="t-row">{l.label}</span>
+                      <span className="t-ui">↗</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <footer ref={footerRef} className="mt-24 flex flex-wrap items-center justify-between gap-4 border-t border-bone/10 py-6">
-        <span className="meta">{t('footer.rights', { year: new Date().getFullYear() })}</span>
-        <span className="meta tabular-nums">
-          {t('footer.localTime')} — {time}
-        </span>
-        <a href="#hero" data-cursor="" className="meta group inline-flex items-center gap-2 !text-bone">
-          {t('footer.top')}
-          <ArrowUpIcon size={12} className="transition-transform duration-500 group-hover:-translate-y-1" />
-        </a>
+      <footer ref={footerRef} className="border-t border-ink bg-paper text-ink">
+        <div className="page t-meta grid gap-3 py-5 md:grid-cols-3">
+          <span>{t('footer.rights', { year: new Date().getFullYear() })}</span>
+          <span className="ink2">{t('footer.colophon')}</span>
+          <a href="#hero" className="u-link md:text-right">
+            {t('footer.top')} ↑
+          </a>
+        </div>
       </footer>
-    </section>
+    </>
   );
 }

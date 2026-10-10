@@ -1,46 +1,61 @@
-import { useCallback, useState } from 'react';
-import { SmoothScroll } from './components/ui/SmoothScroll';
-import { Background } from './components/ui/Background';
-import { Cursor } from './components/ui/Cursor';
-import { Intro, IntroContext, shouldSkipIntro } from './components/ui/Intro';
-import { PlayerProvider } from './components/ui/Player';
-import { AchievementsProvider } from './components/ui/Achievements';
-import { featuredProjects } from './data/projects';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { Stage } from './components/Stage';
-import { Projects } from './components/Projects';
+import { Cover } from './components/Cover';
+import { Cahier } from './components/Cahier';
+import { GameIndex } from './components/GameIndex';
 import { Tools } from './components/Tools';
 import { Contact } from './components/Contact';
+import { Dossier } from './components/Dossier';
+import { PlayerProvider } from './components/ui/Player';
+import { AchievementsProvider } from './components/ui/Achievements';
+import { FEATURED, type Game } from './data/games';
+import { useRoute } from './lib/route';
+import { subscribeTurn, turn } from './lib/turn';
 
-const featuredSlugs = featuredProjects.map((p) => p.slug).filter((s): s is string => !!s);
+const featuredSlugs = FEATURED.map((g) => g.slug);
+
+/** The page-turn panel: one instance, driven by lib/turn. */
+function Turn() {
+  const [phase, setPhase] = useState<'in' | 'out' | null>(null);
+  useEffect(() => subscribeTurn(setPhase), []);
+  if (!phase) return null;
+  return <div aria-hidden className={`turn ${phase}`} />;
+}
 
 export function App() {
-  const [skipIntro] = useState(shouldSkipIntro);
-  const [introDone, setIntroDone] = useState(skipIntro);
-  const onIntroDone = useCallback(() => setIntroDone(true), []);
+  const { i18n } = useTranslation();
+  const { game, open, close } = useRoute();
+
+  // <html lang> follows the UI language.
+  useEffect(() => {
+    const sync = (lng: string) => {
+      document.documentElement.lang = lng.slice(0, 2);
+    };
+    sync(i18n.resolvedLanguage || i18n.language);
+    i18n.on('languageChanged', sync);
+    return () => i18n.off('languageChanged', sync);
+  }, [i18n]);
+
+  const openDossier = (g: Game) => turn(() => open(g));
+  const closeDossier = () => turn(close);
 
   return (
-    <SmoothScroll>
-      <IntroContext.Provider value={introDone}>
-        <AchievementsProvider featuredSlugs={featuredSlugs}>
-          <PlayerProvider>
-            <div className="min-h-screen text-bone">
-              <Background />
-              <Cursor />
-              {!skipIntro && <Intro onDone={onIntroDone} />}
-              <Header />
-              <main>
-                <Hero />
-                <Stage />
-                <Projects />
-                <Tools />
-                <Contact />
-              </main>
-            </div>
-          </PlayerProvider>
-        </AchievementsProvider>
-      </IntroContext.Provider>
-    </SmoothScroll>
+    <AchievementsProvider featuredSlugs={featuredSlugs}>
+      <PlayerProvider>
+        <Header />
+        <main>
+          <Cover />
+          {FEATURED.map((g, i) => (
+            <Cahier key={g.slug} game={g} n={i + 2} onOpenDossier={openDossier} locked={!!game} />
+          ))}
+          <GameIndex onOpenDossier={openDossier} />
+          <Tools />
+        </main>
+        <Contact />
+        {game && <Dossier game={game} onClose={closeDossier} onOpen={(g) => turn(() => open(g))} />}
+        <Turn />
+      </PlayerProvider>
+    </AchievementsProvider>
   );
 }
