@@ -279,3 +279,6 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
     }
   }
 ];
+
+/** Projects playable right now: itch.io builds and hosted web games. The site only shows these. */
+export const onlineProjects: Project[] = allProjects.filter((p) => !!p.links?.demo);

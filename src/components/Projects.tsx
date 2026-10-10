@@ -5,11 +5,11 @@ import { useTranslation } from 'react-i18next';
 import type { TFunction } from 'i18next';
 import { SectionHeader } from './ui/SectionHeader';
 import { FadeUp, EASE } from './ui/Reveal';
-import { allProjects, type Project } from '../data/projects';
+import { onlineProjects, type Project } from '../data/projects';
 import { useFinePointer } from '../hooks/useMediaQuery';
 
 // Newest first.
-const projects = [...allProjects].reverse();
+const projects = [...onlineProjects].reverse();
 
 function describe(p: Project, t: TFunction) {
   return p.slug ? t(`games.descriptions.${p.slug}`, { defaultValue: p.description }) : p.description;
@@ -55,9 +55,7 @@ export function Projects() {
                 rel={link ? 'noopener noreferrer' : undefined}
                 data-cursor={link ? t('games.view') : undefined}
                 onMouseEnter={() => setActive(i)}
-                className={`project-row group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-b border-bone/10 px-2 py-5 transition-colors duration-500 md:grid-cols-[4rem_1fr_1fr_auto] md:px-4 md:py-7 ${
-                  link ? '' : 'opacity-60'
-                }`}
+                className="project-row group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-b border-bone/10 px-2 py-5 transition-colors duration-500 md:grid-cols-[4rem_1fr_1fr_auto] md:px-4 md:py-7"
               >
                 <span className="meta">{String(projects.length - i).padStart(2, '0')}</span>
 

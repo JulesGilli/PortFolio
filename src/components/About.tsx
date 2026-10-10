@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { SectionHeader } from './ui/SectionHeader';
 import { ScrollWords, FadeUp } from './ui/Reveal';
-import { allProjects } from '../data/projects';
+import { onlineProjects } from '../data/projects';
 import { toolsData } from '../data/toolsData';
 
 const base = import.meta.env.BASE_URL;
@@ -22,7 +22,7 @@ export function About() {
   const imgRotate = useTransform(scrollYProgress, [0, 1], [-4, 3]);
 
   const stats = [
-    { value: String(allProjects.length), label: t('about.stats.games') },
+    { value: String(onlineProjects.length), label: t('about.stats.games') },
     { value: String(toolsData.length), label: t('about.stats.tools') },
     { value: downloadsLabel, label: t('about.stats.downloads') },
   ];
