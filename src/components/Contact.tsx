@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowUpRightIcon, ArrowUpIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { MaskLine, FadeUp } from './ui/Reveal';
+import { useAchievements } from './ui/Achievements';
 
 const EMAIL = 'jules.gilli@live.fr';
 
@@ -33,6 +34,24 @@ function useClock() {
 export function Contact() {
   const { t } = useTranslation();
   const time = useClock();
+  const { unlock } = useAchievements();
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = footerRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          unlock('scroll-end');
+          io.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [unlock]);
 
   return (
     <section id="contact" className="relative z-10 flex min-h-screen flex-col justify-between px-5 pt-28 md:px-8 md:pt-40">
@@ -90,7 +109,7 @@ export function Contact() {
         </div>
       </div>
 
-      <footer className="mt-24 flex flex-wrap items-center justify-between gap-4 border-t border-bone/10 py-6">
+      <footer ref={footerRef} className="mt-24 flex flex-wrap items-center justify-between gap-4 border-t border-bone/10 py-6">
         <span className="meta">{t('footer.rights', { year: new Date().getFullYear() })}</span>
         <span className="meta tabular-nums">
           {t('footer.localTime')} — {time}

@@ -2,11 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SUPPORTED_LANGUAGES, LANGUAGE_LABELS, type SupportedLanguage } from '../../i18n';
+import { useAchievements } from './Achievements';
 
 export function LanguageSelector() {
   const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { unlock } = useAchievements();
 
   const current = (i18n.resolvedLanguage || i18n.language || 'en').slice(0, 2) as SupportedLanguage;
   const safeCurrent = (SUPPORTED_LANGUAGES as readonly string[]).includes(current) ? current : 'en';
@@ -20,6 +22,7 @@ export function LanguageSelector() {
   }, []);
 
   const change = (lng: SupportedLanguage) => {
+    if (lng !== safeCurrent) unlock('polyglot');
     i18n.changeLanguage(lng);
     setOpen(false);
   };

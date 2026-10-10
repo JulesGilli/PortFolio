@@ -92,5 +92,53 @@
   "player": {
     "close": "Fermer",
     "hint": "Échap pour fermer"
+  },
+  "achievements": {
+    "title": "Succès",
+    "unlocked": "Succès débloqué",
+    "secret": "Succès secret",
+    "secretHint": "Continue d'explorer…",
+    "items": {
+      "first-play": {
+        "title": "Press start",
+        "desc": "Lancer un jeu"
+      },
+      "three-games": {
+        "title": "Explorateur",
+        "desc": "Lancer trois jeux différents"
+      },
+      "all-featured": {
+        "title": "Fan",
+        "desc": "Jouer aux trois jeux de la sélection"
+      },
+      "scroll-end": {
+        "title": "Complétionniste",
+        "desc": "Scroller jusqu'en bas"
+      },
+      "polyglot": {
+        "title": "Polyglotte",
+        "desc": "Changer de langue"
+      },
+      "tools-peek": {
+        "title": "Coulisses",
+        "desc": "Jeter un œil à un outil Unity"
+      },
+      "patient": {
+        "title": "Patient",
+        "desc": "Rester cinq minutes"
+      },
+      "night-owl": {
+        "title": "Oiseau de nuit",
+        "desc": "Visiter entre minuit et 5h"
+      },
+      "konami": {
+        "title": "Tricheur",
+        "desc": "↑ ↑ ↓ ↓ ← → ← → B A"
+      },
+      "insistent": {
+        "title": "Insistant",
+        "desc": "Cliquer cinq fois sur le logo"
+      }
+    }
   }
 }

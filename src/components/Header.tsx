@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './ui/LanguageSelector';
 import { EASE } from './ui/Reveal';
 import { useIntroDone } from './ui/Intro';
+import { TrophyButton, useAchievements } from './ui/Achievements';
 
 const navItems = [
   { key: 'games', href: '#games', index: '01' },
@@ -16,6 +17,8 @@ export function Header() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ready = useIntroDone();
+  const { unlock } = useAchievements();
+  const logoClicks = useRef(0);
 
   return (
     <>
@@ -25,7 +28,15 @@ export function Header() {
         animate={ready ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
       >
-        <a href="#hero" className="flex items-center gap-3" data-cursor="">
+        <a
+          href="#hero"
+          className="flex items-center gap-3"
+          data-cursor=""
+          onClick={() => {
+            logoClicks.current += 1;
+            if (logoClicks.current >= 5) unlock('insistent');
+          }}
+        >
           <span className="grid h-8 w-8 place-items-center rounded-full bg-bone font-display text-[11px] font-bold text-ink">
             JG
           </span>
@@ -53,7 +64,8 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
+          <TrophyButton />
           <LanguageSelector />
           <button
             type="button"

@@ -92,5 +92,53 @@
   "player": {
     "close": "Close",
     "hint": "Esc to close"
+  },
+  "achievements": {
+    "title": "Achievements",
+    "unlocked": "Achievement unlocked",
+    "secret": "Secret achievement",
+    "secretHint": "Keep exploring…",
+    "items": {
+      "first-play": {
+        "title": "Press start",
+        "desc": "Launch a game"
+      },
+      "three-games": {
+        "title": "Explorer",
+        "desc": "Launch three different games"
+      },
+      "all-featured": {
+        "title": "Fan",
+        "desc": "Play the three featured games"
+      },
+      "scroll-end": {
+        "title": "Completionist",
+        "desc": "Scroll all the way down"
+      },
+      "polyglot": {
+        "title": "Polyglot",
+        "desc": "Switch the language"
+      },
+      "tools-peek": {
+        "title": "Behind the scenes",
+        "desc": "Take a look at a Unity tool"
+      },
+      "patient": {
+        "title": "Patient",
+        "desc": "Stay five minutes"
+      },
+      "night-owl": {
+        "title": "Night owl",
+        "desc": "Visit between midnight and 5am"
+      },
+      "konami": {
+        "title": "Cheater",
+        "desc": "↑ ↑ ↓ ↓ ← → ← → B A"
+      },
+      "insistent": {
+        "title": "Insistent",
+        "desc": "Click the logo five times"
+      }
+    }
   }
 }

@@ -92,5 +92,53 @@
   "player": {
     "close": "Cerrar",
     "hint": "Esc para cerrar"
+  },
+  "achievements": {
+    "title": "Logros",
+    "unlocked": "Logro desbloqueado",
+    "secret": "Logro secreto",
+    "secretHint": "Sigue explorando…",
+    "items": {
+      "first-play": {
+        "title": "Press start",
+        "desc": "Lanzar un juego"
+      },
+      "three-games": {
+        "title": "Explorador",
+        "desc": "Lanzar tres juegos distintos"
+      },
+      "all-featured": {
+        "title": "Fan",
+        "desc": "Jugar a los tres juegos destacados"
+      },
+      "scroll-end": {
+        "title": "Completista",
+        "desc": "Llegar hasta abajo"
+      },
+      "polyglot": {
+        "title": "Políglota",
+        "desc": "Cambiar el idioma"
+      },
+      "tools-peek": {
+        "title": "Tras bambalinas",
+        "desc": "Mirar una herramienta Unity"
+      },
+      "patient": {
+        "title": "Paciente",
+        "desc": "Quedarse cinco minutos"
+      },
+      "night-owl": {
+        "title": "Noctámbulo",
+        "desc": "Visitar entre medianoche y las 5"
+      },
+      "konami": {
+        "title": "Tramposo",
+        "desc": "↑ ↑ ↓ ↓ ← → ← → B A"
+      },
+      "insistent": {
+        "title": "Insistente",
+        "desc": "Hacer clic cinco veces en el logo"
+      }
+    }
   }
 }

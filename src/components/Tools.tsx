@@ -2,10 +2,12 @@ import { ArrowUpRightIcon, BookOpenIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { FadeUp, MaskLine } from './ui/Reveal';
 import { toolsData } from '../data/toolsData';
+import { useAchievements } from './ui/Achievements';
 
 /** Compact credit list: tools are kept as proof of skill, not as a showcase. */
 export function Tools() {
   const { t } = useTranslation();
+  const { unlock } = useAchievements();
   const totalDownloads = toolsData.reduce((sum, tool) => {
     const n = parseInt(tool.downloads.replace(/[^\d]/g, ''), 10);
     return sum + (Number.isFinite(n) ? n : 0);
@@ -34,7 +36,7 @@ export function Tools() {
           </FadeUp>
         </div>
 
-        <div className="md:col-span-7">
+        <div className="md:col-span-7" onClickCapture={() => unlock('tools-peek')}>
           {toolsData.map((tool, i) => (
             <FadeUp key={tool.id} delay={Math.min(i * 0.05, 0.25)}>
               <div className="group grid grid-cols-[1fr_auto] items-center gap-4 border-t border-bone/10 py-4 md:grid-cols-[1fr_auto_auto] md:gap-8">

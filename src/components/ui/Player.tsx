@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import type { Project } from '../../data/projects';
 import { EASE } from './Reveal';
 import { useLenis } from './SmoothScroll';
+import { useAchievements } from './Achievements';
 
 type PlayerApi = {
   /** Open the in-site player if the project can be embedded; otherwise open its itch/web page in a new tab. */
@@ -18,11 +19,16 @@ export const usePlayer = () => useContext(PlayerContext);
 
 export function PlayerProvider({ children }: { children: ReactNode }) {
   const [current, setCurrent] = useState<Project | null>(null);
+  const { trackPlay } = useAchievements();
 
-  const play = useCallback((p: Project) => {
-    if (p.embedUrl) setCurrent(p);
-    else if (p.links?.demo) window.open(p.links.demo, '_blank', 'noopener,noreferrer');
-  }, []);
+  const play = useCallback(
+    (p: Project) => {
+      if (p.embedUrl) setCurrent(p);
+      else if (p.links?.demo) window.open(p.links.demo, '_blank', 'noopener,noreferrer');
+      trackPlay(p.slug ?? String(p.id), !!p.featured);
+    },
+    [trackPlay],
+  );
   const close = useCallback(() => setCurrent(null), []);
 
   const api = useMemo(() => ({ play, close, current }), [play, close, current]);

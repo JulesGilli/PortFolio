@@ -92,5 +92,53 @@
   "player": {
     "close": "Schließen",
     "hint": "Esc zum Schließen"
+  },
+  "achievements": {
+    "title": "Erfolge",
+    "unlocked": "Erfolg freigeschaltet",
+    "secret": "Geheimer Erfolg",
+    "secretHint": "Weiter erkunden…",
+    "items": {
+      "first-play": {
+        "title": "Press start",
+        "desc": "Ein Spiel starten"
+      },
+      "three-games": {
+        "title": "Entdecker",
+        "desc": "Drei verschiedene Spiele starten"
+      },
+      "all-featured": {
+        "title": "Fan",
+        "desc": "Die drei ausgewählten Spiele spielen"
+      },
+      "scroll-end": {
+        "title": "Komplettierer",
+        "desc": "Ganz nach unten scrollen"
+      },
+      "polyglot": {
+        "title": "Polyglott",
+        "desc": "Die Sprache wechseln"
+      },
+      "tools-peek": {
+        "title": "Hinter den Kulissen",
+        "desc": "Ein Unity-Tool ansehen"
+      },
+      "patient": {
+        "title": "Geduldig",
+        "desc": "Fünf Minuten bleiben"
+      },
+      "night-owl": {
+        "title": "Nachteule",
+        "desc": "Zwischen Mitternacht und 5 Uhr besuchen"
+      },
+      "konami": {
+        "title": "Schummler",
+        "desc": "↑ ↑ ↓ ↓ ← → ← → B A"
+      },
+      "insistent": {
+        "title": "Hartnäckig",
+        "desc": "Fünfmal auf das Logo klicken"
+      }
+    }
   }
 }
