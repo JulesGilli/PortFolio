@@ -8,7 +8,7 @@ import { AchievementsProvider } from './components/ui/Achievements';
 import { featuredProjects } from './data/projects';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
+import { Stage } from './components/Stage';
 import { Projects } from './components/Projects';
 import { Tools } from './components/Tools';
 import { Contact } from './components/Contact';
@@ -24,21 +24,21 @@ export function App() {
     <SmoothScroll>
       <IntroContext.Provider value={introDone}>
         <AchievementsProvider featuredSlugs={featuredSlugs}>
-        <PlayerProvider>
-          <div className="min-h-screen text-bone">
-            <Background />
-            <Cursor />
-            {!skipIntro && <Intro onDone={onIntroDone} />}
-            <Header />
-            <main>
-              <Hero />
-              <Projects />
-              <About />
-              <Tools />
-              <Contact />
-            </main>
-          </div>
-        </PlayerProvider>
+          <PlayerProvider>
+            <div className="min-h-screen text-bone">
+              <Background />
+              <Cursor />
+              {!skipIntro && <Intro onDone={onIntroDone} />}
+              <Header />
+              <main>
+                <Hero />
+                <Stage />
+                <Projects />
+                <Tools />
+                <Contact />
+              </main>
+            </div>
+          </PlayerProvider>
         </AchievementsProvider>
       </IntroContext.Provider>
     </SmoothScroll>

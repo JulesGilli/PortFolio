@@ -1,5 +1,8 @@
 import { animate } from 'framer-motion';
 
+/** Animated world drawn behind a game on the stage. */
+export type BackdropFx = 'cover' | 'crt' | 'stars' | 'tricolor' | 'tower' | 'abyss' | 'dust';
+
 /** Per-game look: the page re-themes itself around whichever game is on screen. */
 export interface GameTheme {
   /** Accent color, hex */
@@ -8,12 +11,15 @@ export interface GameTheme {
   ink?: string;
   /** Display face for the game title */
   font?: 'display' | 'pixel' | 'serif';
+  /** Backdrop effect on the stage */
+  fx?: BackdropFx;
 }
 
 export const DEFAULT_THEME: Required<GameTheme> = {
   accent: '#a66cff',
   ink: '#0b0b0c',
   font: 'display',
+  fx: 'dust',
 };
 
 function hexToRgb(hex: string): [number, number, number] {
@@ -55,3 +61,12 @@ export function applyTheme(theme: GameTheme | undefined, duration = 0.9) {
 }
 
 export const currentTheme = () => current;
+
+let base: GameTheme | undefined;
+/** The stage's theme: what the page returns to after a hover preview. */
+export function setBaseTheme(theme: GameTheme | undefined) {
+  base = theme;
+  applyTheme(theme);
+}
+export const previewTheme = (theme: GameTheme | undefined) => applyTheme(theme, 0.5);
+export const revertTheme = () => applyTheme(base, 0.7);

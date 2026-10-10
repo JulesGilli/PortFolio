@@ -6,7 +6,7 @@ import type { Project } from '../../data/projects';
 import { EASE } from './Reveal';
 import { useLenis } from './SmoothScroll';
 import { useAchievements } from './Achievements';
-import { applyTheme } from '../../theme';
+import { previewTheme, revertTheme } from '../../theme';
 
 type PlayerApi = {
   /** Open the in-site player if the project can be embedded; otherwise open its itch/web page in a new tab. */
@@ -26,14 +26,17 @@ export function PlayerProvider({ children }: { children: ReactNode }) {
     (p: Project) => {
       if (p.embedUrl) {
         setCurrent(p);
-        applyTheme(p.theme, 0.6);
+        previewTheme(p.theme);
       }
       else if (p.links?.demo) window.open(p.links.demo, '_blank', 'noopener,noreferrer');
       trackPlay(p.slug ?? String(p.id), !!p.featured);
     },
     [trackPlay],
   );
-  const close = useCallback(() => setCurrent(null), []);
+  const close = useCallback(() => {
+    setCurrent(null);
+    revertTheme();
+  }, []);
 
   const api = useMemo(() => ({ play, close, current }), [play, close, current]);
 

@@ -99,6 +99,26 @@ body {
   letter-spacing: -0.02em;
 }
 
+/* ===== Theme-wide touches ===== */
+:root[data-font='pixel'] .meta {
+  font-family: Silkscreen, 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+}
+:root[data-font='pixel'] .cursor-dot,
+:root[data-font='pixel'] .cursor-ring {
+  border-radius: 2px !important;
+}
+:root[data-font='pixel'] .rounded-full:not(.cursor-dot):not(.cursor-ring) {
+  border-radius: 4px;
+}
+:root[data-font='pixel'] .rounded-xl,
+:root[data-font='pixel'] .rounded-md {
+  border-radius: 2px;
+}
+body {
+  transition: background-color 0.9s var(--ease-out);
+}
+
 /* ===== Grain ===== */
 .grain {
   position: fixed;

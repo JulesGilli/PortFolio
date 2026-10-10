@@ -7,8 +7,8 @@ import { useIntroDone } from './ui/Intro';
 import { TrophyButton, useAchievements } from './ui/Achievements';
 
 const navItems = [
-  { key: 'games', href: '#games', index: '01' },
-  { key: 'about', href: '#about', index: '02' },
+  { key: 'about', href: '#hero', index: '01' },
+  { key: 'games', href: '#games', index: '02' },
   { key: 'tools', href: '#tools', index: '03' },
   { key: 'contact', href: '#contact', index: '04' },
 ] as const;

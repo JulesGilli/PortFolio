@@ -6,6 +6,7 @@ import { SectionHeader } from './ui/SectionHeader';
 import { FadeUp, EASE } from './ui/Reveal';
 import { usePlayer } from './ui/Player';
 import { onlineProjects, type Project } from '../data/projects';
+import { previewTheme, revertTheme } from '../theme';
 
 // Featured first, then newest first.
 const projects = [...onlineProjects].sort((a, b) => {
@@ -36,6 +37,8 @@ function GameCard({ project: p, index }: { project: Project; index: number }) {
         className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-bone/10 bg-bone/[0.03] transition-colors duration-500 hover:border-accent/60"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.5, ease: EASE }}
+        onMouseEnter={() => previewTheme(p.theme)}
+        onMouseLeave={revertTheme}
       >
         <button
           type="button"
@@ -96,7 +99,7 @@ export function Projects() {
   const { t } = useTranslation();
   return (
     <section id="games" className="relative z-10 px-5 py-28 md:px-8 md:py-40">
-      <SectionHeader index="01" label={t('games.all')} title={t('games.title')} />
+      <SectionHeader index="02" label={t('games.all')} title={t('games.title')} />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <GameCard key={p.id} project={p} index={i} />

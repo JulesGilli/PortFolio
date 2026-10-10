@@ -53,14 +53,14 @@ export function Cursor() {
     <>
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] rounded-full bg-bone mix-blend-difference"
+        className="cursor-dot pointer-events-none fixed left-0 top-0 z-[100] rounded-full bg-bone mix-blend-difference"
         style={{ x, y, translateX: '-50%', translateY: '-50%' }}
         animate={{ width: active ? 0 : 6, height: active ? 0 : 6, opacity: hidden ? 0 : 1 }}
         transition={{ duration: 0.25 }}
       />
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[100] flex items-center justify-center rounded-full border"
+        className="cursor-ring pointer-events-none fixed left-0 top-0 z-[100] flex items-center justify-center rounded-full border"
         style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
         animate={{
           width: hasText ? 88 : active ? 44 : 28,
@@ -71,7 +71,7 @@ export function Cursor() {
         transition={{ type: 'spring', stiffness: 300, damping: 24 }}
       >
         <motion.span
-          className="absolute inset-0 rounded-full bg-accent"
+          className="cursor-ring absolute inset-0 rounded-full bg-accent"
           animate={{ opacity: hasText ? 1 : 0 }}
           transition={{ duration: 0.2 }}
         />
