@@ -34,7 +34,7 @@ export function Background() {
               translateX: '-50%',
               translateY: '-50%',
               background:
-                'radial-gradient(circle, rgba(217,255,74,0.07) 0%, rgba(217,255,74,0.025) 35%, transparent 70%)',
+                'radial-gradient(circle, rgba(166,108,255,0.07) 0%, rgba(166,108,255,0.025) 35%, transparent 70%)',
             }}
           />
         )}

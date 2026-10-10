@@ -10,12 +10,15 @@ export function MaskLine({
   className = '',
   as: Tag = 'div',
   once = true,
+  play = true,
 }: {
   children: ReactNode;
   delay?: number;
   className?: string;
   as?: ElementType;
   once?: boolean;
+  /** Hold the line hidden until true (e.g. while the intro curtain is up). */
+  play?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once, margin: '-10% 0px' });
@@ -24,7 +27,7 @@ export function MaskLine({
       <motion.div
         className="will-change-transform"
         initial={{ y: '110%', rotate: 2 }}
-        animate={inView ? { y: 0, rotate: 0 } : { y: '110%', rotate: 2 }}
+        animate={inView && play ? { y: 0, rotate: 0 } : { y: '110%', rotate: 2 }}
         transition={{ duration: 1, ease: EASE, delay }}
         style={{ transformOrigin: 'left bottom' }}
       >

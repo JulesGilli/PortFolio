@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './ui/LanguageSelector';
 import { EASE } from './ui/Reveal';
+import { useIntroDone } from './ui/Intro';
 
 const navItems = [
   { key: 'about', href: '#about', index: '01' },
@@ -14,13 +15,14 @@ const navItems = [
 export function Header() {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
+  const ready = useIntroDone();
 
   return (
     <>
       <motion.header
         className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8"
         initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={ready ? { y: 0, opacity: 1 } : {}}
         transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
       >
         <a href="#hero" className="flex items-center gap-3" data-cursor="">

@@ -66,14 +66,14 @@ export function Cursor() {
           width: hasText ? 88 : active ? 44 : 28,
           height: hasText ? 88 : active ? 44 : 28,
           opacity: hidden ? 0 : 1,
-          backgroundColor: hasText ? 'rgba(217,255,74,1)' : 'rgba(217,255,74,0)',
-          borderColor: hasText ? 'rgba(217,255,74,0)' : 'rgba(236,232,225,0.7)',
+          backgroundColor: hasText ? 'rgba(166,108,255,1)' : 'rgba(166,108,255,0)',
+          borderColor: hasText ? 'rgba(166,108,255,0)' : 'rgba(236,232,225,0.7)',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 24 }}
       >
         <motion.span
           className="meta font-medium"
-          style={{ color: '#0b0b0c' }}
+          style={{ color: '#ece8e1' }}
           animate={{ opacity: hasText ? 1 : 0, scale: hasText ? 1 : 0.6 }}
           transition={{ duration: 0.2 }}
         >

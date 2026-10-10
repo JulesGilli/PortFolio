@@ -7,7 +7,7 @@ export default {
         ink: '#0b0b0c',
         bone: '#ece8e1',
         muted: '#8b877f',
-        accent: '#d9ff4a',
+        accent: '#a66cff',
       },
       fontFamily: {
         display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
