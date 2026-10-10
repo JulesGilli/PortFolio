@@ -8,11 +8,21 @@
   "hero": {
     "subtitle": "Game Developer & Unity Tool Creator",
     "tagline": "Building interactive experiences and developer tools",
-    "cta": "See my work"
+    "cta": "See my work",
+    "kicker": "Portfolio — 2026",
+    "role1": "Game developer",
+    "role2": "& Unity tool maker",
+    "marquee": "Game Design — Unity Tools — C# — Prototypes — Game Jams — Asset Store — React"
   },
   "about": {
     "title": "About",
-    "description": "A Unity developer passionate about creating games and tools for developers. I design interactive experiences and plugins that streamline the development workflow in Unity."
+    "description": "A Unity developer passionate about creating games and tools for developers. I design interactive experiences and plugins that streamline the development workflow in Unity.",
+    "label": "Who",
+    "stats": {
+      "games": "Games built",
+      "tools": "Tools published",
+      "downloads": "Downloads"
+    }
   },
   "games": {
     "title": "Games",
@@ -24,7 +34,9 @@
       "whispers": "Narrative time-loop adventure in a peaceful low-poly village, where each loop uncovers new clues.",
       "color-gap": "A minimalist platformer driven by color, rhythm, and perception. 🏆 Jury's Favorite — GGJ 2026.",
       "mirapyde": "2D parkour platformer with time manipulation: create a clone that replays your moves in reverse."
-    }
+    },
+    "label": "Selected work",
+    "view": "Play"
   },
   "tools": {
     "title": "Unity Tools",
@@ -37,7 +49,11 @@
       "animation-path-visualizer": "Visualize and edit animation paths directly in the Scene view. Drag keyframes, tweak tangents, display the speed gradient, and lock your selection. Works with Animation & Animator. Editor only.",
       "smart-localization": "Editor-driven localization workflow for TextMeshPro: one-click translation via multiple providers (DeepL, Azure, Google, Amazon, MyMemory…), per-language locks, placeholder checks and dashboard.",
       "smart-localization-lite": "Free, plug-and-play Lite version for TextMeshPro: LocalizedTMP, one-click translation via MyMemory, per-language locks and a daily quota managed from the Editor."
-    }
+    },
+    "label": "Asset Store",
+    "downloads": "downloads",
+    "intro": "Editor tools that save you an afternoon.",
+    "hint": "Keep scrolling →"
   },
   "contact": {
     "title": "Contact",
@@ -46,10 +62,16 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "itch": "Itch.io"
-    }
+    },
+    "label": "Contact",
+    "title1": "Let's",
+    "title2": "talk.",
+    "subtitle": "A game, a tool idea, or a jam to crash? My inbox is open."
   },
   "footer": {
-    "rights": "© {{year}} Jules Gilli"
+    "rights": "© {{year}} Jules Gilli",
+    "localTime": "Paris",
+    "top": "Back to top"
   },
   "language": {
     "label": "Language"

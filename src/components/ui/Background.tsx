@@ -1,44 +1,45 @@
-import DarkVeil from './DarkVeil';
-import DotField from './DotField';
+import { useEffect } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useFinePointer } from '../../hooks/useMediaQuery';
 
+/** Ink background, a slow cursor-following accent glow, and film grain on top. */
 export function Background() {
+  const fine = useFinePointer();
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 30, damping: 20 });
+  const sy = useSpring(y, { stiffness: 30, damping: 20 });
+
+  useEffect(() => {
+    if (!fine) return;
+    x.set(window.innerWidth / 2);
+    y.set(window.innerHeight / 2);
+    const onMove = (e: MouseEvent) => {
+      x.set(e.clientX);
+      y.set(e.clientY);
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+    return () => window.removeEventListener('mousemove', onMove);
+  }, [fine, x, y]);
+
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
-      <div className="absolute inset-0 opacity-60">
-        <DarkVeil
-          hueShift={300}
-          speed={0.3}
-          warpAmount={0.2}
-          noiseIntensity={0.02}
-          resolutionScale={0.85}
-        />
+    <>
+      <div className="pointer-events-none fixed inset-0 z-0 bg-ink">
+        {fine && (
+          <motion.div
+            className="absolute h-[60vmax] w-[60vmax] rounded-full"
+            style={{
+              x: sx,
+              y: sy,
+              translateX: '-50%',
+              translateY: '-50%',
+              background:
+                'radial-gradient(circle, rgba(217,255,74,0.07) 0%, rgba(217,255,74,0.025) 35%, transparent 70%)',
+            }}
+          />
+        )}
       </div>
-      <div
-        className="absolute inset-0"
-        style={{
-          maskImage:
-            'radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 100%)',
-          WebkitMaskImage:
-            'radial-gradient(ellipse 75% 75% at 50% 50%, black 35%, transparent 100%)',
-        }}
-      >
-        <DotField
-          dotRadius={1.8}
-          dotSpacing={18}
-          cursorRadius={200}
-          bulgeStrength={45}
-          fadeRadius={120}
-          gradientFrom="rgba(196, 181, 253, 0.95)"
-          gradientTo="rgba(244, 114, 182, 0.85)"
-        />
-      </div>
-      {/* Subtle dark overlay to ensure text readability */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(to bottom, rgba(5,5,10,0.2) 0%, rgba(5,5,10,0.5) 100%)',
-        }}
-      />
-    </div>
+      <div className="grain" aria-hidden />
+    </>
   );
 }

@@ -1,84 +1,96 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MenuIcon, XIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './ui/LanguageSelector';
+import { EASE } from './ui/Reveal';
 
 const navItems = [
-  { key: 'about', href: '#about' },
-  { key: 'games', href: '#games' },
-  { key: 'tools', href: '#tools' },
-  { key: 'contact', href: '#contact' },
+  { key: 'about', href: '#about', index: '01' },
+  { key: 'games', href: '#games', index: '02' },
+  { key: 'tools', href: '#tools', index: '03' },
+  { key: 'contact', href: '#contact', index: '04' },
 ] as const;
 
 export function Header() {
   const { t } = useTranslation();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const next = window.scrollY > 40;
-      setScrolled((cur) => (cur === next ? cur : next));
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.div
-      className="header-wrap"
-      data-scrolled={scrolled || undefined}
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-    >
-      <nav className="header-nav">
-        <a href="#hero" className="brand-link">
-          Jules<span className="gradient-text">Gilli</span>
+    <>
+      <motion.header
+        className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+      >
+        <a href="#hero" className="flex items-center gap-3" data-cursor="">
+          <span className="grid h-8 w-8 place-items-center rounded-full bg-bone font-display text-[11px] font-bold text-ink">
+            JG
+          </span>
+          <span className="hidden font-display text-sm font-medium tracking-tight sm:block">
+            Jules Gilli
+          </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link">
-              {t(`nav.${item.key}`)}
+            <a
+              key={item.href}
+              href={item.href}
+              className="group flex items-baseline gap-1.5 text-sm text-bone/80 transition-colors hover:text-bone"
+              data-cursor=""
+            >
+              <span className="meta !text-[9px] text-muted transition-colors group-hover:text-accent">
+                {item.index}
+              </span>
+              <span className="flip">
+                <span>{t(`nav.${item.key}`)}</span>
+                <span>{t(`nav.${item.key}`)}</span>
+              </span>
             </a>
           ))}
-        </div>
+        </nav>
 
-        <div className="flex items-center gap-3 pointer-events-auto">
+        <div className="flex items-center gap-3">
           <LanguageSelector />
           <button
-            className="md:hidden text-gray-300"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            type="button"
+            className="meta rounded-full border border-bone/20 px-3 py-1.5 !text-bone md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Menu"
           >
-            {mobileOpen ? <XIcon size={22} /> : <MenuIcon size={22} />}
+            {open ? 'Close' : 'Menu'}
           </button>
         </div>
-      </nav>
+      </motion.header>
 
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
-            className="pointer-events-auto md:hidden absolute top-full mt-2 left-4 right-4 glass p-4 flex flex-col gap-4"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            className="fixed inset-0 z-40 flex flex-col justify-end bg-ink px-5 pb-14 md:hidden"
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.7, ease: EASE }}
           >
-            {navItems.map((item) => (
-              <a
+            {navItems.map((item, i) => (
+              <motion.a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-gray-300 hover:text-white"
-                onClick={() => setMobileOpen(false)}
+                onClick={() => setOpen(false)}
+                className="flex items-baseline gap-4 border-t border-bone/10 py-4 font-display text-5xl font-semibold display-tight"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25 + i * 0.06, duration: 0.6, ease: EASE }}
               >
+                <span className="meta">{item.index}</span>
                 {t(`nav.${item.key}`)}
-              </a>
+              </motion.a>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </>
   );
 }

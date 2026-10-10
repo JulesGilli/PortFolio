@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GlobeIcon, CheckIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SUPPORTED_LANGUAGES, LANGUAGE_LABELS, type SupportedLanguage } from '../../i18n';
 
@@ -30,29 +29,27 @@ export function LanguageSelector() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 text-sm text-gray-300 hover:text-white transition-colors px-2 py-1 rounded-lg"
+        className="meta rounded-full border border-bone/20 px-3 py-1.5 !text-bone transition-colors hover:border-bone/50"
         aria-label={t('language.label')}
         aria-haspopup="listbox"
         aria-expanded={open}
+        data-cursor=""
       >
-        <GlobeIcon size={16} />
-        <span className="text-xs uppercase tracking-wide">{safeCurrent}</span>
+        {safeCurrent}
       </button>
 
       <AnimatePresence>
         {open && (
           <motion.ul
             role="listbox"
-            initial={{ opacity: 0, y: -6, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -6, scale: 0.96 }}
-            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 mt-2 min-w-[160px] py-2 rounded-xl border border-white/10 bg-[#15102a]/95 shadow-xl backdrop-blur-md z-50"
-            style={{ backdropFilter: 'blur(14px) saturate(120%)' }}
+            initial={{ opacity: 0, y: -6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.76, 0, 0.24, 1] }}
+            className="absolute right-0 z-50 mt-2 min-w-[150px] border border-bone/15 bg-ink py-1"
           >
             {SUPPORTED_LANGUAGES.map((lng) => {
               const isActive = lng === safeCurrent;
-              const meta = LANGUAGE_LABELS[lng];
               return (
                 <li key={lng}>
                   <button
@@ -60,15 +57,13 @@ export function LanguageSelector() {
                     role="option"
                     aria-selected={isActive}
                     onClick={() => change(lng)}
-                    className={`w-full flex items-center justify-between gap-3 px-3 py-1.5 text-sm transition-colors ${
-                      isActive ? 'text-white' : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    data-cursor=""
+                    className={`flex w-full items-center justify-between gap-3 px-3 py-2 text-sm transition-colors ${
+                      isActive ? 'text-bone' : 'text-muted hover:bg-bone/5 hover:text-bone'
                     }`}
                   >
-                    <span className="flex items-center gap-2">
-                      <span aria-hidden>{meta.flag}</span>
-                      <span>{meta.native}</span>
-                    </span>
-                    {isActive && <CheckIcon size={14} className="text-purple-400" />}
+                    <span>{LANGUAGE_LABELS[lng].native}</span>
+                    {isActive && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
                   </button>
                 </li>
               );

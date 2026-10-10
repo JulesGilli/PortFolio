@@ -1,60 +1,72 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { GradientText } from './ui/GradientText';
+import { SectionHeader } from './ui/SectionHeader';
+import { ScrollWords, FadeUp } from './ui/Reveal';
+import { allProjects } from '../data/projects';
+import { toolsData } from '../data/toolsData';
 
 const base = import.meta.env.BASE_URL;
 
+const totalDownloads = toolsData.reduce((sum, tool) => {
+  const n = parseInt(tool.downloads.replace(/[^\d]/g, ''), 10);
+  return sum + (Number.isFinite(n) ? n : 0);
+}, 0);
+const downloadsLabel = `${Math.floor(totalDownloads / 1000)}k+`;
+
 export function About() {
   const { t } = useTranslation();
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%']);
+  const imgRotate = useTransform(scrollYProgress, [0, 1], [-4, 3]);
+
+  const stats = [
+    { value: String(allProjects.length), label: t('about.stats.games') },
+    { value: String(toolsData.length), label: t('about.stats.tools') },
+    { value: downloadsLabel, label: t('about.stats.downloads') },
+  ];
+
   return (
-    <section id="about" className="relative z-10 py-32 px-4">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <GradientText as="h2" className="text-3xl md:text-4xl font-bold">
-            {t('about.title')}
-          </GradientText>
-        </motion.div>
+    <section id="about" ref={ref} className="relative z-10 px-5 py-28 md:px-8 md:py-40">
+      <SectionHeader index="01" label={t('about.label')} title={t('about.title')} />
 
-        <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      <div className="grid gap-12 md:grid-cols-12">
+        <div className="md:col-span-4 md:col-start-1">
           <motion.div
-            className="shrink-0"
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            style={{ y: imgY, rotate: imgRotate }}
+            className="relative aspect-[4/5] w-56 overflow-hidden md:w-full md:max-w-xs"
           >
-            <div className="relative w-48 h-48 md:w-56 md:h-56">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/40 via-blue-500/30 to-pink-500/30 blur-2xl" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/10 shadow-2xl shadow-purple-500/20">
-                <img
-                  src={`${base}images/profile.png`}
-                  alt="Jules Gilli"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = 'none';
-                  }}
-                />
-              </div>
-            </div>
+            <img
+              src={`${base}images/profile.png`}
+              alt="Jules Gilli"
+              className="h-full w-full object-cover grayscale transition-all duration-700 ease-out hover:grayscale-0"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.display = 'none';
+              }}
+            />
+            <span className="meta absolute bottom-3 left-3 rounded-full bg-ink/70 px-2 py-1 !text-bone backdrop-blur">
+              Jules Gilli
+            </span>
           </motion.div>
+        </div>
 
-          <motion.div
-            className="text-center md:text-left"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <p className="text-gray-300 text-lg leading-relaxed">
-              {t('about.description')}
-            </p>
-          </motion.div>
+        <div className="md:col-span-7 md:col-start-6">
+          <ScrollWords
+            text={t('about.description')}
+            className="font-display text-[clamp(1.6rem,3.4vw,3rem)] font-medium leading-[1.15] tracking-tight text-balance"
+          />
+
+          <div className="mt-16 grid grid-cols-3 gap-6 border-t border-bone/10 pt-8">
+            {stats.map((s, i) => (
+              <FadeUp key={s.label} delay={i * 0.08}>
+                <div className="font-display text-4xl font-semibold tracking-tight md:text-6xl">
+                  {s.value}
+                </div>
+                <div className="meta mt-2">{s.label}</div>
+              </FadeUp>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,22 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}'
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        dark: {
-          900: '#050505',
-          800: '#0a0a0a',
-          700: '#111111',
-          600: '#1a1a1a',
-          500: '#222222',
-        }
+        ink: '#0b0b0c',
+        bone: '#ece8e1',
+        muted: '#8b877f',
+        accent: '#d9ff4a',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      transitionTimingFunction: {
+        out: 'cubic-bezier(0.76, 0, 0.24, 1)',
       },
     },
   },

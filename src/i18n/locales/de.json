@@ -8,11 +8,21 @@
   "hero": {
     "subtitle": "Spieleentwickler & Unity-Tool-Ersteller",
     "tagline": "Interaktive Erlebnisse und Entwickler-Tools gestalten",
-    "cta": "Meine Arbeit ansehen"
+    "cta": "Meine Arbeit ansehen",
+    "kicker": "Portfolio — 2026",
+    "role1": "Spieleentwickler",
+    "role2": "& Unity-Tool-Macher",
+    "marquee": "Game Design — Unity Tools — C# — Prototypen — Game Jams — Asset Store — React"
   },
   "about": {
     "title": "Über mich",
-    "description": "Unity-Entwickler mit Leidenschaft für die Erstellung von Spielen und Tools für Entwickler. Ich gestalte interaktive Erlebnisse und Plugins, die den Entwicklungs-Workflow in Unity vereinfachen."
+    "description": "Unity-Entwickler mit Leidenschaft für die Erstellung von Spielen und Tools für Entwickler. Ich gestalte interaktive Erlebnisse und Plugins, die den Entwicklungs-Workflow in Unity vereinfachen.",
+    "label": "Wer",
+    "stats": {
+      "games": "Spiele gebaut",
+      "tools": "Tools veröffentlicht",
+      "downloads": "Downloads"
+    }
   },
   "games": {
     "title": "Spiele",
@@ -24,7 +34,9 @@
       "whispers": "Narratives Zeitschleifen-Abenteuer in einem ruhigen Low-Poly-Dorf, in dem jede Schleife neue Hinweise enthüllt.",
       "color-gap": "Minimalistischer Platformer, geprägt von Farbe, Rhythmus und Wahrnehmung. 🏆 Liebling der Jury — GGJ 2026.",
       "mirapyde": "2D-Parkour-Platformer mit Zeitmanipulation: Erstelle einen Klon, der deine Bewegungen rückwärts abspielt."
-    }
+    },
+    "label": "Ausgewählte Arbeiten",
+    "view": "Spielen"
   },
   "tools": {
     "title": "Unity-Tools",
@@ -37,7 +49,11 @@
       "animation-path-visualizer": "Visualisiere und bearbeite Animationspfade direkt in der Scene-Ansicht. Verschiebe Keys, justiere Tangenten, zeige den Geschwindigkeitsverlauf und sperre deine Auswahl. Kompatibel mit Animation & Animator. Nur im Editor.",
       "smart-localization": "Editor-getriebener Lokalisierungs-Workflow für TextMeshPro: Ein-Klick-Übersetzung mit mehreren Anbietern (DeepL, Azure, Google, Amazon, MyMemory…), Sperren pro Sprache, Platzhalterprüfung und Dashboard.",
       "smart-localization-lite": "Kostenlose, Plug-and-Play-Lite-Version für TextMeshPro: LocalizedTMP, Ein-Klick-Übersetzung über MyMemory, Sperren pro Sprache und tägliches Kontingent direkt im Editor."
-    }
+    },
+    "label": "Asset Store",
+    "downloads": "Downloads",
+    "intro": "Editor-Tools, die dir einen Nachmittag sparen.",
+    "hint": "Weiter scrollen →"
   },
   "contact": {
     "title": "Kontakt",
@@ -46,10 +62,16 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "itch": "Itch.io"
-    }
+    },
+    "label": "Kontakt",
+    "title1": "Lass uns",
+    "title2": "reden.",
+    "subtitle": "Ein Spiel, eine Tool-Idee oder eine Jam? Mein Postfach ist offen."
   },
   "footer": {
-    "rights": "© {{year}} Jules Gilli"
+    "rights": "© {{year}} Jules Gilli",
+    "localTime": "Paris",
+    "top": "Nach oben"
   },
   "language": {
     "label": "Sprache"

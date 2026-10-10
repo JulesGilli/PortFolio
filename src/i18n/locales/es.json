@@ -8,11 +8,21 @@
   "hero": {
     "subtitle": "Desarrollador de videojuegos y creador de herramientas Unity",
     "tagline": "Creación de experiencias interactivas y herramientas para desarrolladores",
-    "cta": "Ver mi trabajo"
+    "cta": "Ver mi trabajo",
+    "kicker": "Portfolio — 2026",
+    "role1": "Desarrollador de juegos",
+    "role2": "& creador de herramientas Unity",
+    "marquee": "Game Design — Herramientas Unity — C# — Prototipos — Game Jams — Asset Store — React"
   },
   "about": {
     "title": "Sobre mí",
-    "description": "Desarrollador Unity apasionado por crear juegos y herramientas para desarrolladores. Diseño experiencias interactivas y plugins que simplifican el flujo de trabajo en Unity."
+    "description": "Desarrollador Unity apasionado por crear juegos y herramientas para desarrolladores. Diseño experiencias interactivas y plugins que simplifican el flujo de trabajo en Unity.",
+    "label": "Quién",
+    "stats": {
+      "games": "Juegos creados",
+      "tools": "Herramientas publicadas",
+      "downloads": "Descargas"
+    }
   },
   "games": {
     "title": "Juegos",
@@ -24,7 +34,9 @@
       "whispers": "Aventura narrativa con bucle temporal en un tranquilo pueblo low-poly, donde cada bucle revela nuevas pistas.",
       "color-gap": "Plataformas minimalistas guiadas por el color, el ritmo y la percepción. 🏆 Favorito del jurado — GGJ 2026.",
       "mirapyde": "Plataformas 2D parkour con manipulación del tiempo: crea un clon que repite tus movimientos al revés."
-    }
+    },
+    "label": "Selección",
+    "view": "Jugar"
   },
   "tools": {
     "title": "Herramientas Unity",
@@ -37,7 +49,11 @@
       "animation-path-visualizer": "Visualiza y edita trayectorias de animación directamente en la vista de Escena. Mueve keyframes, ajusta tangentes, muestra el gradiente de velocidad y bloquea la selección. Compatible con Animation y Animator. Solo Editor.",
       "smart-localization": "Flujo de localización orientado al Editor para TextMeshPro: traducción en un clic con múltiples proveedores (DeepL, Azure, Google, Amazon, MyMemory…), bloqueos por idioma, verificación de placeholders y dashboard.",
       "smart-localization-lite": "Versión Lite gratuita y plug-and-play para TextMeshPro: LocalizedTMP, traducción en un clic con MyMemory, bloqueos por idioma y cuota diaria gestionada desde el Editor."
-    }
+    },
+    "label": "Asset Store",
+    "downloads": "descargas",
+    "intro": "Herramientas de editor que te ahorran una tarde.",
+    "hint": "Sigue desplazando →"
   },
   "contact": {
     "title": "Contacto",
@@ -46,10 +62,16 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "itch": "Itch.io"
-    }
+    },
+    "label": "Contacto",
+    "title1": "¿Hablamos",
+    "title2": "un rato?",
+    "subtitle": "¿Un juego, una idea de herramienta o una jam? Mi bandeja está abierta."
   },
   "footer": {
-    "rights": "© {{year}} Jules Gilli"
+    "rights": "© {{year}} Jules Gilli",
+    "localTime": "París",
+    "top": "Volver arriba"
   },
   "language": {
     "label": "Idioma"

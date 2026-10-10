@@ -8,11 +8,21 @@
   "hero": {
     "subtitle": "Développeur de jeux & créateur d'outils Unity",
     "tagline": "Création d'expériences interactives et d'outils pour développeurs",
-    "cta": "Voir mon travail"
+    "cta": "Voir mon travail",
+    "kicker": "Portfolio — 2026",
+    "role1": "Développeur de jeux",
+    "role2": "& créateur d'outils Unity",
+    "marquee": "Game Design — Outils Unity — C# — Prototypes — Game Jams — Asset Store — React"
   },
   "about": {
     "title": "À propos",
-    "description": "Développeur Unity passionné par la création de jeux et d'outils pour développeurs. Je conçois des expériences interactives et des plugins qui simplifient le workflow de développement dans Unity."
+    "description": "Développeur Unity passionné par la création de jeux et d'outils pour développeurs. Je conçois des expériences interactives et des plugins qui simplifient le workflow de développement dans Unity.",
+    "label": "Qui",
+    "stats": {
+      "games": "Jeux réalisés",
+      "tools": "Outils publiés",
+      "downloads": "Téléchargements"
+    }
   },
   "games": {
     "title": "Jeux",
@@ -24,7 +34,9 @@
       "whispers": "Aventure narrative en boucle temporelle dans un village low-poly paisible, où chaque boucle révèle de nouveaux indices.",
       "color-gap": "Platformer minimaliste guidé par la couleur, le rythme et la perception. 🏆 Coup de cœur du jury — GGJ 2026.",
       "mirapyde": "Platformer 2D parkour avec manipulation du temps : crée un clone qui rejoue tes mouvements à l'envers."
-    }
+    },
+    "label": "Sélection",
+    "view": "Jouer"
   },
   "tools": {
     "title": "Outils Unity",
@@ -37,7 +49,11 @@
       "animation-path-visualizer": "Visualisez et éditez les trajectoires d'animation directement dans la vue Scène. Déplacez les clés à la main, ajustez les tangentes, affichez le gradient de vitesse et verrouillez la sélection. Compatible avec Animation & Animator. Éditeur uniquement.",
       "smart-localization": "Workflow de localisation orienté éditeur pour TextMeshPro : traduction en un clic via plusieurs providers (DeepL, Azure, Google, Amazon, MyMemory…), verrous par langue, vérification des placeholders et dashboard.",
       "smart-localization-lite": "Version Lite gratuite, plug-and-play pour TextMeshPro : LocalizedTMP, traduction en un clic via MyMemory, locks par langue et quota journalier géré côté Editor."
-    }
+    },
+    "label": "Asset Store",
+    "downloads": "téléchargements",
+    "intro": "Des outils d'éditeur qui vous font gagner une après-midi.",
+    "hint": "Continuez à scroller →"
   },
   "contact": {
     "title": "Contact",
@@ -46,10 +62,16 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "itch": "Itch.io"
-    }
+    },
+    "label": "Contact",
+    "title1": "On en",
+    "title2": "parle ?",
+    "subtitle": "Un jeu, une idée d'outil, une jam à rejoindre ? Ma boîte mail est ouverte."
   },
   "footer": {
-    "rights": "© {{year}} Jules Gilli"
+    "rights": "© {{year}} Jules Gilli",
+    "localTime": "Paris",
+    "top": "Retour en haut"
   },
   "language": {
     "label": "Langue"
