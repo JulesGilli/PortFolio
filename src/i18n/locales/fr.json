@@ -12,7 +12,13 @@
     "kicker": "Portfolio — 2026",
     "role1": "Développeur de jeux",
     "role2": "& créateur d'outils Unity",
-    "marquee": "Game Design — Outils Unity — C# — Prototypes — Game Jams — Asset Store — React"
+    "marquee": "Game Design — Outils Unity — C# — Prototypes — Game Jams — Asset Store — React",
+    "featured": "Sélection",
+    "play": "Jouer",
+    "download": "Récupérer sur itch.io",
+    "itch": "Voir sur itch.io",
+    "inBrowser": "Navigateur",
+    "role": "Développeur de jeux"
   },
   "about": {
     "title": "À propos",
@@ -33,13 +39,19 @@
       "echoes": "Prototype d'action-aventure en arène fermée, axé sur le combat rapide et l'atmosphère oppressante.",
       "whispers": "Aventure narrative en boucle temporelle dans un village low-poly paisible, où chaque boucle révèle de nouveaux indices.",
       "color-gap": "Platformer minimaliste guidé par la couleur, le rythme et la perception. 🏆 Coup de cœur du jury — GGJ 2026.",
-      "mirapyde": "Platformer 2D parkour avec manipulation du temps : crée un clone qui rejoue tes mouvements à l'envers."
+      "mirapyde": "Platformer 2D parkour avec manipulation du temps : crée un clone qui rejoue tes mouvements à l'envers.",
+      "eco": "Puzzle-platformer où ton passé te rattrape, huit secondes plus tard. Mon plus gros projet, jouable en coop.",
+      "dig-or-die": "Le loup apprend. Le berger piège. Court, nerveux, et fun.",
+      "tour-infinie": "Roguelite auto-battler en pixel-art, avec coop en ligne. La tour n'a pas de sommet.",
+      "speed-typo": "Jeu de dactylographie rapide avec plusieurs modes et des effets dynamiques. Fait en React."
     },
     "label": "Sélection",
-    "view": "Jouer"
+    "view": "Jouer",
+    "all": "Tous les jeux",
+    "browser": "Navigateur"
   },
   "tools": {
-    "title": "Outils Unity",
+    "title": "Aussi : outils Unity",
     "viewOnAssetStore": "Voir sur l'Asset Store",
     "documentation": "Documentation",
     "descriptions": {
@@ -53,7 +65,8 @@
     "label": "Asset Store",
     "downloads": "téléchargements",
     "intro": "Des outils d'éditeur qui vous font gagner une après-midi.",
-    "hint": "Continuez à scroller →"
+    "hint": "Continuez à scroller →",
+    "lead": "Des outils d'éditeur publiés sur l'Asset Store. Gardés ici comme exemples de ce que je sais construire."
   },
   "contact": {
     "title": "Contact",
@@ -75,5 +88,9 @@
   },
   "language": {
     "label": "Langue"
+  },
+  "player": {
+    "close": "Fermer",
+    "hint": "Échap pour fermer"
   }
 }

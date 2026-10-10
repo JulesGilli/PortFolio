@@ -12,7 +12,13 @@
     "kicker": "Portfolio — 2026",
     "role1": "Game developer",
     "role2": "& Unity tool maker",
-    "marquee": "Game Design — Unity Tools — C# — Prototypes — Game Jams — Asset Store — React"
+    "marquee": "Game Design — Unity Tools — C# — Prototypes — Game Jams — Asset Store — React",
+    "featured": "Featured",
+    "play": "Play now",
+    "download": "Get it on itch.io",
+    "itch": "View on itch.io",
+    "inBrowser": "In browser",
+    "role": "Game developer"
   },
   "about": {
     "title": "About",
@@ -33,13 +39,19 @@
       "echoes": "Action-adventure prototype in confined arenas, focused on fast combat and oppressive atmosphere.",
       "whispers": "Narrative time-loop adventure in a peaceful low-poly village, where each loop uncovers new clues.",
       "color-gap": "A minimalist platformer driven by color, rhythm, and perception. 🏆 Jury's Favorite — GGJ 2026.",
-      "mirapyde": "2D parkour platformer with time manipulation: create a clone that replays your moves in reverse."
+      "mirapyde": "2D parkour platformer with time manipulation: create a clone that replays your moves in reverse.",
+      "eco": "A puzzle-platformer where your past catches up with you, eight seconds late. My biggest project, playable in co-op.",
+      "dig-or-die": "The wolf learns. The shepherd traps. Short, tense, and fun.",
+      "tour-infinie": "A pixel-art roguelite auto-battler with online co-op. The tower has no top.",
+      "speed-typo": "Fast typing game with several modes and dynamic effects. Built with React."
     },
     "label": "Selected work",
-    "view": "Play"
+    "view": "Play",
+    "all": "All games",
+    "browser": "Browser"
   },
   "tools": {
-    "title": "Unity Tools",
+    "title": "Also: Unity tools",
     "viewOnAssetStore": "View on Asset Store",
     "documentation": "Documentation",
     "descriptions": {
@@ -53,7 +65,8 @@
     "label": "Asset Store",
     "downloads": "downloads",
     "intro": "Editor tools that save you an afternoon.",
-    "hint": "Keep scrolling →"
+    "hint": "Keep scrolling →",
+    "lead": "Editor tools published on the Asset Store. Kept here as examples of what I can build."
   },
   "contact": {
     "title": "Contact",
@@ -75,5 +88,9 @@
   },
   "language": {
     "label": "Language"
+  },
+  "player": {
+    "close": "Close",
+    "hint": "Esc to close"
   }
 }

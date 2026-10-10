@@ -12,7 +12,13 @@
     "kicker": "Portfolio — 2026",
     "role1": "Desarrollador de juegos",
     "role2": "& creador de herramientas Unity",
-    "marquee": "Game Design — Herramientas Unity — C# — Prototipos — Game Jams — Asset Store — React"
+    "marquee": "Game Design — Herramientas Unity — C# — Prototipos — Game Jams — Asset Store — React",
+    "featured": "Destacados",
+    "play": "Jugar",
+    "download": "Conseguir en itch.io",
+    "itch": "Ver en itch.io",
+    "inBrowser": "Navegador",
+    "role": "Desarrollador de juegos"
   },
   "about": {
     "title": "Sobre mí",
@@ -33,13 +39,19 @@
       "echoes": "Prototipo de acción-aventura en arenas cerradas, centrado en combate rápido y atmósfera opresiva.",
       "whispers": "Aventura narrativa con bucle temporal en un tranquilo pueblo low-poly, donde cada bucle revela nuevas pistas.",
       "color-gap": "Plataformas minimalistas guiadas por el color, el ritmo y la percepción. 🏆 Favorito del jurado — GGJ 2026.",
-      "mirapyde": "Plataformas 2D parkour con manipulación del tiempo: crea un clon que repite tus movimientos al revés."
+      "mirapyde": "Plataformas 2D parkour con manipulación del tiempo: crea un clon que repite tus movimientos al revés.",
+      "eco": "Puzzle-platformer donde tu pasado te alcanza, ocho segundos más tarde. Mi mayor proyecto, jugable en cooperativo.",
+      "dig-or-die": "El lobo aprende. El pastor atrapa. Corto, tenso y divertido.",
+      "tour-infinie": "Roguelite auto-battler en pixel-art con cooperativo en línea. La torre no tiene cima.",
+      "speed-typo": "Juego de mecanografía rápida con varios modos y efectos dinámicos. Hecho con React."
     },
     "label": "Selección",
-    "view": "Jugar"
+    "view": "Jugar",
+    "all": "Todos los juegos",
+    "browser": "Navegador"
   },
   "tools": {
-    "title": "Herramientas Unity",
+    "title": "También: herramientas Unity",
     "viewOnAssetStore": "Ver en el Asset Store",
     "documentation": "Documentación",
     "descriptions": {
@@ -53,7 +65,8 @@
     "label": "Asset Store",
     "downloads": "descargas",
     "intro": "Herramientas de editor que te ahorran una tarde.",
-    "hint": "Sigue desplazando →"
+    "hint": "Sigue desplazando →",
+    "lead": "Herramientas de editor publicadas en la Asset Store. Aquí como ejemplos de lo que sé construir."
   },
   "contact": {
     "title": "Contacto",
@@ -75,5 +88,9 @@
   },
   "language": {
     "label": "Idioma"
+  },
+  "player": {
+    "close": "Cerrar",
+    "hint": "Esc para cerrar"
   }
 }

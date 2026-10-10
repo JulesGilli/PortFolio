@@ -29,7 +29,7 @@ export function About() {
 
   return (
     <section id="about" ref={ref} className="relative z-10 px-5 py-28 md:px-8 md:py-40">
-      <SectionHeader index="01" label={t('about.label')} title={t('about.title')} />
+      <SectionHeader index="02" label={t('about.label')} title={t('about.title')} />
 
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-4 md:col-start-1">

@@ -12,7 +12,13 @@
     "kicker": "Portfolio — 2026",
     "role1": "Spieleentwickler",
     "role2": "& Unity-Tool-Macher",
-    "marquee": "Game Design — Unity Tools — C# — Prototypen — Game Jams — Asset Store — React"
+    "marquee": "Game Design — Unity Tools — C# — Prototypen — Game Jams — Asset Store — React",
+    "featured": "Ausgewählt",
+    "play": "Jetzt spielen",
+    "download": "Auf itch.io holen",
+    "itch": "Auf itch.io ansehen",
+    "inBrowser": "Im Browser",
+    "role": "Spieleentwickler"
   },
   "about": {
     "title": "Über mich",
@@ -33,13 +39,19 @@
       "echoes": "Action-Adventure-Prototyp in geschlossenen Arenen, mit schnellen Kämpfen und bedrückender Atmosphäre.",
       "whispers": "Narratives Zeitschleifen-Abenteuer in einem ruhigen Low-Poly-Dorf, in dem jede Schleife neue Hinweise enthüllt.",
       "color-gap": "Minimalistischer Platformer, geprägt von Farbe, Rhythmus und Wahrnehmung. 🏆 Liebling der Jury — GGJ 2026.",
-      "mirapyde": "2D-Parkour-Platformer mit Zeitmanipulation: Erstelle einen Klon, der deine Bewegungen rückwärts abspielt."
+      "mirapyde": "2D-Parkour-Platformer mit Zeitmanipulation: Erstelle einen Klon, der deine Bewegungen rückwärts abspielt.",
+      "eco": "Ein Puzzle-Platformer, in dem dich deine Vergangenheit einholt, acht Sekunden später. Mein größtes Projekt, im Koop spielbar.",
+      "dig-or-die": "Der Wolf lernt. Der Hirte stellt Fallen. Kurz, nervös und spaßig.",
+      "tour-infinie": "Ein Pixel-Art-Roguelite-Auto-Battler mit Online-Koop. Der Turm hat keine Spitze.",
+      "speed-typo": "Schnelles Tippspiel mit mehreren Modi und dynamischen Effekten. Mit React gebaut."
     },
     "label": "Ausgewählte Arbeiten",
-    "view": "Spielen"
+    "view": "Spielen",
+    "all": "Alle Spiele",
+    "browser": "Browser"
   },
   "tools": {
-    "title": "Unity-Tools",
+    "title": "Außerdem: Unity-Tools",
     "viewOnAssetStore": "Im Asset Store ansehen",
     "documentation": "Dokumentation",
     "descriptions": {
@@ -53,7 +65,8 @@
     "label": "Asset Store",
     "downloads": "Downloads",
     "intro": "Editor-Tools, die dir einen Nachmittag sparen.",
-    "hint": "Weiter scrollen →"
+    "hint": "Weiter scrollen →",
+    "lead": "Editor-Tools, veröffentlicht im Asset Store. Hier als Beispiele dafür, was ich bauen kann."
   },
   "contact": {
     "title": "Kontakt",
@@ -75,5 +88,9 @@
   },
   "language": {
     "label": "Sprache"
+  },
+  "player": {
+    "close": "Schließen",
+    "hint": "Esc zum Schließen"
   }
 }

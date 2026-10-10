@@ -15,6 +15,18 @@ export interface Project {
     youtube?: string;
     download?: string;
   };
+  /** itch.io genre label */
+  genre?: string;
+  /** Playable in the browser (itch HTML5 build or hosted web game) */
+  browser?: boolean;
+  /** Downloadable builds */
+  platforms?: Array<'win' | 'mac' | 'linux'>;
+  /** Featured order in the hero (1 = first). Only the games I'm proud of. */
+  featured?: number;
+  /** Award / jam mention shown as a badge */
+  award?: string;
+  /** URL that can be iframed to play inside the site (itch "embed-upload" URL or a hosted web build) */
+  embedUrl?: string;
 }
 
 const base = import.meta.env.BASE_URL;
@@ -103,7 +115,9 @@ export const allProjects: Project[] = [
       github: '',
       youtube: '',
       download: '' 
-    }
+    },
+    genre: 'Platformer',
+    browser: false,
   },
   {
     id: 4,
@@ -130,7 +144,10 @@ export const allProjects: Project[] = [
       github: '',
       youtube: '',
       download: '' 
-    }
+    },
+    genre: 'Rhythm',
+    browser: false,
+    platforms: ['win'],
   },
   {
     id: 5,
@@ -163,10 +180,14 @@ export const allProjects: Project[] = [
       github: 'https://github.com/JulesGilli/Echoes-of-the-abyss',
       youtube: '',
       download: ''
-    }
+    },
+    genre: 'Fighting',
+    browser: true,
+    platforms: ['win', 'mac', 'linux'],
   },
   {
     id: 6,
+    slug: 'speed-typo',
     title: "Speed Typo",
     description: "Jeu de dactylographie rapide avec plusieurs modes originaux et des effets dynamiques.",
     fullDescription: `Speed Typo est un jeu web de rapidité et de précision au clavier, développé en React et TypeScript. Pensé comme un serious game fun, il propose plusieurs modes de jeu originaux : mots classiques, inversés, remplacés par des chiffres, phrases infinies, ou encore un mode aveugle où l'on tape sans voir ce qu'on écrit.\n\nChaque session est ponctuée de sons, effets visuels et retours dynamiques. Le scoring en temps réel et les animations rendent l'expérience stimulante. Un système de succès est également intégré pour motiver l'exploration de tous les modes.\n\n👉 Le projet est actuellement en développement et continue d’évoluer avec de nouveaux modes et fonctionnalités à venir.`,
@@ -191,7 +212,10 @@ export const allProjects: Project[] = [
       github: 'https://github.com/JulesGilli/SpeedType',
       youtube: '',
       download: ''
-    }
+    },
+    genre: 'Typing',
+    browser: true,
+    embedUrl: 'https://julesgilli.github.io/SpeedType/',
   },
   {
     id: 7,
@@ -226,7 +250,9 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
       github: "",
       youtube: "",
       download: ""
-    }
+    },
+    genre: 'Interactive Fiction',
+    browser: false,
   },
   {
     id: 8,
@@ -251,7 +277,12 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
       github: "",
       youtube: "",
       download: ""
-    }
+    },
+    genre: 'Puzzle',
+    browser: false,
+    platforms: ['win'],
+    featured: 3,
+    award: "Jury's Favorite — GGJ 2026",
   },
   {
     id: 9,
@@ -276,9 +307,59 @@ Une expérience calme et entièrement axée sur l’histoire, la découverte et 
       github: "",
       youtube: "",
       download: ""
-    }
-  }
+    },
+    genre: 'Platformer',
+    browser: true,
+  },
+  {
+    id: 10,
+    slug: 'eco',
+    title: 'ECO',
+    description: "Puzzle-platformer où ton passé te rattrape, huit secondes plus tard. Mon plus gros projet, jouable en coop.",
+    image: `${base}images/ECO_01.png`,
+    tags: ['Unity', 'Puzzle-Platformer', 'Coop', 'Time'],
+    technologies: ['Unity', 'C#'],
+    gallery: [`${base}images/ECO_01.png`],
+    links: { demo: 'https://jules-gilli.itch.io/eco' },
+    genre: 'Puzzle',
+    browser: true,
+    platforms: ['win', 'mac', 'linux'],
+    featured: 1,
+  },
+  {
+    id: 11,
+    slug: 'dig-or-die',
+    title: 'DIG or DIE',
+    description: 'Le loup apprend. Le berger piège. Court, nerveux, et fun.',
+    image: `${base}images/DigOrDie_01.png`,
+    tags: ['Unity', 'Puzzle', 'Pixel Art'],
+    technologies: ['Unity', 'C#'],
+    gallery: [`${base}images/DigOrDie_01.png`],
+    links: { demo: 'https://jules-gilli.itch.io/dig-or-die' },
+    genre: 'Puzzle',
+    browser: true,
+    featured: 2,
+  },
+  {
+    id: 12,
+    slug: 'tour-infinie',
+    title: 'Tour Infinie',
+    description: "Roguelite auto-battler en pixel-art, avec coop en ligne. La tour n'a pas de sommet.",
+    image: `${base}images/TourInfinie_01.png`,
+    tags: ['Unity', 'Roguelite', 'Auto-battler', 'Coop en ligne'],
+    technologies: ['Unity', 'C#'],
+    gallery: [`${base}images/TourInfinie_01.png`],
+    links: { demo: 'https://jules-gilli.itch.io/tour-infinie' },
+    genre: 'Action',
+    browser: true,
+    platforms: ['win', 'mac', 'linux'],
+  },
 ];
 
 /** Projects playable right now: itch.io builds and hosted web games. The site only shows these. */
 export const onlineProjects: Project[] = allProjects.filter((p) => !!p.links?.demo);
+
+/** Hero showcase, in order. */
+export const featuredProjects: Project[] = onlineProjects
+  .filter((p) => p.featured)
+  .sort((a, b) => (a.featured ?? 0) - (b.featured ?? 0));

@@ -6,8 +6,8 @@ import { EASE } from './ui/Reveal';
 import { useIntroDone } from './ui/Intro';
 
 const navItems = [
-  { key: 'about', href: '#about', index: '01' },
-  { key: 'games', href: '#games', index: '02' },
+  { key: 'games', href: '#games', index: '01' },
+  { key: 'about', href: '#about', index: '02' },
   { key: 'tools', href: '#tools', index: '03' },
   { key: 'contact', href: '#contact', index: '04' },
 ] as const;
