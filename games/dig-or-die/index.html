@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>DIG or DIE</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <style>
+    html, body { margin: 0; height: 100%; background: #0b0f16; overflow: hidden;
+                 touch-action: none; overscroll-behavior: none;
+                 -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+    #unity-container { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+    #unity-canvas { background: #0b0f16; touch-action: none; }
+    #loading { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+               color: #eee; font-family: Arial, Helvetica, sans-serif; background: #0b0f16; z-index: 5; }
+    #loading img { image-rendering: pixelated; }
+    #title { margin-top: 12px; font-size: 26px; font-weight: bold; letter-spacing: 2px; }
+    #title span { color: #ff6b6b; }
+    #sub { margin-top: 4px; font-size: 14px; opacity: .6; text-align: center; padding: 0 16px; }
+    #bar { width: 320px; max-width: 70vw; height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin-top: 16px; }
+    #fill { height: 100%; width: 0; background: #4ecb71; transition: width .15s; }
+    #hint { margin-top: 10px; font-size: 12px; opacity: .45; }
+    /* invite à tourner le téléphone en portrait */
+    #rotate { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+              background: #0b0f16; color: #eee; font-family: Arial, Helvetica, sans-serif; z-index: 10; text-align: center; padding: 24px; }
+    #rotate .phone { width: 60px; height: 100px; border: 4px solid #eee; border-radius: 10px; animation: tilt 1.6s ease-in-out infinite; }
+    #rotate p { margin-top: 22px; font-size: 18px; opacity: .85; }
+    @keyframes tilt { 0%, 40% { transform: rotate(0deg); } 60%, 100% { transform: rotate(-90deg); } }
+    body.mobile.portrait #rotate { display: flex; }
+  </style>
+</head>
+<body>
+  <div id="unity-container"><canvas id="unity-canvas" tabindex="-1"></canvas></div>
+  <div id="loading">
+    <img src="favicon.png" width="96" height="96" alt="">
+    <div id="title">DIG <span>or</span> DIE</div>
+    <div id="sub">Le loup apprend. Le berger piège.</div>
+    <div id="bar"><div id="fill"></div></div>
+    <div id="hint">chargement...</div>
+  </div>
+  <div id="rotate"><div class="phone"></div><p>Tourne ton téléphone</p></div>
+  <script>
+    var canvas = document.querySelector("#unity-canvas");
+    var loading = document.querySelector("#loading");
+    var fill = document.querySelector("#fill");
+    var isMobile = /iPhone|iPad|iPod|Android|Mobile|Silk/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 1 && /Mac/i.test(navigator.platform));
+    if (isMobile) document.body.classList.add("mobile");
+
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/WebGL.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/WebGL.data.unityweb",
+      frameworkUrl: buildUrl + "/WebGL.framework.js.unityweb",
+      codeUrl: buildUrl + "/WebGL.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Troubadours",
+      productName: "DIG or DIE",
+      productVersion: "1.0",
+      // sur mobile on limite la densité de pixels : le jeu est en pixel art, autant garder les fps
+      devicePixelRatio: isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2),
+    };
+
+    // Bureau : cadre 16:9 centré. Mobile : on remplit l'écran (la caméra du jeu s'adapte au ratio).
+    function resize() {
+      var w = window.innerWidth, h = window.innerHeight;
+      document.body.classList.toggle("portrait", h > w);
+      var cw = w, ch = h;
+      if (!isMobile) {
+        var r = 16 / 9;
+        ch = w / r;
+        if (ch > h) { ch = h; cw = h * r; }
+      }
+      canvas.style.width = cw + "px";
+      canvas.style.height = ch + "px";
+    }
+    window.addEventListener("resize", resize);
+    window.addEventListener("orientationchange", function () { setTimeout(resize, 200); });
+    resize();
+
+    // pas de zoom par double tap ni de menu contextuel sur appui long
+    document.addEventListener("dblclick", function (e) { e.preventDefault(); }, { passive: false });
+    document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+    document.addEventListener("touchmove", function (e) { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) {
+        fill.style.width = (100 * progress) + "%";
+      }).then(function (unityInstance) {
+        loading.style.display = "none";
+        canvas.focus();
+      }).catch(function (message) {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
