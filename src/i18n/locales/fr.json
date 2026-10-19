@@ -174,8 +174,8 @@
   "games": {
     "eco": {
       "hook": "Ton passé te rattrape, huit secondes plus tard.",
-      "body": "ECO est un puzzle-platformer où chaque mouvement est enregistré et rejoué par un écho huit secondes plus tard. Un bouton à maintenir, une porte à franchir à deux : c'est à ton double d'il y a huit secondes de tenir la position. Mon projet le plus long, jouable seul ou en coop, avec un éditeur de niveaux dont les créations se partagent en ligne depuis le jeu.",
-      "long": "ECO est un puzzle-platformer construit sur une seule règle : tout ce que tu fais est rejoué par un écho huit secondes plus tard. Un bouton qui doit rester enfoncé, une plateforme à faire tenir, un passage qui ne s'ouvre qu'à deux : c'est à ton double d'il y a huit secondes de faire le travail pendant que tu avances.\n\nLe jeu se joue seul ou en coop, et il embarque un éditeur de niveaux : les niveaux construits partent en ligne depuis le jeu, et ceux des autres joueurs apparaissent dans le menu Communauté. Rien à zipper, aucun dossier à trouver.\n\nC'est mon projet le plus long. Il tourne dans le navigateur, sous Windows, macOS et Linux.",
+      "body": "ECO est un puzzle-platformer où chaque mouvement est enregistré et rejoué par un écho huit secondes plus tard. Un bouton à maintenir, une porte à franchir à deux : c'est à ton double d'il y a huit secondes de tenir la position. Mon projet le plus ambitieux, jouable seul ou en coop, avec un éditeur de niveaux dont les créations se partagent en ligne depuis le jeu.",
+      "long": "ECO est un puzzle-platformer construit sur une seule règle : tout ce que tu fais est rejoué par un écho huit secondes plus tard. Un bouton qui doit rester enfoncé, une plateforme à faire tenir, un passage qui ne s'ouvre qu'à deux : c'est à ton double d'il y a huit secondes de faire le travail pendant que tu avances.\n\nLe jeu se joue seul ou en coop, et il embarque un éditeur de niveaux : les niveaux construits partent en ligne depuis le jeu, et ceux des autres joueurs apparaissent dans le menu Communauté. Rien à zipper, aucun dossier à trouver.\n\nC'est mon projet le plus ambitieux, fait seul en quelques mois. Les deux briques dont je suis le plus fier : le système d'écho, qui enregistre et rejoue les inputs, et la coop en ligne, construite sur Netcode for GameObjects. Il tourne dans le navigateur, sous Windows, macOS et Linux.",
       "captions": [
         "Session 1 — ton écho (bleu) rejoue la trajectoire que tu viens de tracer, huit secondes derrière.",
         "Session 3 — l'écho maintient le bouton pendant que tu passes : la ligne montre ce qu'il déclenche.",
@@ -185,15 +185,17 @@
       ],
       "inGame": [
         "Écho : tes inputs sont enregistrés puis rejoués par un double, huit secondes plus tard.",
-        "Coop en local ou en ligne : deux joueurs, quatre timelines.",
+        "Coop en local ou en ligne (Netcode for GameObjects) : deux joueurs, quatre timelines.",
         "Éditeur de niveaux intégré, partage en ligne depuis le jeu et menu Communauté.",
         "Builds navigateur, Windows, macOS et Linux."
-      ]
+      ],
+      "role": "Solo",
+      "duration": "1 à 3 mois"
     },
     "dig-or-die": {
       "hook": "Le loup apprend. Le berger piège.",
-      "body": "Un puzzle en onze niveaux où tu poses des pièges avant que le loup n'arrive. Il meurt, il apprend, il revient en contournant ce qu'il a vu. Tue-le quand il croit tout savoir. Court, nerveux, pixel art, et jouable dans la page.",
-      "long": "DIG or DIE est un jeu de pièges en onze niveaux. Tu es le berger : avant chaque vague, tu disposes des pics, des blocs, des flèches et des pièges sur le terrain. Puis le loup arrive.\n\nLa règle qui fait le jeu : le loup se souvient. Quand il meurt sur un piège, il revient en l'évitant. Les pièges qui ont marché deviennent des leurres, et la solution n'est jamais celle du tour précédent. Tue-le quand il croit tout savoir.\n\nCourt, nerveux, en pixel art, avec un écran CRT. Il se joue au clavier, directement dans la page.",
+      "body": "Un puzzle en onze niveaux où tu poses des pièges avant que le loup n'arrive. Il meurt, il apprend, il revient en contournant ce qu'il a vu. Tue-le quand il croit tout savoir. Court, nerveux, pixel art, jouable dans la page. Fait en 48 heures, premier de sa jam.",
+      "long": "DIG or DIE est un jeu de pièges en onze niveaux. Tu es le berger : avant chaque vague, tu disposes des pics, des blocs, des flèches et des pièges sur le terrain. Puis le loup arrive.\n\nLa règle qui fait le jeu : le loup se souvient. Quand il meurt sur un piège, il revient en l'évitant. Les pièges qui ont marché deviennent des leurres, et la solution n'est jamais celle du tour précédent. Tue-le quand il croit tout savoir.\n\nCourt, nerveux, en pixel art, avec un écran CRT. Il se joue au clavier, directement dans la page.\n\nFait seul en 48 heures pour une petite game jam ouverte aux débutants, où il a pris la première place. Les deux parties dont je suis le plus fier : l'IA du loup, et le level design des onze niveaux.",
       "captions": [
         "Niveau 6 — pose tes pièges sur les blocs avant l'arrivée du loup ; l'inventaire en bas compte ce qu'il te reste.",
         "Niveau terminé — le loup a appris ; au prochain tour il contournera ce qui l'a tué.",
@@ -205,13 +207,17 @@
         "Onze niveaux de placement de pièges, résolus en quelques minutes chacun.",
         "Un loup qui mémorise les pièges rencontrés et adapte son chemin.",
         "Pixel art et rendu CRT, clavier uniquement.",
-        "Build navigateur, jouable ici."
-      ]
+        "Build navigateur, jouable ici.",
+        "Fait seul en 48 h — 1re place de la jam."
+      ],
+      "role": "Solo",
+      "duration": "48 h — game jam",
+      "award": "1re place — game jam"
     },
     "color-gap": {
       "hook": "Un monde qui n'existe qu'une couleur à la fois.",
       "body": "Platformer minimaliste guidé par la couleur, le rythme et la perception. Un monde immaculé se fracture en trois couleurs primaires ; chaque saut fait cycler celle qui est visible, et les plateformes des deux autres disparaissent. Sauter, c'est choisir ce qui existe à l'atterrissage. Coup de cœur du jury à la Global Game Jam 2026.",
-      "long": "Color GAP est un platformer minimaliste guidé par la couleur, le rythme et la perception. Tu explores un monde immaculé, construit autour d'un platforming précis et d'énigmes environnementales. Très tôt, un événement fracture cet espace et scinde la réalité en trois couleurs primaires : jaune, rouge, bleu.\n\nÀ partir de là, le monde existe en fragments superposés. Chaque saut décale ta perception et fait cycler des masques de couleur qui ne révèlent que les éléments correspondant à la couleur active. Les plateformes sont toujours là, mais une seule couleur est visible à la fois. Un saut mal calculé ne change pas seulement ta trajectoire : il change ce qui existe au moment où tu atterris.\n\nLa musique évolue avec tes actions. Maîtriser le jeu, c'est apprendre quand sauter, pas seulement comment. Réalisé en 48 heures pour la Global Game Jam 2026, où il a reçu le prix Jury's Favorite.",
+      "long": "Color GAP est un platformer minimaliste guidé par la couleur, le rythme et la perception. Tu explores un monde immaculé, construit autour d'un platforming précis et d'énigmes environnementales. Très tôt, un événement fracture cet espace et scinde la réalité en trois couleurs primaires : jaune, rouge, bleu.\n\nÀ partir de là, le monde existe en fragments superposés. Chaque saut décale ta perception et fait cycler des masques de couleur qui ne révèlent que les éléments correspondant à la couleur active. Les plateformes sont toujours là, mais une seule couleur est visible à la fois. Un saut mal calculé ne change pas seulement ta trajectoire : il change ce qui existe au moment où tu atterris.\n\nLa musique évolue avec tes actions. Maîtriser le jeu, c'est apprendre quand sauter, pas seulement comment. Réalisé en 48 heures pour la Global Game Jam 2026, où il a reçu le prix Jury's Favorite.\n\nRéalisé à deux avec Enzo Alfred, en peer coding du début à la fin : on a construit ensemble le contrôleur, les shaders de masques de couleur et le game design.",
       "captions": [
         "Le monde avant la fracture : blanc, low-poly, silencieux.",
         "La première couleur. L'arbre jaune n'existe que tant que le jaune est actif.",
@@ -220,9 +226,11 @@
       "inGame": [
         "Cycle de couleurs déclenché à chaque saut : une seule couleur de plateformes visible à la fois.",
         "Musique réactive au gameplay.",
-        "Réalisé en 48 h pour la Global Game Jam 2026 — Jury's Favorite."
+        "Réalisé en 48 h pour la Global Game Jam 2026 — Jury's Favorite.",
+        "Fait à deux avec Enzo Alfred, en peer coding."
       ],
-      "duration": "48 h — Global Game Jam 2026"
+      "duration": "48 h — Global Game Jam 2026",
+      "role": "Co-dev en peer coding — gameplay, shaders, game design"
     },
     "tour-infinie": {
       "hook": "La tour n'a pas de sommet.",
@@ -232,25 +240,48 @@
         "Les objets ramassés composent le build du personnage.",
         "Plus haut, plus dense : la tour ne s'arrête pas.",
         "En coop, deux joueurs grimpent la même tour."
-      ]
+      ],
+      "long": "Tour Infinie est un roguelite auto-battler en pixel art. Tu grimpes une tour sans sommet : à chaque étage, les objets que tu ramasses composent le build de ton personnage, puis tu regardes le combat se jouer.\n\nLe jeu se joue seul ou en coop en ligne, construite sur Netcode for GameObjects comme celle d'ECO : deux joueurs grimpent la même tour.\n\nFait seul en environ trois mois, à côté du reste. Il se joue dans la page, au clavier ou à la manette.",
+      "inGame": [
+        "Roguelite auto-battler : les objets ramassés composent le build.",
+        "Coop en ligne à deux (Netcode for GameObjects).",
+        "Boss d'étage, dont la Reine Araignée.",
+        "Builds navigateur, Windows, macOS et Linux."
+      ],
+      "role": "Solo",
+      "duration": "Environ 3 mois"
     },
     "mirapyde": {
       "hook": "Fige le temps. Ton clone rejoue tes gestes à l'envers.",
       "body": "Platformer 2D de parkour dans une pyramide. Chaque salle est un puzzle fermé : fige le temps pour créer un clone qui rejoue tes mouvements à l'envers, et orchestre deux timelines pour ouvrir la voie.",
-      "long": "Mirapyde est un platformer 2D basé sur le parkour et la manipulation du temps. Chaque salle est un puzzle fermé : une porte, un objectif, aucun remplissage.\n\nLe principe : figer le temps pour créer un clone qui rejoue tes mouvements à l'envers. Ce double peut activer un bouton pendant que tu grimpes ailleurs, maintenir une plaque de pression, ou synchroniser une action que tu ne pourrais jamais réaliser seul. Si tu te trompes, tu recommences immédiatement.\n\nMouvement propre, timing strict, planification : progresse étage après étage dans la pyramide.",
+      "long": "Mirapyde est un platformer 2D basé sur le parkour et la manipulation du temps. Chaque salle est un puzzle fermé : une porte, un objectif, aucun remplissage.\n\nLe principe : figer le temps pour créer un clone qui rejoue tes mouvements à l'envers. Ce double peut activer un bouton pendant que tu grimpes ailleurs, maintenir une plaque de pression, ou synchroniser une action que tu ne pourrais jamais réaliser seul. Si tu te trompes, tu recommences immédiatement.\n\nMouvement propre, timing strict, planification : progresse étage après étage dans la pyramide.\n\nFait seul, sur environ neuf mois à temps partiel. C'est le projet qui m'a demandé le plus de ténacité pour aller au bout.",
       "captions": [
         "Une salle, une porte, un objectif.",
         "Le clone rejoue tes mouvements à l'envers pendant que tu grimpes.",
         "Les pièges ne pardonnent rien : on recommence tout de suite.",
         "L'écran titre et la sélection des niveaux."
-      ]
+      ],
+      "inGame": [
+        "Clone temporel : fige le temps, ton double rejoue tes mouvements à l'envers.",
+        "Salles-puzzles fermées, recommencement instantané.",
+        "Parkour 2D au clavier, build navigateur."
+      ],
+      "role": "Solo",
+      "duration": "Environ 9 mois, à temps partiel"
     },
     "echoes": {
       "hook": "Une descente rapide dans des arènes hostiles.",
       "body": "Prototype d'action en arènes fermées, axé sur le combat rapide et l'atmosphère oppressante. Écrit en Java avec libGDX, jouable dans la page.",
       "captions": [
         "Arène close, combat au corps à corps, pas de répit."
-      ]
+      ],
+      "long": "Echoes of the Abyss est un prototype d'action en arènes fermées : combat rapide au corps à corps, atmosphère oppressante, aucun répit.\n\nUn projet d'école réalisé en binôme en 2024, en Java avec libGDX plutôt qu'avec un moteur comme Unity : un bon exercice pour comprendre ce qu'un moteur fait à ta place. Il tourne dans la page grâce à un build web.",
+      "inGame": [
+        "Combat rapide au corps à corps en arènes fermées.",
+        "Java et libGDX, en binôme, pour un projet d'école.",
+        "Build web, jouable ici."
+      ],
+      "role": "Co-dev en binôme"
     },
     "whispers": {
       "hook": "Chaque boucle révèle un nouvel indice.",
@@ -259,7 +290,14 @@
         "Le village au début de la boucle.",
         "Les habitants répètent leurs journées ; toi seul te souviens.",
         "L'arbre sacré, tombé."
-      ]
+      ],
+      "long": "Whispers of the Tree est une aventure narrative en boucle temporelle, dans un village low-poly paisible. Les habitants répètent leurs journées, et toi seul te souviens : chaque boucle rapproche de la vérité derrière la chute de l'arbre sacré.\n\nUn projet d'école mené en équipe de cinq en 2024, où j'étais chef de projet : organiser le travail de l'équipe et tenir le cap jusqu'au rendu.",
+      "inGame": [
+        "Boucle temporelle : chaque journée recommence, les indices restent.",
+        "Village low-poly et habitants aux routines répétées.",
+        "Projet d'école en équipe de cinq, en tant que chef de projet."
+      ],
+      "role": "Chef de projet"
     },
     "keep-dancing": {
       "hook": "Esquive en rythme ou meurs.",
@@ -268,7 +306,14 @@
         "Les plateformes bougent en rythme ; reste dessus.",
         "L'arène."
       ],
-      "duration": "48 h — Global Game Jam 2024"
+      "duration": "48 h — Global Game Jam 2024",
+      "long": "Keep Dancing to Live est un jeu d'esquive rythmée : les plateformes bougent sur le tempo, et rester dessus est la seule façon de survivre.\n\nRéalisé en 48 heures pour la Global Game Jam 2024, en équipe de quatre. J'y étais à la programmation et au game design.",
+      "inGame": [
+        "Plateformes synchronisées sur la musique.",
+        "48 h, Global Game Jam 2024, équipe de quatre.",
+        "Programmation et game design."
+      ],
+      "role": "Programmation + game design"
     },
     "cursum": {
       "hook": "Course contre la montre à la première personne.",
@@ -279,7 +324,13 @@
         "Le chrono, toujours en haut."
       ],
       "duration": "1 mois",
-      "role": "Solo"
+      "role": "Solo",
+      "long": "Cursum est une course contre la montre à la première personne : un hub, un tutoriel, des niveaux chronométrés, et un mouvement construit autour du wall-run, de la glissade et du saut.\n\nC'est mon premier projet solo, fait en 2023 en un mois, de la conception à l'intégration.",
+      "inGame": [
+        "Mouvement : wall-run, glissade, saut.",
+        "Hub central, tutoriel et niveaux chronométrés.",
+        "Premier projet solo, un mois, 2023."
+      ]
     },
     "speed-typo": {
       "hook": "Tape vite.",

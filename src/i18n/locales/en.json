@@ -174,8 +174,8 @@
   "games": {
     "eco": {
       "hook": "Your past catches up with you, eight seconds late.",
-      "body": "ECO is a puzzle-platformer where every move is recorded and replayed by an echo eight seconds later. A button to hold, a door that needs two: your self from eight seconds ago does the job while you move on. My longest project, playable solo or in co-op, with a level editor whose creations are shared online from inside the game.",
-      "long": "ECO is a puzzle-platformer built on a single rule: everything you do is replayed by an echo eight seconds later. A button that must stay pressed, a platform to hold up, a passage that only opens for two: your double from eight seconds ago does the work while you move ahead.\n\nIt plays solo or in co-op, and ships with a level editor: levels you build go online from inside the game, and everyone else's show up in the Community menu. Nothing to zip, no folder to find.\n\nIt is my longest project. It runs in the browser and on Windows, macOS and Linux.",
+      "body": "ECO is a puzzle-platformer where every move is recorded and replayed by an echo eight seconds later. A button to hold, a door that needs two: your self from eight seconds ago does the job while you move on. My most ambitious project, playable solo or in co-op, with a level editor whose creations are shared online from inside the game.",
+      "long": "ECO is a puzzle-platformer built on a single rule: everything you do is replayed by an echo eight seconds later. A button that must stay pressed, a platform to hold up, a passage that only opens for two: your double from eight seconds ago does the work while you move ahead.\n\nIt plays solo or in co-op, and ships with a level editor: levels you build go online from inside the game, and everyone else's show up in the Community menu. Nothing to zip, no folder to find.\n\nIt is my most ambitious project, made solo in a few months. The two parts I'm proudest of: the echo system, which records and replays inputs, and the online co-op, built on Netcode for GameObjects. It runs in the browser and on Windows, macOS and Linux.",
       "captions": [
         "Session 1 — your echo (blue) replays the path you just traced, eight seconds behind.",
         "Session 3 — the echo holds the button while you pass: the line shows what it triggers.",
@@ -185,15 +185,17 @@
       ],
       "inGame": [
         "Echo: your inputs are recorded and replayed by a double, eight seconds later.",
-        "Local or online co-op: two players, four timelines.",
+        "Local or online co-op (Netcode for GameObjects): two players, four timelines.",
         "Built-in level editor, online sharing from the game and a Community menu.",
         "Browser, Windows, macOS and Linux builds."
-      ]
+      ],
+      "role": "Solo",
+      "duration": "1–3 months"
     },
     "dig-or-die": {
       "hook": "The wolf learns. The shepherd traps.",
-      "body": "An eleven-level puzzle where you place traps before the wolf arrives. It dies, it learns, it comes back avoiding what it saw. Kill it when it thinks it knows everything. Short, tense, pixel art, and playable in the page.",
-      "long": "DIG or DIE is a trap game in eleven levels. You are the shepherd: before each wave you lay spikes, blocks, arrows and traps on the terrain. Then the wolf comes.\n\nThe rule that makes the game: the wolf remembers. When it dies on a trap, it returns avoiding it. Traps that worked become decoys, and the solution is never last turn's. Kill it when it thinks it knows everything.\n\nShort, tense, pixel art, with a CRT screen. Keyboard only, straight in the page.",
+      "body": "An eleven-level puzzle where you place traps before the wolf arrives. It dies, it learns, it comes back avoiding what it saw. Kill it when it thinks it knows everything. Short, tense, pixel art, playable in the page. Made in 48 hours, first place at its jam.",
+      "long": "DIG or DIE is a trap game in eleven levels. You are the shepherd: before each wave you lay spikes, blocks, arrows and traps on the terrain. Then the wolf comes.\n\nThe rule that makes the game: the wolf remembers. When it dies on a trap, it returns avoiding it. Traps that worked become decoys, and the solution is never last turn's. Kill it when it thinks it knows everything.\n\nShort, tense, pixel art, with a CRT screen. Keyboard only, straight in the page.\n\nMade solo in 48 hours for a small game jam open to beginners, where it took first place. The two parts I'm proudest of: the wolf's AI, and the level design of the eleven levels.",
       "captions": [
         "Level 6 — lay your traps on the blocks before the wolf arrives; the inventory below counts what is left.",
         "Level complete — the wolf has learned; next turn it will walk around what killed it.",
@@ -205,13 +207,17 @@
         "Eleven trap-placement levels, a few minutes each.",
         "A wolf that memorises the traps it met and adapts its path.",
         "Pixel art and CRT rendering, keyboard only.",
-        "Browser build, playable here."
-      ]
+        "Browser build, playable here.",
+        "Made solo in 48 h — 1st place at the jam."
+      ],
+      "role": "Solo",
+      "duration": "48 h — game jam",
+      "award": "1st place — game jam"
     },
     "color-gap": {
       "hook": "A world that only exists one colour at a time.",
       "body": "A minimalist platformer driven by colour, rhythm and perception. A pristine world fractures into three primary colours; every jump cycles the visible one, and the other two's platforms vanish. Jumping means choosing what exists when you land. Jury's Favorite at the Global Game Jam 2026.",
-      "long": "Color GAP is a minimalist platformer driven by colour, rhythm and perception. You explore a pristine world built around precise platforming and environmental puzzles. Early on, an event fractures that space and splits reality into three primary colours: yellow, red, blue.\n\nFrom then on the world exists as overlapping fragments. Every jump shifts your perception and cycles colour masks that only reveal the elements matching the active colour. The platforms are always there, but only one colour is visible at a time. A badly timed jump does not only change your trajectory: it changes what exists when you land.\n\nThe music evolves with your actions. Mastering the game means learning when to jump, not only how. Made in 48 hours for the Global Game Jam 2026, where it received the Jury's Favorite award.",
+      "long": "Color GAP is a minimalist platformer driven by colour, rhythm and perception. You explore a pristine world built around precise platforming and environmental puzzles. Early on, an event fractures that space and splits reality into three primary colours: yellow, red, blue.\n\nFrom then on the world exists as overlapping fragments. Every jump shifts your perception and cycles colour masks that only reveal the elements matching the active colour. The platforms are always there, but only one colour is visible at a time. A badly timed jump does not only change your trajectory: it changes what exists when you land.\n\nThe music evolves with your actions. Mastering the game means learning when to jump, not only how. Made in 48 hours for the Global Game Jam 2026, where it received the Jury's Favorite award.\n\nMade as a pair with Enzo Alfred, pair programming from start to finish: we built the controller, the colour-mask shaders and the game design together.",
       "captions": [
         "The world before the fracture: white, low-poly, silent.",
         "The first colour. The yellow tree only exists while yellow is active.",
@@ -220,9 +226,11 @@
       "inGame": [
         "Colour cycle triggered on every jump: one colour of platforms visible at a time.",
         "Music that reacts to gameplay.",
-        "Made in 48 h for the Global Game Jam 2026 — Jury's Favorite."
+        "Made in 48 h for the Global Game Jam 2026 — Jury's Favorite.",
+        "Made as a pair with Enzo Alfred, pair programming throughout."
       ],
-      "duration": "48 h — Global Game Jam 2026"
+      "duration": "48 h — Global Game Jam 2026",
+      "role": "Co-dev, pair programming — gameplay, shaders, game design"
     },
     "tour-infinie": {
       "hook": "The tower has no top.",
@@ -232,25 +240,48 @@
         "Picked-up items compose the character's build.",
         "Higher, denser: the tower never stops.",
         "In co-op, two players climb the same tower."
-      ]
+      ],
+      "long": "Tour Infinie is a pixel-art roguelite auto-battler. You climb a tower with no top: on each floor, the items you pick up compose your character's build, then you watch the fight play out.\n\nIt plays solo or in online co-op, built on Netcode for GameObjects like ECO's: two players climb the same tower.\n\nMade solo in about three months, alongside everything else. It plays in the page, with keyboard or gamepad.",
+      "inGame": [
+        "Roguelite auto-battler: picked-up items compose the build.",
+        "Two-player online co-op (Netcode for GameObjects).",
+        "Floor bosses, including the Spider Queen.",
+        "Browser, Windows, macOS and Linux builds."
+      ],
+      "role": "Solo",
+      "duration": "About 3 months"
     },
     "mirapyde": {
       "hook": "Freeze time. Your clone replays your moves in reverse.",
       "body": "A 2D parkour platformer inside a pyramid. Each room is a closed puzzle: freeze time to create a clone that replays your moves in reverse, and orchestrate two timelines to open the way.",
-      "long": "Mirapyde is a 2D platformer built on parkour and time manipulation. Each room is a closed puzzle: one door, one goal, no filler.\n\nThe principle: freeze time to create a clone that replays your moves in reverse. That double can press a button while you climb elsewhere, hold a pressure plate, or sync an action you could never do alone. If you fail, you restart instantly.\n\nClean movement, strict timing, planning: climb the pyramid floor after floor.",
+      "long": "Mirapyde is a 2D platformer built on parkour and time manipulation. Each room is a closed puzzle: one door, one goal, no filler.\n\nThe principle: freeze time to create a clone that replays your moves in reverse. That double can press a button while you climb elsewhere, hold a pressure plate, or sync an action you could never do alone. If you fail, you restart instantly.\n\nClean movement, strict timing, planning: climb the pyramid floor after floor.\n\nMade solo, over about nine months part-time. It is the project that took the most perseverance to see through.",
       "captions": [
         "One room, one door, one goal.",
         "The clone replays your moves in reverse while you climb.",
         "Traps are unforgiving: you restart immediately.",
         "Title screen and level select."
-      ]
+      ],
+      "inGame": [
+        "Time clone: freeze time, your double replays your moves in reverse.",
+        "Closed puzzle rooms, instant restart.",
+        "2D parkour on keyboard, browser build."
+      ],
+      "role": "Solo",
+      "duration": "About 9 months, part-time"
     },
     "echoes": {
       "hook": "A fast descent into hostile arenas.",
       "body": "An action prototype in closed arenas, focused on fast combat and an oppressive atmosphere. Written in Java with libGDX, playable in the page.",
       "captions": [
         "Closed arena, melee combat, no respite."
-      ]
+      ],
+      "long": "Echoes of the Abyss is an action prototype in closed arenas: fast melee combat, an oppressive atmosphere, no respite.\n\nA school project made as a pair in 2024, in Java with libGDX rather than an engine like Unity: a good way to learn what an engine does for you. It runs in the page through a web build.",
+      "inGame": [
+        "Fast melee combat in closed arenas.",
+        "Java and libGDX, as a pair, for a school project.",
+        "Web build, playable here."
+      ],
+      "role": "Co-dev, as a pair"
     },
     "whispers": {
       "hook": "Every loop reveals a new clue.",
@@ -259,7 +290,14 @@
         "The village at the start of the loop.",
         "The villagers repeat their days; only you remember.",
         "The sacred tree, fallen."
-      ]
+      ],
+      "long": "Whispers of the Tree is a narrative time-loop adventure in a peaceful low-poly village. The villagers repeat their days and only you remember: each loop brings you closer to the truth behind the fall of the sacred tree.\n\nA school project made by a team of five in 2024, where I was project lead: organising the team's work and holding the course until delivery.",
+      "inGame": [
+        "Time loop: each day starts over, the clues stay.",
+        "Low-poly village and villagers with repeating routines.",
+        "School project, team of five, as project lead."
+      ],
+      "role": "Project lead"
     },
     "keep-dancing": {
       "hook": "Dodge to the beat or die.",
@@ -268,7 +306,14 @@
         "Platforms move to the beat; stay on them.",
         "The arena."
       ],
-      "duration": "48 h — Global Game Jam 2024"
+      "duration": "48 h — Global Game Jam 2024",
+      "long": "Keep Dancing to Live is a rhythm-based dodging game: the platforms move to the beat, and staying on them is the only way to survive.\n\nMade in 48 hours for the Global Game Jam 2024, in a team of four. I worked on programming and game design.",
+      "inGame": [
+        "Platforms synced to the music.",
+        "48 h, Global Game Jam 2024, team of four.",
+        "Programming and game design."
+      ],
+      "role": "Programming + game design"
     },
     "cursum": {
       "hook": "A first-person race against the clock.",
@@ -279,7 +324,13 @@
         "The clock, always on top."
       ],
       "duration": "1 month",
-      "role": "Solo"
+      "role": "Solo",
+      "long": "Cursum is a first-person race against the clock: a hub, a tutorial, timed levels, and movement built around wall-running, sliding and jumping.\n\nMy first solo project, made in 2023 in one month, from design to integration.",
+      "inGame": [
+        "Movement: wall-run, slide, jump.",
+        "Central hub, tutorial and timed levels.",
+        "First solo project, one month, 2023."
+      ]
     },
     "speed-typo": {
       "hook": "Type fast.",

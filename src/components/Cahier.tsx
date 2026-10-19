@@ -45,7 +45,7 @@ export function useSpecs(game: Game): SpecRow[] {
     { label: t('cahier.specs.duration'), value: t(`games.${game.slug}.duration`, { defaultValue: dash }) },
     { label: t('cahier.specs.year'), value: game.year ?? dash },
     { label: t('cahier.specs.platforms'), value: game.platforms.map((p) => PLATFORM[p]).join(' · ') },
-    ...(game.award ? [{ label: t('cahier.specs.award'), value: game.award }] : []),
+    ...(game.award ? [{ label: t('cahier.specs.award'), value: t(`games.${game.slug}.award`, { defaultValue: game.award }) }] : []),
   ];
 }
 
@@ -130,7 +130,9 @@ export function Cahier({
           <div className="col-span-4 md:order-2 md:col-span-8">
             <div className="relative">
               {game.award && (
-                <span className="t-meta absolute -left-3 -top-3 z-10 bg-spot px-3 py-2 text-onspot">{game.award}</span>
+                <span className="t-meta absolute -left-3 -top-3 z-10 bg-spot px-3 py-2 text-onspot">
+                  {t(`games.${game.slug}.award`, { defaultValue: game.award })}
+                </span>
               )}
               <Figure
                 slug={game.slug}
