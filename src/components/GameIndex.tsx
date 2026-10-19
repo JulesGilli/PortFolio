@@ -5,6 +5,7 @@ import { BASE_CAHIER } from '../data/games';
 import { cahierStyle, useCahierSection } from '../issue';
 import { Figure } from './ui/Figure';
 import { usePlayer } from './ui/Player';
+import { useAchievements } from './ui/Achievements';
 import { INDEXED, FEATURED, type Game } from '../data/games';
 
 const PLATFORM: Record<string, string> = { web: 'web', win: 'win', mac: 'mac', linux: 'linux' };
@@ -15,6 +16,7 @@ export function GameIndex({ onOpenDossier }: { onOpenDossier: (g: Game) => void 
   const baseRef = useRef<HTMLElement>(null);
   useCahierSection(baseRef, BASE_CAHIER);
   const { play } = usePlayer();
+  const { trackPlay } = useAchievements();
   const games = INDEXED.filter((g) => g.slug !== 'speed-typo');
   const [hover, setHover] = useState<Game>(games[0]);
   const n = FEATURED.length + 2;
@@ -65,7 +67,13 @@ export function GameIndex({ onOpenDossier }: { onOpenDossier: (g: Game) => void 
                         </button>
                       ) : (
                         g.itch && (
-                          <a href={g.itch} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
+                          <a
+                            href={g.itch}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-ghost btn-sm"
+                            onClick={() => trackPlay(g.slug, !!g.featured)}
+                          >
                             itch ↗
                           </a>
                         )

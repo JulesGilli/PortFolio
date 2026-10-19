@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useScrollLock } from '../../lib/useScrollLock';
+import { useDialogFocus } from '../../lib/useDialogFocus';
 
 /* ---------- Definitions ---------- */
 
@@ -24,12 +25,15 @@ export const ACHIEVEMENTS: { id: AchievementId; secret?: boolean }[] = [
   { id: 'scroll-end' },
   { id: 'polyglot' },
   { id: 'tools-peek' },
-  { id: 'finisher' },
+  // { id: 'finisher' }: put back once a build posts { event: 'finished' } (see public/games/README.md);
+  // until then nobody can get it.
   { id: 'patient' },
   { id: 'night-owl', secret: true },
   { id: 'konami', secret: true },
   { id: 'insistent', secret: true },
 ];
+
+const listed = (id: AchievementId) => ACHIEVEMENTS.some((a) => a.id === id);
 
 const STORAGE_KEY = 'achievements';
 const PLAYED_KEY = 'achievements-played';
@@ -62,7 +66,7 @@ type Action =
 function reducer(s: State, a: Action): State {
   switch (a.type) {
     case 'unlock': {
-      if (s.unlocked.includes(a.id)) return s;
+      if (s.unlocked.includes(a.id) || !listed(a.id)) return s;
       const unlocked = [...s.unlocked, a.id];
       save(STORAGE_KEY, unlocked);
       return { ...s, unlocked, queue: [...s.queue, a.id] };
@@ -91,7 +95,7 @@ const KONAMI = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'Ar
 
 export function AchievementsProvider({ children, featuredSlugs }: { children: ReactNode; featuredSlugs: string[] }) {
   const [state, dispatch] = useReducer(reducer, undefined, () => ({
-    unlocked: load<AchievementId[]>(STORAGE_KEY, []),
+    unlocked: load<AchievementId[]>(STORAGE_KEY, []).filter(listed),
     queue: [],
     current: null,
     panel: false,
@@ -197,7 +201,9 @@ export function TrophyButton() {
 
 function Panel({ open, onClose, unlocked }: { open: boolean; onClose: () => void; unlocked: AchievementId[] }) {
   const { t } = useTranslation();
+  const ref = useRef<HTMLElement>(null);
   useScrollLock(open);
+  useDialogFocus(ref, open);
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -210,7 +216,9 @@ function Panel({ open, onClose, unlocked }: { open: boolean; onClose: () => void
   return (
     <div className="fixed inset-0 z-[86] flex justify-end bg-ink/40" onClick={onClose}>
       <aside
-        className="flex h-full w-full max-w-[420px] flex-col border-l border-ink bg-paper text-ink"
+        ref={ref}
+        tabIndex={-1}
+        className="flex h-full w-full max-w-[420px] flex-col border-l border-ink bg-paper text-ink outline-none"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"

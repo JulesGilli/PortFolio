@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from './ui/LanguageSelector';
 import { TrophyButton, useAchievements } from './ui/Achievements';
 import { useScrollLock } from '../lib/useScrollLock';
+import { useDialogFocus } from '../lib/useDialogFocus';
 import { bySlug } from '../data/games';
 
 const NAV = [
@@ -57,7 +58,10 @@ export function Header() {
   const active = useActiveSection();
   const { unlock } = useAchievements();
   const clicks = useRef(0);
+  const menu = useRef<HTMLDivElement>(null);
   useScrollLock(open);
+  // no trap: the Close button lives in the header, above the menu
+  useDialogFocus(menu, open, false);
 
   const game = cahier !== 'base' ? bySlug(cahier) : undefined;
 
@@ -122,8 +126,10 @@ export function Header() {
 
       {open && (
         <div
+          ref={menu}
           id="mobile-menu"
-          className="fixed inset-0 z-40 flex flex-col pt-16 md:hidden"
+          tabIndex={-1}
+          className="fixed inset-0 z-40 flex flex-col pt-16 outline-none md:hidden"
           style={{ background: 'var(--ink)', color: 'var(--paper)' }}
           role="dialog"
           aria-modal="true"

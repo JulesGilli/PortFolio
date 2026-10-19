@@ -32,7 +32,7 @@ export function cahierStyle(c: Cahier): Record<string, string> {
 
 let current: Cahier['id'] | null = null;
 
-export function applyIssue(c: Cahier) {
+function paint(c: Cahier) {
   if (typeof document === 'undefined' || current === c.id) return;
   current = c.id;
   const root = document.documentElement;
@@ -43,23 +43,42 @@ export function applyIssue(c: Cahier) {
   if (meta) meta.content = c.paper;
 }
 
-export const resetIssue = () => applyIssue(BASE_CAHIER);
+/** The cahier of the page under the overlays, and the overlays (dossier, player) stacked on top. */
+let page: Cahier = BASE_CAHIER;
+const overlays: Cahier[] = [];
+
+const top = () => overlays[overlays.length - 1] ?? page;
+
+/** An overlay prints the chrome with its cahier until the returned release is called. */
+export function pushIssue(c: Cahier): () => void {
+  const entry = { ...c };
+  overlays.push(entry);
+  paint(top());
+  return () => {
+    const i = overlays.lastIndexOf(entry);
+    if (i >= 0) overlays.splice(i, 1);
+    paint(top());
+  };
+}
 
 /**
  * Register a section: when it covers the middle of the viewport, the chrome takes its cahier.
- * `locked` (player or dossier open) freezes the observer so nothing flips underneath an overlay.
+ * While an overlay is open the section is remembered but nothing flips underneath it.
  */
-export function useCahierSection(ref: React.RefObject<HTMLElement>, cahier: Cahier, locked = false) {
+export function useCahierSection(ref: React.RefObject<HTMLElement>, cahier: Cahier) {
   useEffect(() => {
     const el = ref.current;
-    if (!el || locked) return;
+    if (!el) return;
     let t: number | undefined;
     const io = new IntersectionObserver(
       (entries) => {
         const hit = entries.some((e) => e.isIntersecting);
         if (!hit) return;
         window.clearTimeout(t);
-        t = window.setTimeout(() => applyIssue(cahier), 80);
+        t = window.setTimeout(() => {
+          page = cahier;
+          paint(top());
+        }, 80);
       },
       { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
     );
@@ -68,5 +87,5 @@ export function useCahierSection(ref: React.RefObject<HTMLElement>, cahier: Cahi
       window.clearTimeout(t);
       io.disconnect();
     };
-  }, [ref, cahier, locked]);
+  }, [ref, cahier]);
 }

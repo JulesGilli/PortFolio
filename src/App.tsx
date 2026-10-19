@@ -47,7 +47,7 @@ export function App() {
         <main>
           <Cover />
           {FEATURED.map((g, i) => (
-            <Cahier key={g.slug} game={g} n={i + 2} onOpenDossier={openDossier} locked={!!game} />
+            <Cahier key={g.slug} game={g} n={i + 2} onOpenDossier={openDossier} />
           ))}
           <GameIndex onOpenDossier={openDossier} />
           <Tools />

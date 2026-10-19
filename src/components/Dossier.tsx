@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Masthead } from './ui/Masthead';
 import { MetaRow } from './ui/MetaRow';
@@ -6,8 +6,9 @@ import { Figure } from './ui/Figure';
 import { SpecTable } from './ui/SpecTable';
 import { GameMast, PlayButtons, useSpecs } from './Cahier';
 import { cahierOf, INDEXED, type Game } from '../data/games';
-import { applyIssue, cahierStyle, resetIssue } from '../issue';
+import { cahierStyle, pushIssue } from '../issue';
 import { useScrollLock } from '../lib/useScrollLock';
+import { isTopDialog, useDialogFocus } from '../lib/useDialogFocus';
 
 const CONTROLS: Record<Game['controls'], string> = { keyboard: 'controls.keyboard', touch: 'controls.touch', both: 'controls.both' };
 
@@ -23,31 +24,41 @@ export function Dossier({ game, onClose, onOpen }: { game: Game; onClose: () => 
   const i = games.indexOf(game);
   const prev = games[(i - 1 + games.length) % games.length];
   const next = games[(i + 1) % games.length];
+  const ref = useRef<HTMLDivElement>(null);
   useScrollLock(true);
+  useDialogFocus(ref);
+
+  useEffect(() => pushIssue(cahier), [cahier]);
 
   useEffect(() => {
-    applyIssue(cahier);
+    const previous = document.title;
     document.title = `${game.title} — Jules Gilli`;
+    return () => {
+      document.title = previous;
+    };
+  }, [game]);
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      // the player opened from this dossier sits on top and owns the keyboard
+      if (!isTopDialog(ref.current)) return;
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowRight') onOpen(next);
       if (e.key === 'ArrowLeft') onOpen(prev);
     };
     window.addEventListener('keydown', onKey);
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.title = 'Jules Gilli — Développeur de jeux';
-      resetIssue();
-    };
-  }, [cahier, game, next, prev, onClose, onOpen]);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [next, prev, onClose, onOpen]);
 
   return (
     <div
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-labelledby="dossier-title"
+      tabIndex={-1}
       style={cahierStyle(cahier) as CSSProperties}
-      className="fixed inset-0 z-[70] overflow-y-auto bg-paper pt-12 text-ink md:pt-14"
+      className="fixed inset-0 z-[70] overflow-y-auto bg-paper pt-12 text-ink outline-none md:pt-14"
     >
       <div className="page pb-16">
         <MetaRow

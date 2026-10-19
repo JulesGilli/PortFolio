@@ -1,9 +1,10 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cahierOf, shotSrc, type Game } from '../../data/games';
-import { applyIssue, cahierStyle, resetIssue } from '../../issue';
+import { cahierStyle, pushIssue } from '../../issue';
 import { turn } from '../../lib/turn';
 import { useScrollLock } from '../../lib/useScrollLock';
+import { useDialogFocus } from '../../lib/useDialogFocus';
 import { useAchievements } from './Achievements';
 
 type PlayerApi = {
@@ -55,11 +56,14 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [copied, setCopied] = useState(false);
   const frame = useRef<HTMLIFrameElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
   const touchOnly = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
   useScrollLock(true);
+  useDialogFocus(ref);
+
+  useEffect(() => pushIssue(cahier), [cahier]);
 
   useEffect(() => {
-    applyIssue(cahier);
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     // A self-hosted build can talk to the page:
     //   window.parent.postMessage({ source: 'jules-portfolio', event: 'finished' | 'escape' }, '*')
@@ -75,9 +79,8 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
     return () => {
       window.removeEventListener('keydown', onKey);
       window.removeEventListener('message', onMessage);
-      resetIssue();
     };
-  }, [cahier, onClose, unlock]);
+  }, [onClose, unlock]);
 
   useEffect(() => {
     if (loaded) frame.current?.focus();
@@ -97,11 +100,13 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
 
   return (
     <div
+      ref={ref}
       role="dialog"
       aria-modal="true"
       aria-label={game.title}
+      tabIndex={-1}
       style={cahierStyle(cahier) as CSSProperties}
-      className="fixed inset-0 z-[80] flex flex-col bg-paper text-ink"
+      className="fixed inset-0 z-[80] flex flex-col bg-paper text-ink outline-none"
     >
       <div className="flex h-12 items-center justify-between gap-4 border-b border-ink px-5 md:h-14 md:px-8">
         <div className="t-meta flex items-baseline gap-4">
@@ -175,7 +180,7 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
                   </div>
                 ) : (
                   <>
-                    <button type="button" className="btn mt-8 w-full md:w-auto" onClick={() => setLoaded(true)} autoFocus>
+                    <button type="button" className="btn mt-8 w-full md:w-auto" onClick={() => setLoaded(true)} data-autofocus>
                       {t('player.load', { size: game.build?.sizeMB ?? 0 })} ▶
                     </button>
                     {game.build && game.build.sizeMB > 30 && <p className="t-meta ink2 mt-3">{t('player.wifi')}</p>}

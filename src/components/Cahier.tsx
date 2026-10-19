@@ -5,6 +5,7 @@ import { MetaRow } from './ui/MetaRow';
 import { Figure } from './ui/Figure';
 import { SpecTable, type SpecRow } from './ui/SpecTable';
 import { usePlayer } from './ui/Player';
+import { useAchievements } from './ui/Achievements';
 import { cahierOf, shotSrc, type Game, FEATURED } from '../data/games';
 import { cahierStyle, useCahierSection } from '../issue';
 
@@ -51,6 +52,7 @@ export function useSpecs(game: Game): SpecRow[] {
 export function PlayButtons({ game, className = '' }: { game: Game; className?: string }) {
   const { t } = useTranslation();
   const { play } = usePlayer();
+  const { trackPlay } = useAchievements();
   const inSite = !!game.build;
   return (
     <div className={`flex flex-wrap items-center gap-x-6 gap-y-3 ${className}`}>
@@ -60,7 +62,14 @@ export function PlayButtons({ game, className = '' }: { game: Game; className?: 
         </button>
       ) : (
         game.itch && (
-          <a href={game.itch} target="_blank" rel="noopener noreferrer" className="btn w-full md:w-auto">
+          // a download counts as playing: Color GAP has no build and is one of the "Fan" games
+          <a
+            href={game.itch}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn w-full md:w-auto"
+            onClick={() => trackPlay(game.slug, !!game.featured)}
+          >
             {t('cahier.download')} ↗
           </a>
         )
@@ -82,17 +91,15 @@ export function Cahier({
   game,
   n,
   onOpenDossier,
-  locked = false,
 }: {
   game: Game;
   n: number;
   onOpenDossier: (g: Game) => void;
-  locked?: boolean;
 }) {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const cahier = cahierOf(game);
-  useCahierSection(ref, cahier, locked);
+  useCahierSection(ref, cahier);
   const [shot, setShot] = useState(0);
   const specs = useSpecs(game);
   const captions = t(`games.${game.slug}.captions`, { returnObjects: true, defaultValue: [] }) as string[];
