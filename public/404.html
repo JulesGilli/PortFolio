@@ -5,9 +5,14 @@
     <title>Jules Gilli</title>
     <script>
       // GitHub Pages SPA fallback: send /jeux/<slug> to index.html with the path in the query.
+      // Only once: if "/" itself is a 404 (index.html missing), redirecting again would loop forever.
       var l = window.location;
-      l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/?/' + l.pathname.slice(1).replace(/&/g, '~and~') + (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash);
+      if (l.pathname !== '/' && l.search.indexOf('?/') !== 0) {
+        l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/?/' + l.pathname.slice(1).replace(/&/g, '~and~') + (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') + l.hash);
+      }
     </script>
   </head>
-  <body></body>
+  <body style="font-family: Georgia, serif; max-width: 60ch; margin: 48px auto; padding: 0 20px">
+    <p>Page introuvable. <a href="/">Retour à l'accueil</a></p>
+  </body>
 </html>
