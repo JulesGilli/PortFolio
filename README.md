@@ -11,7 +11,7 @@ Les jeux qui ont un build navigateur se jouent dans la page.
 ## Stack
 
 - React 18, Vite 5, TypeScript, Tailwind 3
-- i18next (FR et EN complets ; ES et DE retombent sur EN)
+- i18next (FR et EN complets ; ES et DE retombent sur EN). La langue suit l'URL (`/` = FR, `/en/` = EN), puis le choix mémorisé
 - Polices auto-hébergées : Archivo (axes largeur/graisse) et Newsreader, via Fontsource
 - Aucune bibliothèque d'animation : cinq mouvements en CSS (entrée de titre, tourner la page, inversion de ligne, coupe de planche, toast)
 
@@ -23,7 +23,7 @@ Les jeux qui ont un build navigateur se jouent dans la page.
 - `src/components/` — Cover, Cahier, GameIndex, Tools, Contact, Dossier (route `/jeux/<slug>`), Header
 - `src/components/ui/` — Player (lecteur in-site), Achievements (succès), Figure, Masthead, MetaRow, SpecTable
 - `public/games/<slug>/` — builds navigateur servis par le site (voir `public/games/README.md`)
-- `public/images/shots-web/<slug>/` — captures de gameplay en WebP 800 et 1600 px
+- `public/images/shots-web/<slug>/` — captures de gameplay en WebP 400 (miniatures), 800 et 1600 px
 - `lfs/shots-src/` — captures sources (non déployées)
 
 ## Développement
@@ -35,5 +35,6 @@ npm run build
 npm run deploy   # gh-pages -d dist
 ```
 
-Les routes `/jeux/<slug>` fonctionnent sur GitHub Pages grâce à `public/404.html`, qui renvoie vers `index.html`
-avec le chemin en paramètre.
+`npm run build` pré-rend chaque page (`scripts/prerender.mjs`, via `src/entry-server.tsx`) : l'accueil et `/jeux/<slug>/`,
+en français à la racine et en anglais sous `/en/`, chacune avec son titre, sa description, sa canonical, ses `hreflang`
+et son image de partage. GitHub Pages les sert en 200. `public/404.html` ne sert plus qu'aux URLs inconnues.

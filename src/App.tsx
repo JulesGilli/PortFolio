@@ -10,7 +10,7 @@ import { Dossier } from './components/Dossier';
 import { PlayerProvider } from './components/ui/Player';
 import { AchievementsProvider } from './components/ui/Achievements';
 import { FEATURED, type Game } from './data/games';
-import { useRoute } from './lib/route';
+import { syncLangPath, useRoute } from './lib/route';
 import { subscribeTurn, turn } from './lib/turn';
 
 const featuredSlugs = FEATURED.map((g) => g.slug);
@@ -24,18 +24,24 @@ function Turn() {
 }
 
 export function App() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { game, open, close } = useRoute();
 
-  // <html lang> follows the UI language.
+  // <html lang> and the URL's edition (/ or /en/) follow the UI language.
   useEffect(() => {
     const sync = (lng: string) => {
       document.documentElement.lang = lng.slice(0, 2);
+      syncLangPath(lng);
     };
     sync(i18n.resolvedLanguage || i18n.language);
     i18n.on('languageChanged', sync);
     return () => i18n.off('languageChanged', sync);
   }, [i18n]);
+
+  // Same titles as the pre-rendered pages (scripts/prerender.mjs).
+  useEffect(() => {
+    document.title = game ? `${game.title} — Jules Gilli` : t('meta.title');
+  }, [game, t, i18n.resolvedLanguage]);
 
   const openDossier = (g: Game) => turn(() => open(g));
   const closeDossier = () => turn(close);
@@ -43,8 +49,14 @@ export function App() {
   return (
     <AchievementsProvider featuredSlugs={featuredSlugs}>
       <PlayerProvider>
+        <a
+          href="#main"
+          className="t-ui sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-2 focus:z-[100] focus:bg-ink focus:px-4 focus:py-3 focus:text-paper"
+        >
+          {t('nav.skip')}
+        </a>
         <Header />
-        <main>
+        <main id="main" tabIndex={-1} className="outline-none">
           <Cover />
           {FEATURED.map((g, i) => (
             <Cahier key={g.slug} game={g} n={i + 2} onOpenDossier={openDossier} />

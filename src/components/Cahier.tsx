@@ -154,7 +154,7 @@ export function Cahier({
                     className={`border-b-2 pb-2 ${i === shot ? 'border-spot' : 'border-transparent'}`}
                   >
                     <img
-                      src={shotSrc(game.slug, s, 800)}
+                      src={shotSrc(game.slug, s, 400)}
                       alt=""
                       width={160}
                       height={Math.round((160 * s.h) / s.w)}

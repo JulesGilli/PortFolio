@@ -37,7 +37,7 @@ export interface Cahier {
 }
 
 export interface Shot {
-  /** file stem under public/images/shots-web/<slug>/, e.g. "03" -> 03-800.webp / 03-1600.webp */
+  /** file stem under public/images/shots-web/<slug>/, e.g. "03" -> 03-400.webp (thumbs) / 03-800.webp / 03-1600.webp */
   id: string;
   /** native width/height of the source capture (used for aspect + max width) */
   w: number;
@@ -61,7 +61,7 @@ export interface Game {
   players: string;
   award?: string;
   featured?: 1 | 2 | 3;
-  /** in-site build */
+  /** in-site build; sizeMB = what the browser downloads (GitHub Pages gzips .wasm/.data/.js) */
   build?: { url: string; sizeMB: number };
   itch?: string;
   github?: string;
@@ -101,7 +101,7 @@ export const GAMES: Game[] = [
     controls: 'keyboard',
     players: '1–2',
     featured: 1,
-    build: { url: `${base}games/eco/index.html`, sizeMB: 86 },
+    build: { url: `${base}games/eco/index.html`, sizeMB: 27 },
     itch: 'https://jules-gilli.itch.io/eco',
     shots: [
       { id: '03', w: 2187, h: 1230 },
@@ -138,7 +138,7 @@ export const GAMES: Game[] = [
     players: '1',
     award: '1st place — game jam',
     featured: 2,
-    build: { url: `${base}games/dig-or-die/index.html`, sizeMB: 60 },
+    build: { url: `${base}games/dig-or-die/index.html`, sizeMB: 17 },
     itch: 'https://jules-gilli.itch.io/dig-or-die',
     shots: [
       { id: '03', w: 1280, h: 720 },
@@ -207,7 +207,7 @@ export const GAMES: Game[] = [
     platforms: ['web', 'win', 'mac', 'linux'],
     controls: 'both',
     players: '1–2 (en ligne)',
-    build: { url: `${base}games/tour-infinie/index.html`, sizeMB: 96 },
+    build: { url: `${base}games/tour-infinie/index.html`, sizeMB: 36 },
     itch: 'https://jules-gilli.itch.io/tour-infinie',
     shots: [
       { id: '02', w: 1920, h: 1080 },
@@ -229,7 +229,7 @@ export const GAMES: Game[] = [
     platforms: ['web'],
     controls: 'keyboard',
     players: '1',
-    build: { url: `${base}games/mirapyde/index.html`, sizeMB: 112 },
+    build: { url: `${base}games/mirapyde/index.html`, sizeMB: 63 },
     itch: 'https://jules-gilli.itch.io/mirapyde',
     shots: [
       { id: '02', w: 2220, h: 1245 },
@@ -251,7 +251,7 @@ export const GAMES: Game[] = [
     platforms: ['web', 'win', 'mac', 'linux'],
     controls: 'keyboard',
     players: '1',
-    build: { url: `${base}games/echoes/index.html`, sizeMB: 18 },
+    build: { url: `${base}games/echoes/index.html`, sizeMB: 8 },
     itch: 'https://jules-gilli.itch.io/echoes-of-the-abyss',
     shots: [{ id: '02', w: 1787, h: 705 }],
     cover: { src: `${base}images/covers/echoes.png`, w: 495, h: 280 },
@@ -349,7 +349,7 @@ export function cahierOf(game: Game | undefined): Cahier {
   return game?.cahier ?? BASE_CAHIER;
 }
 
-export function shotSrc(slug: Slug, shot: Shot, width: 800 | 1600): string {
+export function shotSrc(slug: Slug, shot: Shot, width: 400 | 800 | 1600): string {
   return `${base}images/shots-web/${slug}/${shot.id}-${width}.webp`;
 }
 

@@ -254,20 +254,24 @@ img {
   font-size: 12px;
 }
 
-/* Masthead entrance: lines slide out of a mask once */
+/* Masthead entrance: lines slide out of a mask once. Hidden only once JS runs (html.js is set
+   inline in index.html), so the pre-rendered page still shows its titles without JavaScript. */
 .mask {
   overflow: hidden;
 }
 .mask > span {
   display: block;
-  transform: translateY(100%);
   transition: transform 600ms var(--ease);
+}
+.js .mask > span {
+  transform: translateY(100%);
 }
 .mask.in > span {
   transform: translateY(0);
 }
 @media (prefers-reduced-motion: reduce) {
-  .mask > span {
+  .mask > span,
+  .js .mask > span {
     transition: none;
     transform: none;
   }

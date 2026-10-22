@@ -1,5 +1,10 @@
 {
+  "meta": {
+    "title": "Jules Gilli — Développeur de jeux",
+    "description": "Jules Gilli, développeur de jeux (Unity, C#). Cinq jeux jouables directement dans le site, dont ECO et DIG or DIE. Color GAP : Jury’s Favorite à la Global Game Jam 2026."
+  },
   "nav": {
+    "skip": "Aller au contenu",
     "label": "Navigation",
     "about": "À propos",
     "games": "Jeux",

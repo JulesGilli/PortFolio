@@ -1,6 +1,5 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './locales/en.json';
 import fr from './locales/fr.json';
@@ -17,24 +16,45 @@ export const LANGUAGE_LABELS: Record<SupportedLanguage, { native: string; flag: 
   de: { native: 'Deutsch', flag: '🇩🇪' },
 };
 
-i18n
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      fr: { translation: fr },
-      es: { translation: es },
-      de: { translation: de },
-    },
-    fallbackLng: 'en',
-    supportedLngs: SUPPORTED_LANGUAGES as unknown as string[],
-    interpolation: { escapeValue: false },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'lang',
-    },
-  });
+const STORAGE_KEY = 'lang';
+
+/**
+ * The URL decides first: /en/… is English, everything else is French. A language the visitor
+ * picked before (stored) comes next. The browser language is deliberately not used: crawlers
+ * run with an English browser and would otherwise index English text under the French URL.
+ */
+function detect(): SupportedLanguage {
+  if (typeof window === 'undefined') return 'fr';
+  if (/^\/en(\/|$)/.test(window.location.pathname)) return 'en';
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored && (SUPPORTED_LANGUAGES as readonly string[]).includes(stored)) return stored as SupportedLanguage;
+  } catch {
+    /* storage blocked */
+  }
+  return 'fr';
+}
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    fr: { translation: fr },
+    es: { translation: es },
+    de: { translation: de },
+  },
+  lng: detect(),
+  fallbackLng: 'en',
+  supportedLngs: SUPPORTED_LANGUAGES as unknown as string[],
+  interpolation: { escapeValue: false },
+});
+
+/** Remember the visitor's pick (called by the language selector, not by page loads). */
+export function rememberLanguage(lng: SupportedLanguage) {
+  try {
+    localStorage.setItem(STORAGE_KEY, lng);
+  } catch {
+    /* storage blocked */
+  }
+}
 
 export default i18n;

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '../../i18n';
+import { SUPPORTED_LANGUAGES, rememberLanguage, type SupportedLanguage } from '../../i18n';
 import { useAchievements } from './Achievements';
 
 /** Segmented control: FR · EN · ES · DE. Four options do not need a menu. */
@@ -11,6 +11,7 @@ export function LanguageSelector({ inverted = false }: { inverted?: boolean }) {
 
   const change = (lng: SupportedLanguage) => {
     if (lng !== safe) unlock('polyglot');
+    rememberLanguage(lng);
     i18n.changeLanguage(lng);
   };
 

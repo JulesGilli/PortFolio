@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { cahierOf, shotSrc, type Game } from '../../data/games';
 import { cahierStyle, pushIssue } from '../../issue';
 import { turn } from '../../lib/turn';
+import { gamePath } from '../../lib/route';
 import { useScrollLock } from '../../lib/useScrollLock';
 import { useDialogFocus } from '../../lib/useDialogFocus';
 import { useAchievements } from './Achievements';
@@ -88,7 +89,7 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
 
   const copyLink = async () => {
     try {
-      await navigator.clipboard.writeText(`${window.location.origin}${import.meta.env.BASE_URL}jeux/${game.slug}`);
+      await navigator.clipboard.writeText(`${window.location.origin}${gamePath(game.slug)}`);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1500);
     } catch {

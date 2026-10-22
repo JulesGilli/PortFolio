@@ -31,14 +31,6 @@ export function Dossier({ game, onClose, onOpen }: { game: Game; onClose: () => 
   useEffect(() => pushIssue(cahier), [cahier]);
 
   useEffect(() => {
-    const previous = document.title;
-    document.title = `${game.title} — Jules Gilli`;
-    return () => {
-      document.title = previous;
-    };
-  }, [game]);
-
-  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       // the player opened from this dossier sits on top and owns the keyboard
       if (!isTopDialog(ref.current)) return;
