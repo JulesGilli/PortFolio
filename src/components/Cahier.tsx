@@ -25,10 +25,24 @@ export function GameMast({ game }: { game: Game }) {
       </>
     );
   }
-  if (game.slug === 'dig-or-die') {
+  if (game.slug === 'hors-antenne') {
+    // the camcorder's REC dot (the one round shape of the site: it quotes the game's HUD)
     return (
       <>
-        DIG <span className="text-spot">or</span> DIE
+        <span
+          aria-hidden
+          className="relative -top-[0.14em] mr-[0.24em] inline-block h-[0.36em] w-[0.36em] bg-spot align-baseline"
+          style={{ borderRadius: '50%' }}
+        />
+        Hors Antenne
+      </>
+    );
+  }
+  if (game.slug === 'hello-garden') {
+    // the editor's cursor, as in the game's logo
+    return (
+      <>
+        Hello, Garden<span className="text-spot">_</span>
       </>
     );
   }
@@ -46,6 +60,7 @@ export function useSpecs(game: Game): SpecRow[] {
     { label: t('cahier.specs.year'), value: game.year ?? dash },
     { label: t('cahier.specs.platforms'), value: game.platforms.map((p) => PLATFORM[p]).join(' · ') },
     ...(game.award ? [{ label: t('cahier.specs.award'), value: t(`games.${game.slug}.award`, { defaultValue: game.award }) }] : []),
+    ...(game.status ? [{ label: t('cahier.specs.status'), value: t(`games.${game.slug}.status`, { defaultValue: t('cahier.wip') }) }] : []),
   ];
 }
 
@@ -70,7 +85,7 @@ export function PlayButtons({ game, className = '' }: { game: Game; className?: 
             className="btn w-full md:w-auto"
             onClick={() => trackPlay(game.slug, !!game.featured)}
           >
-            {t('cahier.download')} ↗
+            {t(`games.${game.slug}.cta`, { defaultValue: t('cahier.download') })} ↗
           </a>
         )
       )}
@@ -129,9 +144,9 @@ export function Cahier({
           {/* Figure first on mobile, right column on desktop */}
           <div className="col-span-4 md:order-2 md:col-span-8">
             <div className="relative">
-              {game.award && (
+              {(game.award || game.status) && (
                 <span className="t-meta absolute -left-3 -top-3 z-10 bg-spot px-3 py-2 text-onspot">
-                  {t(`games.${game.slug}.award`, { defaultValue: game.award })}
+                  {game.award ? t(`games.${game.slug}.award`, { defaultValue: game.award }) : t('cahier.wip')}
                 </span>
               )}
               <Figure

@@ -6,10 +6,10 @@
  */
 
 export type Slug =
+  | 'hello-garden'
   | 'eco'
-  | 'dig-or-die'
+  | 'hors-antenne'
   | 'color-gap'
-  | 'tour-infinie'
   | 'mirapyde'
   | 'echoes'
   | 'whispers'
@@ -18,7 +18,8 @@ export type Slug =
   | 'speed-typo';
 
 export type Platform = 'web' | 'win' | 'mac' | 'linux';
-export type Controls = 'keyboard' | 'touch' | 'both';
+/** 'gamepad' = keyboard and mouse, or a controller (no touch) */
+export type Controls = 'keyboard' | 'touch' | 'both' | 'gamepad';
 
 /** One printed cahier: paper, ink, spot, plus the masthead cut. */
 export interface Cahier {
@@ -60,7 +61,10 @@ export interface Game {
   controls: Controls;
   players: string;
   award?: string;
-  featured?: 1 | 2 | 3;
+  /** not released yet: printed as a sticker and a specs row */
+  status?: 'in-development';
+  /** order of the cahiers on the home page */
+  featured?: 1 | 2 | 3 | 4;
   /** in-site build; sizeMB = what the browser downloads (GitHub Pages gzips .wasm/.data/.js) */
   build?: { url: string; sizeMB: number };
   itch?: string;
@@ -89,6 +93,42 @@ export const BASE_CAHIER: Cahier = {
 
 export const GAMES: Game[] = [
   {
+    slug: 'hello-garden',
+    title: 'Hello, Garden',
+    genre: 'Tower defense',
+    year: 2026,
+    context: 'solo',
+    role: 'Solo',
+    team: 1,
+    engine: 'Unity · C#',
+    platforms: ['win'],
+    controls: 'keyboard',
+    players: '1',
+    status: 'in-development',
+    featured: 1,
+    itch: 'https://jules-gilli.itch.io/hello-garden',
+    shots: [
+      { id: '01', w: 1920, h: 1080 },
+      { id: '02', w: 1920, h: 1080 },
+      { id: '04', w: 1920, h: 1080 },
+      { id: '06', w: 1920, h: 1080 },
+      { id: '08', w: 1920, h: 1080 },
+    ],
+    cover: { src: `${base}images/covers/hello-garden.png`, w: 630, h: 500 },
+    cahier: {
+      id: 'hello-garden',
+      paper: '#EAF2D7',
+      ink: '#1D2B2A',
+      ink2: '#4B5A52',
+      spot: '#0B6B74',
+      onSpot: '#EAF2D7',
+      rule: '#C5D2AC',
+      ruleWidth: 1,
+      mast: { wdth: 100, wght: 800, size: 'clamp(44px, 9.6vw, 138px)', tracking: '-0.02em' },
+      scheme: 'light',
+    },
+  },
+  {
     slug: 'eco',
     title: 'ECO',
     genre: 'Puzzle-platformer',
@@ -100,7 +140,7 @@ export const GAMES: Game[] = [
     platforms: ['web', 'win', 'mac', 'linux'],
     controls: 'keyboard',
     players: '1–2',
-    featured: 1,
+    featured: 2,
     build: { url: `${base}games/eco/index.html`, sizeMB: 27 },
     itch: 'https://jules-gilli.itch.io/eco',
     shots: [
@@ -125,39 +165,40 @@ export const GAMES: Game[] = [
     },
   },
   {
-    slug: 'dig-or-die',
-    title: 'DIG or DIE',
-    genre: 'Puzzle',
+    slug: 'hors-antenne',
+    title: 'Hors Antenne',
+    genre: 'First-person horror',
     year: 2026,
     context: 'jam',
-    role: 'Solo',
-    team: 1,
+    role: 'Co-dev',
+    team: 2,
     engine: 'Unity · C#',
-    platforms: ['web'],
-    controls: 'keyboard',
+    platforms: ['web', 'win'],
+    controls: 'gamepad',
     players: '1',
-    award: '1st place — game jam',
-    featured: 2,
-    build: { url: `${base}games/dig-or-die/index.html`, sizeMB: 17 },
-    itch: 'https://jules-gilli.itch.io/dig-or-die',
+    award: '1st place — Dev&Play Jam 2026',
+    featured: 3,
+    // the data file is split in three parts (GitHub's 100 MB limit), see public/games/README.md
+    build: { url: `${base}games/hors-antenne/index.html`, sizeMB: 110 },
+    itch: 'https://jules-gilli.itch.io/hors-antenne',
     shots: [
-      { id: '03', w: 1280, h: 720 },
-      { id: '05', w: 1280, h: 720 },
-      { id: '02', w: 1280, h: 720 },
-      { id: '04', w: 1280, h: 720 },
-      { id: '06', w: 1280, h: 720 },
+      { id: '01', w: 1920, h: 1080 },
+      { id: '05', w: 1920, h: 1080 },
+      { id: '04', w: 1920, h: 1080 },
+      { id: '02', w: 1920, h: 1080 },
+      { id: '06', w: 1920, h: 1080 },
     ],
-    cover: { src: `${base}images/covers/dig-or-die.png`, w: 630, h: 500 },
+    cover: { src: `${base}images/covers/hors-antenne.jpg`, w: 1200, h: 900 },
     cahier: {
-      id: 'dig-or-die',
-      paper: '#0E1118',
-      ink: '#F3E9C6',
-      ink2: '#B9B095',
-      spot: '#E8605A',
-      onSpot: '#0E1118',
-      rule: '#2E3340',
+      id: 'hors-antenne',
+      paper: '#070908',
+      ink: '#D5DED6',
+      ink2: '#93A096',
+      spot: '#F0463A',
+      onSpot: '#070908',
+      rule: '#27302A',
       ruleWidth: 1,
-      mast: { wdth: 62, wght: 900, size: 'clamp(64px, 12.5vw, 180px)', tracking: '0' },
+      mast: { wdth: 75, wght: 700, size: 'clamp(46px, 11.5vw, 168px)', tracking: '0.04em' },
       scheme: 'dark',
     },
   },
@@ -174,7 +215,7 @@ export const GAMES: Game[] = [
     controls: 'keyboard',
     players: '1',
     award: 'Jury’s Favorite — Global Game Jam 2026',
-    featured: 3,
+    featured: 4,
     itch: 'https://jules-gilli.itch.io/color-gap',
     shots: [
       { id: '01', w: 2055, h: 1369 },
@@ -194,28 +235,6 @@ export const GAMES: Game[] = [
       mast: { wdth: 100, wght: 300, size: 'clamp(56px, 11vw, 160px)', tracking: '-0.01em' },
       scheme: 'light',
     },
-  },
-  {
-    slug: 'tour-infinie',
-    title: 'Tour Infinie',
-    genre: 'Roguelite auto-battler',
-    year: 2026,
-    context: 'solo',
-    role: 'Solo',
-    team: 1,
-    engine: 'Unity · C#',
-    platforms: ['web', 'win', 'mac', 'linux'],
-    controls: 'both',
-    players: '1–2 (en ligne)',
-    build: { url: `${base}games/tour-infinie/index.html`, sizeMB: 36 },
-    itch: 'https://jules-gilli.itch.io/tour-infinie',
-    shots: [
-      { id: '02', w: 1920, h: 1080 },
-      { id: '03', w: 1920, h: 1080 },
-      { id: '05', w: 1920, h: 1080 },
-      { id: '06', w: 1920, h: 1080 },
-    ],
-    cover: { src: `${base}images/covers/tour-infinie.png`, w: 630, h: 500 },
   },
   {
     slug: 'mirapyde',

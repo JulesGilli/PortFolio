@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Jules Gilli — Développeur de jeux",
-    "description": "Jules Gilli, développeur de jeux (Unity, C#). Cinq jeux jouables directement dans le site, dont ECO et DIG or DIE. Color GAP : Jury’s Favorite à la Global Game Jam 2026."
+    "description": "Jules Gilli, développeur de jeux (Unity, C#). Quatre jeux jouables dans le site, dont ECO et Hors Antenne. En développement : Hello, Garden, le tower defense où l'on code en C#."
   },
   "nav": {
     "skip": "Aller au contenu",
@@ -17,7 +17,7 @@
     "kicker": "Portfolio — numéro 01 — 2026",
     "role": "Développeur de jeux · Unity · C#",
     "deck": "Je fais des jeux courts et nerveux, et des outils quand les jeux en ont besoin.",
-    "bio": "Développeur Unity, C#. Mes jeux tournent autour d'une idée mécanique forte : un écho qui rejoue tes gestes huit secondes plus tard, un loup qui apprend de tes pièges, un monde qui n'existe qu'une couleur à la fois. Cinq d'entre eux se jouent directement dans cette page. À côté, six outils d'éditeur publiés sur l'Asset Store, téléchargés plus de treize mille fois.",
+    "bio": "Développeur Unity, C#. Mes jeux tournent autour d'une idée mécanique forte : un écho qui rejoue tes gestes huit secondes plus tard, des tourelles qui exécutent le C# que tu écris, un monde qui n'existe qu'une couleur à la fois. Quatre d'entre eux se jouent directement dans cette page. À côté, six outils d'éditeur publiés sur l'Asset Store, téléchargés plus de treize mille fois.",
     "cta": "Lire le numéro",
     "toc": "Dans ce numéro",
     "tocLabels": {
@@ -45,13 +45,16 @@
       "award": "Prix",
       "players": "Joueurs",
       "controls": "Contrôles",
-      "size": "Build"
-    }
+      "size": "Build",
+      "status": "Statut"
+    },
+    "wip": "En développement"
   },
   "controls": {
     "keyboard": "Clavier",
     "touch": "Tactile",
-    "both": "Clavier ou manette"
+    "both": "Clavier ou manette",
+    "gamepad": "Clavier-souris ou manette"
   },
   "index": {
     "title": "Tous les jeux",
@@ -137,7 +140,7 @@
       },
       "all-featured": {
         "title": "Fan",
-        "desc": "Jouer aux trois jeux des cahiers"
+        "desc": "Jouer à tous les jeux des cahiers"
       },
       "scroll-end": {
         "title": "Complétionniste",
@@ -177,6 +180,29 @@
     "label": "Langue"
   },
   "games": {
+    "hello-garden": {
+      "hook": "Tes tourelles exécutent le C# que tu écris.",
+      "body": "Un tower defense cosy dans un jardin enchanté, où les tourelles ne font rien tant que tu ne les as pas programmées. Tu tapes du vrai C# dans l'éditeur du jeu, et la tourelle l'exécute, ligne par ligne. Tout commence par Shoot(); puis une ligne ne suffit plus : boucles, conditions, objets et listes arrivent quand le jardin en a besoin. En développement : démo gratuite sur Windows, jeu complet prévu sur Steam.",
+      "long": "Hello, Garden est un tower defense cosy dans un jardin enchanté. Les tourelles n'y font rien tant que tu ne les as pas programmées : tu tapes du vrai C# dans l'éditeur du jeu, et la tourelle l'exécute, ligne par ligne. Aucune expérience du code n'est nécessaire. Ça commence par une ligne, Shoot(); puis une ligne ne suffit plus. Boucles, conditions, objets, listes : chaque idée arrive quand le jardin en a besoin.\n\nLes erreurs font partie du monde. Rien ne plante : une tourelle dont le code lève une exception est étourdie, et la partie continue. La ligne fautive s'allume, la console nomme la vraie exception, et le Canard pose la bonne question. Il ne donne jamais la réponse.\n\nLa démo gratuite contient le prologue (quatre courtes leçons et une première bataille), une run roguelite complète dans le potager, avec ses combats, sa boutique et ses patchs qui tordent les règles, jusqu'à la Reine des fourmis, et l'Arbre à sève, où l'on débloque la suite du C# entre deux runs : méthodes, objets, listes, dictionnaires. Six insectes, six problèmes : l'escargot est une fork bomb qui se dédouble quand on l'arrête, le cloporte une régression qui repart du terrier.\n\nLe jeu complet ajoutera deux zones du jardin, la serre et les racines, plus de vingt insectes au total, et les niveaux de langage suivants : patterns, exceptions, classes. Il est prévu sur Steam. Je le développe seul.",
+      "captions": [
+        "Vague 1 sur 3 — la tourelle A exécute le script de droite : elle vise l'insecte le plus proche du cœur, puis tire.",
+        "Le prologue. Trois fois Shoot(), trois tirs : la ligne en cours d'exécution est surlignée.",
+        "Le potager : la carte d'une run roguelite, de combat en boutique jusqu'au boss.",
+        "L'Arbre à sève. Entre deux runs, on débloque la suite du langage : méthodes, objets et null, collections, dictionnaires.",
+        "Plus tard, dans le jeu complet : la serre et ses deux chemins. Ici, une tourelle garde ses épines pour les carapaces."
+      ],
+      "inGame": [
+        "Du vrai C# tapé dans le jeu, exécuté ligne par ligne par les tourelles.",
+        "Une exception n'arrête rien : la tourelle est étourdie, la console nomme l'erreur, le Canard pose la bonne question.",
+        "Démo : un prologue, une run roguelite complète jusqu'à la Reine des fourmis, six insectes.",
+        "L'Arbre à sève débloque le langage entre les runs : méthodes, objets, listes, dictionnaires.",
+        "Démo gratuite sur Windows, en français et en anglais. Jeu complet prévu sur Steam."
+      ],
+      "role": "Solo",
+      "duration": "En cours",
+      "status": "En développement — démo gratuite",
+      "cta": "Télécharger la démo sur itch.io"
+    },
     "eco": {
       "hook": "Ton passé te rattrape, huit secondes plus tard.",
       "body": "ECO est un puzzle-platformer où chaque mouvement est enregistré et rejoué par un écho huit secondes plus tard. Un bouton à maintenir, une porte à franchir à deux : c'est à ton double d'il y a huit secondes de tenir la position. Mon projet le plus ambitieux, jouable seul ou en coop, avec un éditeur de niveaux dont les créations se partagent en ligne depuis le jeu.",
@@ -197,27 +223,28 @@
       "role": "Solo",
       "duration": "1 à 3 mois"
     },
-    "dig-or-die": {
-      "hook": "Le loup apprend. Le berger piège.",
-      "body": "Un puzzle en onze niveaux où tu poses des pièges avant que le loup n'arrive. Il meurt, il apprend, il revient en contournant ce qu'il a vu. Tue-le quand il croit tout savoir. Court, nerveux, pixel art, jouable dans la page. Fait en 48 heures, premier de sa jam.",
-      "long": "DIG or DIE est un jeu de pièges en onze niveaux. Tu es le berger : avant chaque vague, tu disposes des pics, des blocs, des flèches et des pièges sur le terrain. Puis le loup arrive.\n\nLa règle qui fait le jeu : le loup se souvient. Quand il meurt sur un piège, il revient en l'évitant. Les pièges qui ont marché deviennent des leurres, et la solution n'est jamais celle du tour précédent. Tue-le quand il croit tout savoir.\n\nCourt, nerveux, en pixel art, avec un écran CRT. Il se joue au clavier, directement dans la page.\n\nFait seul en 48 heures pour une petite game jam ouverte aux débutants, où il a pris la première place. Les deux parties dont je suis le plus fier : l'IA du loup, et le level design des onze niveaux.",
+    "hors-antenne": {
+      "hook": "Une nuit, un caméscope, une chaîne de télé fermée.",
+      "body": "Automne 2004. Canal Est a fermé il y a cinq jours, après un accident en direct. Tu t'y introduis de nuit pour voler les cassettes de « Hors Antenne », l'émission qui diffusait ce que les autres coupaient. Enzo te guide au téléphone ; d'après lui, il n'y a plus personne. Horreur à la première personne, sans arme ni combat. Fait en une semaine, premier sur 51 à la Dev&Play Jam 2026.",
+      "long": "Automne 2004. Canal Est a fermé il y a cinq jours, après un accident en direct. Tu t'y introduis de nuit pour voler les cassettes de « Hors Antenne », l'émission qui diffusait ce que les autres coupaient. Enzo te guide au téléphone. D'après lui, il n'y a plus personne.\n\nHors Antenne est un jeu d'horreur d'ambiance à la première personne. Pas d'arme, pas de combat : juste le noir, et ce que ta caméra ne peut pas montrer.\n\nIl dure 15 à 20 minutes, en français ou en anglais, sous-titré. Il se joue au clavier et à la souris, ou à la manette : clic droit pour filmer, E pour interagir, T pour appeler Enzo. Il tourne dans le navigateur, directement dans cette page, et sous Windows.\n\nRéalisé en une semaine pour la Dev&Play Jam 2026, sur le thème « Don't look ». Sur 51 jeux, il a terminé premier au classement général, premier en sound design et premier en graphismes.\n\nUn jeu fait à deux avec Enzo Alfred. Merci à William Vasseur pour son travail 3D.",
       "captions": [
-        "Niveau 6 — pose tes pièges sur les blocs avant l'arrivée du loup ; l'inventaire en bas compte ce qu'il te reste.",
-        "Niveau terminé — le loup a appris ; au prochain tour il contournera ce qui l'a tué.",
-        "Le terrain nu : chaque niveau est une petite énigme de placement.",
-        "Les pièges disponibles changent d'un niveau à l'autre.",
-        "Onze niveaux, une nuit, un loup de plus en plus malin."
+        "Un couloir de Canal Est, filmé en vision nocturne. Au fond, quelque chose que le caméscope ne montre pas.",
+        "Canal Est, télévision régionale. Fermée depuis cinq jours.",
+        "La régie. Les écrans sont restés allumés.",
+        "L'image décroche.",
+        "Sans le caméscope : deux mires dans le noir."
       ],
       "inGame": [
-        "Onze niveaux de placement de pièges, résolus en quelques minutes chacun.",
-        "Un loup qui mémorise les pièges rencontrés et adapte son chemin.",
-        "Pixel art et rendu CRT, clavier uniquement.",
-        "Build navigateur, jouable ici.",
-        "Fait seul en 48 h — 1re place de la jam."
+        "Première personne, sans arme ni combat : clic droit pour filmer, T pour appeler Enzo.",
+        "15 à 20 minutes, en français ou en anglais, sous-titré.",
+        "Clavier et souris, ou manette. Navigateur et Windows.",
+        "Fait en une semaine pour la Dev&Play Jam 2026, thème « Don't look ».",
+        "1er au classement général, en sound design et en graphismes, sur 51 jeux.",
+        "Fait à deux avec Enzo Alfred ; travail 3D de William Vasseur."
       ],
-      "role": "Solo",
-      "duration": "48 h — game jam",
-      "award": "1re place — game jam"
+      "role": "Co-dev, avec Enzo Alfred",
+      "duration": "1 semaine — Dev&Play Jam 2026",
+      "award": "1re place — Dev&Play Jam 2026"
     },
     "color-gap": {
       "hook": "Un monde qui n'existe qu'une couleur à la fois.",
@@ -236,25 +263,6 @@
       ],
       "duration": "48 h — Global Game Jam 2026",
       "role": "Co-dev en peer coding — gameplay, shaders, game design"
-    },
-    "tour-infinie": {
-      "hook": "La tour n'a pas de sommet.",
-      "body": "Roguelite auto-battler en pixel art, avec coop en ligne. Étage après étage, tu composes ton build et tu regardes le combat se jouer. Jouable dans la page.",
-      "captions": [
-        "Étage 1 — premier boss, la Reine Araignée.",
-        "Les objets ramassés composent le build du personnage.",
-        "Plus haut, plus dense : la tour ne s'arrête pas.",
-        "En coop, deux joueurs grimpent la même tour."
-      ],
-      "long": "Tour Infinie est un roguelite auto-battler en pixel art. Tu grimpes une tour sans sommet : à chaque étage, les objets que tu ramasses composent le build de ton personnage, puis tu regardes le combat se jouer.\n\nLe jeu se joue seul ou en coop en ligne, construite sur Netcode for GameObjects comme celle d'ECO : deux joueurs grimpent la même tour.\n\nFait seul en environ trois mois, à côté du reste. Il se joue dans la page, au clavier ou à la manette.",
-      "inGame": [
-        "Roguelite auto-battler : les objets ramassés composent le build.",
-        "Coop en ligne à deux (Netcode for GameObjects).",
-        "Boss d'étage, dont la Reine Araignée.",
-        "Builds navigateur, Windows, macOS et Linux."
-      ],
-      "role": "Solo",
-      "duration": "Environ 3 mois"
     },
     "mirapyde": {
       "hook": "Fige le temps. Ton clone rejoue tes gestes à l'envers.",

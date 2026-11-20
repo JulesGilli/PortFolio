@@ -3,7 +3,7 @@
 Portfolio de Jules Gilli, développeur de jeux (Unity, C#), en ligne sur [gillijules.com](https://gillijules.com).
 
 Le site est conçu comme un numéro de magazine jouable : une couverture, un cahier par jeu mis en avant
-(ECO, DIG or DIE, Color GAP), un index de tous les jeux, les outils Asset Store en colophon, le contact.
+(Hello, Garden, ECO, Hors Antenne, Color GAP), un index de tous les jeux, les outils Asset Store en colophon, le contact.
 Chaque cahier est imprimé sur son propre papier (fond, encre, couleur d'accompagnement, coupe du titre) ;
 le chrome du site adopte le cahier qui couvre le milieu de l'écran, par coupe franche.
 Les jeux qui ont un build navigateur se jouent dans la page.

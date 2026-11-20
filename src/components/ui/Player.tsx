@@ -172,7 +172,7 @@ function PlayerOverlay({ game, onClose }: { game: Game; onClose: () => void }) {
                   ))}
                 </dl>
 
-                {touchOnly && game.controls === 'keyboard' ? (
+                {touchOnly && (game.controls === 'keyboard' || game.controls === 'gamepad') ? (
                   <div className="mt-8 border border-ink p-4">
                     <p className="t-cell">{t('player.keyboardOnly')}</p>
                     <button type="button" onClick={copyLink} className="btn btn-ghost btn-sm mt-4">

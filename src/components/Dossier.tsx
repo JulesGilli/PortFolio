@@ -10,7 +10,7 @@ import { cahierStyle, pushIssue } from '../issue';
 import { useScrollLock } from '../lib/useScrollLock';
 import { isTopDialog, useDialogFocus } from '../lib/useDialogFocus';
 
-const CONTROLS: Record<Game['controls'], string> = { keyboard: 'controls.keyboard', touch: 'controls.touch', both: 'controls.both' };
+const CONTROLS: Record<Game['controls'], string> = { keyboard: 'controls.keyboard', touch: 'controls.touch', both: 'controls.both', gamepad: 'controls.gamepad' };
 
 /** /jeux/<slug>: the full dossier, printed on the game's paper, over the magazine. */
 export function Dossier({ game, onClose, onOpen }: { game: Game; onClose: () => void; onOpen: (g: Game) => void }) {

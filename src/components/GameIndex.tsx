@@ -55,6 +55,9 @@ export function GameIndex({ onOpenDossier }: { onOpenDossier: (g: Game) => void 
                       {g.build && (
                         <span className="t-meta ml-3 hidden whitespace-nowrap bg-ink px-2 py-1 align-middle text-paper md:inline">{t('index.playableHere')}</span>
                       )}
+                      {g.status && (
+                        <span className="t-meta ml-3 hidden whitespace-nowrap border border-current px-2 py-1 align-middle md:inline">{t('cahier.wip')}</span>
+                      )}
                     </button>
                     <span className="t-meta md:hidden">{g.year ?? '—'}</span>
                     <span className="t-cell hidden md:block">{g.genre}</span>
