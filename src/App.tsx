@@ -13,7 +13,8 @@ import { FEATURED, type Game } from './data/games';
 import { syncLangPath, useRoute } from './lib/route';
 import { subscribeTurn, turn } from './lib/turn';
 
-const featuredSlugs = FEATURED.map((g) => g.slug);
+// "Fan" counts the cahiers a visitor can actually launch (in-site build or itch page)
+const featuredSlugs = FEATURED.filter((g) => g.build || g.itch).map((g) => g.slug);
 
 /** The page-turn panel: one instance, driven by lib/turn. */
 function Turn() {

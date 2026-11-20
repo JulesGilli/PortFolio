@@ -6,7 +6,7 @@ import { Figure } from './ui/Figure';
 import { SpecTable, type SpecRow } from './ui/SpecTable';
 import { usePlayer } from './ui/Player';
 import { useAchievements } from './ui/Achievements';
-import { cahierOf, shotSrc, type Game, FEATURED } from '../data/games';
+import { cahierOf, devlogUrl, shotSrc, type Game, FEATURED } from '../data/games';
 import { cahierStyle, useCahierSection } from '../issue';
 
 const PLATFORM: Record<string, string> = { web: 'Web', win: 'Windows', mac: 'macOS', linux: 'Linux' };
@@ -43,6 +43,15 @@ export function GameMast({ game }: { game: Game }) {
     return (
       <>
         Hello, Garden<span className="text-spot">_</span>
+      </>
+    );
+  }
+  if (game.slug === 'feel') {
+    // one star above the name, as on the game's title card (a square on its point: no round shape)
+    return (
+      <>
+        Feel
+        <span aria-hidden className="relative -top-[0.5em] inline-block h-[0.12em] w-[0.12em] rotate-45 bg-spot align-baseline" />
       </>
     );
   }
@@ -94,6 +103,49 @@ export function PlayButtons({ game, className = '' }: { game: Game; className?: 
           itch.io ↗
         </a>
       )}
+      {/* the devlogs are the main action of a game that cannot be played or downloaded yet */}
+      {game.devlogs && (
+        <a
+          href={game.devlogs.playlist}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={inSite || game.itch ? 't-ui u-link' : 'btn w-full md:w-auto'}
+        >
+          {inSite || game.itch ? t('devlogs.title') : t('devlogs.watch')} ↗
+        </a>
+      )}
+    </div>
+  );
+}
+
+/** The making-of videos of a game, one row per episode. */
+export function Devlogs({ game, className = '' }: { game: Game; className?: string }) {
+  const { t } = useTranslation();
+  if (!game.devlogs) return null;
+  const { playlist, videos } = game.devlogs;
+  return (
+    <div className={`border-t border-ink ${className}`}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 py-3">
+        <h2 className="t-meta">
+          {t('devlogs.title')} <span className="ink2">· {t('devlogs.count', { n: videos.length })}</span>
+        </h2>
+        <a href={playlist} target="_blank" rel="noopener noreferrer" className="t-ui u-link">
+          {t('devlogs.playlist')} ↗
+        </a>
+      </div>
+      <ol className="t-cell">
+        {videos.map((d) => (
+          <li key={d.id} className="row-inv rule-in">
+            <a href={devlogUrl(d)} target="_blank" rel="noopener noreferrer" lang="fr" className="flex min-h-[48px] items-center gap-4 px-1 py-3">
+              <span className="t-meta ink2 w-6 shrink-0">{String(d.n).padStart(2, '0')}</span>
+              <span className="flex-1">{d.title}</span>
+              <span className="t-ui" aria-hidden>
+                ↗
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
     </div>
   );
 }
@@ -182,6 +234,8 @@ export function Cahier({
                 ))}
               </div>
             )}
+            {/* on mobile this column comes first: the list would sit above the text, so it stays in the dossier */}
+            <Devlogs game={game} className="mt-8 hidden md:block" />
           </div>
 
           <div className="col-span-4 md:order-1 md:col-span-4">

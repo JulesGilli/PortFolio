@@ -4,7 +4,7 @@ import { Masthead } from './ui/Masthead';
 import { MetaRow } from './ui/MetaRow';
 import { Figure } from './ui/Figure';
 import { SpecTable } from './ui/SpecTable';
-import { GameMast, PlayButtons, useSpecs } from './Cahier';
+import { Devlogs, GameMast, PlayButtons, useSpecs } from './Cahier';
 import { cahierOf, INDEXED, type Game } from '../data/games';
 import { cahierStyle, pushIssue } from '../issue';
 import { useScrollLock } from '../lib/useScrollLock';
@@ -109,6 +109,7 @@ export function Dossier({ game, onClose, onOpen }: { game: Game; onClose: () => 
                 </ul>
               </div>
             )}
+            <Devlogs game={game} className="mt-8" />
           </div>
         </div>
 

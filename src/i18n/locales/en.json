@@ -203,6 +203,28 @@
       "status": "In development — free demo",
       "cta": "Download the demo on itch.io"
     },
+    "feel": {
+      "hook": "The astronomer has left. His pages are still here.",
+      "body": "August 1377, the Ponant archipelago. Master Jehan de Sauvigny hid each page where he wrote it; you land by night, with his letter and his notebook. You walk, you look, and you learn to read the sky the way it was read six centuries ago: with your hand first, then with the instruments you build. No combat, no timer. In development, and told in seven devlogs.",
+      "long": "Feel is a calm first-person game, played with the naked eye. August 1377, the Ponant archipelago: the astronomer has left, his pages are still here. Master Jehan de Sauvigny hid each one where he wrote it. You land by night, with his letter and his notebook. You walk, you look, and you learn to read the sky the way it was read six centuries ago. No combat, no timer.\n\nThe hand first, then the instruments. A fist at arm's length covers ten degrees, an open hand twenty: you trace the figures star by star, and they are written into your notebook. Then you build the quadrant for the height of a star, the nocturnal for the hour of the night, the armillary sphere for the circles of the sky, a gnomon for the Sun and a Jacob's staff for the Moon. The sky above you is the real sky of August 1377, computed for the Ponant.\n\nAlong the road, the people of the archipelago: Maheut, who rowed for the master at night, whole summers; Perrin the carter; Aubert the clockmaker, whose clock runs fast; and the official, the bishop's man, who seized the master's papers. Twelve figures to trace, five instruments to build, fourteen pages to find, and one question: is it the sky that turns, or us?\n\nVersion 0.9.0 plays from the first night to the credits, in about an hour, on Windows, with keyboard and mouse or a controller, with French voices and text in French or English. I am making it alone, and I tell how it is made on video: computing the sky, the instruments, or how to draw four million tufts of grass in 16 ms.\n\nVoices are made with ElevenLabs, sound effects come from Epidemic Sound, and the music was created for the game with AI tools, as were the images of the opening letter and part of the text and code.",
+      "captions": [
+        "The hand first. A fist at arm's length covers ten degrees; the gap measured between the star and the Moon's road shows on the left.",
+        "The capital of the archipelago, by day.",
+        "The quadrant. The Tramontane stands 50° high: that is the latitude of the place, and it goes into the notebook.",
+        "Maheut's camp. She knows the master's notebook: seven summers she rowed for him, at night.",
+        "The armillary sphere at dusk: the circles of the sky, in brass."
+      ],
+      "inGame": [
+        "The real sky of August 1377, computed for the Ponant archipelago.",
+        "Twelve figures to trace star by star, measured by hand: a fist, ten degrees.",
+        "Five instruments to build: quadrant, nocturnal, armillary sphere, gnomon, Jacob's staff.",
+        "Fourteen pages to find, four characters, French voices.",
+        "Version 0.9.0: about an hour, from the first night to the credits. Windows, keyboard and mouse or controller."
+      ],
+      "role": "Solo",
+      "duration": "Ongoing",
+      "status": "In development — version 0.9.0"
+    },
     "eco": {
       "hook": "Your past catches up with you, eight seconds late.",
       "body": "ECO is a puzzle-platformer where every move is recorded and replayed by an echo eight seconds later. A button to hold, a door that needs two: your self from eight seconds ago does the job while you move on. My most ambitious project, playable solo or in co-op, with a level editor whose creations are shared online from inside the game.",
@@ -350,5 +372,12 @@
       "body": "A fast typing game, built with React.",
       "captions": []
     }
+  },
+  "devlogs": {
+    "title": "Devlogs",
+    "watch": "Watch the devlogs",
+    "playlist": "Full playlist on YouTube",
+    "count": "{{n}} videos, in French",
+    "short": "devlogs"
   }
 }

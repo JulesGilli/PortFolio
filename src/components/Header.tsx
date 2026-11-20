@@ -4,7 +4,7 @@ import { LanguageSelector } from './ui/LanguageSelector';
 import { TrophyButton, useAchievements } from './ui/Achievements';
 import { useScrollLock } from '../lib/useScrollLock';
 import { useDialogFocus } from '../lib/useDialogFocus';
-import { bySlug } from '../data/games';
+import { bySlug, FEATURED } from '../data/games';
 
 const NAV = [
   { key: 'about', href: '#hero', id: 'hero' },
@@ -39,8 +39,8 @@ function useActiveSection() {
         const el = document.getElementById(id);
         if (el && el.getBoundingClientRect().top <= mid) cur = id;
       }
-      // the three cahiers sit between hero and the index: count them as "games"
-      const first = document.getElementById('cahier-eco');
+      // the cahiers sit between hero and the index: count them as "games"
+      const first = document.getElementById(`cahier-${FEATURED[0]?.slug}`);
       if (first && cur === 'hero' && first.getBoundingClientRect().top <= mid) cur = 'games';
       setActive(cur);
     };

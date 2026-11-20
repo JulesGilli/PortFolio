@@ -68,16 +68,20 @@ export function GameIndex({ onOpenDossier }: { onOpenDossier: (g: Game) => void 
                         <button type="button" onClick={() => play(g)} className="btn btn-sm">
                           {t('index.play')} ▶
                         </button>
+                      ) : g.itch ? (
+                        <a
+                          href={g.itch}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-ghost btn-sm"
+                          onClick={() => trackPlay(g.slug, !!g.featured)}
+                        >
+                          itch ↗
+                        </a>
                       ) : (
-                        g.itch && (
-                          <a
-                            href={g.itch}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-ghost btn-sm"
-                            onClick={() => trackPlay(g.slug, !!g.featured)}
-                          >
-                            itch ↗
+                        g.devlogs && (
+                          <a href={g.devlogs.playlist} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
+                            {t('devlogs.short')} ↗
                           </a>
                         )
                       )}

@@ -203,6 +203,28 @@
       "status": "En développement — démo gratuite",
       "cta": "Télécharger la démo sur itch.io"
     },
+    "feel": {
+      "hook": "L'astronome est parti. Ses pages sont restées.",
+      "body": "Août 1377, archipel du Ponant. Maître Jehan de Sauvigny a caché chaque page là où il l'a écrite ; tu débarques de nuit, avec sa lettre et son carnet. Tu marches, tu regardes, et tu apprends à lire le ciel comme on le lisait il y a six siècles : d'abord avec la main, puis avec les instruments que tu construis. Ni combat, ni chrono. En développement, et raconté en sept devlogs.",
+      "long": "Feel est un jeu calme, à la première personne, qui se joue à l'œil nu. Août 1377, archipel du Ponant : l'astronome est parti, ses pages sont restées. Maître Jehan de Sauvigny a caché chacune là où il l'a écrite. Tu débarques de nuit, avec sa lettre et son carnet. Tu marches, tu regardes, et tu apprends à lire le ciel comme on le lisait il y a six siècles. Ni combat, ni chrono.\n\nLa main d'abord, les instruments ensuite. Un poing tendu couvre dix degrés, une main ouverte vingt : tu traces les figures étoile par étoile, et elles s'inscrivent dans ton carnet. Puis tu construis toi-même le quart de cercle pour la hauteur d'une étoile, le nocturlabe pour l'heure de la nuit, la sphère armillaire pour les cercles du ciel, un gnomon pour le Soleil et un bâton de Jacob pour la Lune. Le ciel au-dessus de toi est le vrai ciel d'août 1377, calculé pour le Ponant.\n\nSur la route, les gens de l'archipel : Maheut, qui a ramé pour le maître des étés entiers, la nuit ; Perrin le charretier ; Aubert l'horloger, dont l'horloge avance ; et l'official, l'homme de l'évêque, qui a saisi les papiers du maître. Douze figures à tracer, cinq instruments à construire, quatorze pages à retrouver, et une question : est-ce le ciel qui tourne, ou nous ?\n\nLa version 0.9.0 se joue de la première nuit au générique, en une heure environ, sous Windows, au clavier et à la souris ou à la manette, avec des voix en français et des textes en français ou en anglais. Je le développe seul, et je raconte sa fabrication en vidéo : le calcul du ciel, les instruments, ou comment afficher quatre millions de touffes d'herbe en 16 ms.\n\nLes voix sont faites avec ElevenLabs, les bruitages viennent d'Epidemic Sound, et la musique a été créée pour le jeu avec des outils d'IA, comme les images de la lettre d'ouverture et une partie du texte et du code.",
+      "captions": [
+        "La main d'abord. Un poing tendu couvre dix degrés ; l'écart mesuré entre l'étoile et la route de la Lune s'affiche à gauche.",
+        "La capitale de l'archipel, de jour.",
+        "Le quart de cercle. La Tramontane est à 50° de hauteur : c'est la latitude du lieu, et elle s'inscrit dans le carnet.",
+        "Le camp de Maheut. Elle reconnaît le carnet du maître : sept étés, elle a ramé pour lui, la nuit.",
+        "La sphère armillaire au crépuscule : les cercles du ciel, en laiton."
+      ],
+      "inGame": [
+        "Le vrai ciel d'août 1377, calculé pour l'archipel du Ponant.",
+        "Douze figures à tracer étoile par étoile, mesurées à la main : un poing, dix degrés.",
+        "Cinq instruments à construire : quart de cercle, nocturlabe, sphère armillaire, gnomon, bâton de Jacob.",
+        "Quatorze pages à retrouver, quatre personnages, des voix en français.",
+        "Version 0.9.0 : une heure environ, de la première nuit au générique. Windows, clavier et souris ou manette."
+      ],
+      "role": "Solo",
+      "duration": "En cours",
+      "status": "En développement — version 0.9.0"
+    },
     "eco": {
       "hook": "Ton passé te rattrape, huit secondes plus tard.",
       "body": "ECO est un puzzle-platformer où chaque mouvement est enregistré et rejoué par un écho huit secondes plus tard. Un bouton à maintenir, une porte à franchir à deux : c'est à ton double d'il y a huit secondes de tenir la position. Mon projet le plus ambitieux, jouable seul ou en coop, avec un éditeur de niveaux dont les créations se partagent en ligne depuis le jeu.",
@@ -350,5 +372,12 @@
       "body": "Jeu de dactylographie rapide, fait en React.",
       "captions": []
     }
+  },
+  "devlogs": {
+    "title": "Devlogs",
+    "watch": "Regarder les devlogs",
+    "playlist": "Toute la playlist sur YouTube",
+    "count": "{{n}} vidéos",
+    "short": "devlogs"
   }
 }

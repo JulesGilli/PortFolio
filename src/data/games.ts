@@ -7,6 +7,7 @@
 
 export type Slug =
   | 'hello-garden'
+  | 'feel'
   | 'eco'
   | 'hors-antenne'
   | 'color-gap'
@@ -45,6 +46,15 @@ export interface Shot {
   h: number;
 }
 
+export interface Devlog {
+  n: number;
+  /** YouTube video id */
+  id: string;
+  title: string;
+}
+
+export const devlogUrl = (d: Devlog) => `https://www.youtube.com/watch?v=${d.id}`;
+
 export interface Game {
   slug: Slug;
   title: string;
@@ -64,11 +74,13 @@ export interface Game {
   /** not released yet: printed as a sticker and a specs row */
   status?: 'in-development';
   /** order of the cahiers on the home page */
-  featured?: 1 | 2 | 3 | 4;
+  featured?: 1 | 2 | 3 | 4 | 5;
   /** in-site build; sizeMB = what the browser downloads (GitHub Pages gzips .wasm/.data/.js) */
   build?: { url: string; sizeMB: number };
   itch?: string;
   github?: string;
+  /** making-of videos, in episode order; titles are printed as published (French) */
+  devlogs?: { playlist: string; videos: Devlog[] };
   /** gameplay captures, in print order; the first one is the figure of the abridged cahier */
   shots: Shot[];
   /** small cover for the index (itch cover, shown at 0.5x) */
@@ -129,6 +141,54 @@ export const GAMES: Game[] = [
     },
   },
   {
+    slug: 'feel',
+    title: 'Feel',
+    genre: 'First-person exploration',
+    year: 2026,
+    context: 'solo',
+    role: 'Solo',
+    team: 1,
+    engine: 'Unity · C#',
+    platforms: ['win'],
+    controls: 'gamepad',
+    players: '1',
+    status: 'in-development',
+    featured: 2,
+    // no itch link yet: the page is restricted until Jules publishes it
+    devlogs: {
+      playlist: 'https://www.youtube.com/playlist?list=PLW8Fofhb2us0',
+      videos: [
+        { n: 1, id: 'CjuQ9VZV9zk', title: "J'ai mis le vrai ciel de 1377 dans mon jeu" },
+        { n: 2, id: 'WMk9v_O5wtA', title: "Lire l'heure dans les étoiles, comme en 1377" },
+        { n: 3, id: 'K3r2mPYXjec', title: 'Pourquoi les étoiles filantes viennent toutes du même point' },
+        { n: 4, id: 'OhZJg7_8cb4', title: 'Une étoile vous dit où vous êtes : le quart de cercle' },
+        { n: 5, id: '0fG5zzHdO6Y', title: "4 millions de touffes d'herbe en 16 ms : comment mon jeu triche" },
+        { n: 6, id: '4lz2n6tQf5Y', title: 'Le ciel entier, en laiton : la sphère armillaire' },
+        { n: 7, id: 'bvMoROwgFzA', title: 'La Lune marche : comment on la mesurait en 1377' },
+      ],
+    },
+    shots: [
+      { id: '02', w: 1920, h: 1080 },
+      { id: '01', w: 1920, h: 1080 },
+      { id: '04', w: 1920, h: 1080 },
+      { id: '05', w: 1920, h: 1080 },
+      { id: '07', w: 1920, h: 1080 },
+    ],
+    cover: { src: `${base}images/covers/feel.jpg`, w: 630, h: 500 },
+    cahier: {
+      id: 'feel',
+      paper: '#0B1147',
+      ink: '#EFE6CF',
+      ink2: '#A9AED2',
+      spot: '#E9B44C',
+      onSpot: '#0B1147',
+      rule: '#2B3378',
+      ruleWidth: 1,
+      mast: { wdth: 100, wght: 200, size: 'clamp(72px, 16vw, 232px)', tracking: '0.2em' },
+      scheme: 'dark',
+    },
+  },
+  {
     slug: 'eco',
     title: 'ECO',
     genre: 'Puzzle-platformer',
@@ -140,7 +200,7 @@ export const GAMES: Game[] = [
     platforms: ['web', 'win', 'mac', 'linux'],
     controls: 'keyboard',
     players: '1–2',
-    featured: 2,
+    featured: 3,
     build: { url: `${base}games/eco/index.html`, sizeMB: 27 },
     itch: 'https://jules-gilli.itch.io/eco',
     shots: [
@@ -177,7 +237,7 @@ export const GAMES: Game[] = [
     controls: 'gamepad',
     players: '1',
     award: '1st place — Dev&Play Jam 2026',
-    featured: 3,
+    featured: 4,
     // the data file is split in three parts (GitHub's 100 MB limit), see public/games/README.md
     build: { url: `${base}games/hors-antenne/index.html`, sizeMB: 110 },
     itch: 'https://jules-gilli.itch.io/hors-antenne',
@@ -215,7 +275,7 @@ export const GAMES: Game[] = [
     controls: 'keyboard',
     players: '1',
     award: 'Jury’s Favorite — Global Game Jam 2026',
-    featured: 4,
+    featured: 5,
     itch: 'https://jules-gilli.itch.io/color-gap',
     shots: [
       { id: '01', w: 2055, h: 1369 },
