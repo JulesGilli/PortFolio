@@ -21,6 +21,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/hello-garden/" />
   </url>
   <url>
+    <loc>https://gillijules.com/jeux/feel/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/feel/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/feel/" />
+  </url>
+  <url>
+    <loc>https://gillijules.com/en/jeux/feel/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/feel/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/feel/" />
+  </url>
+  <url>
     <loc>https://gillijules.com/jeux/eco/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/eco/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/eco/" />
