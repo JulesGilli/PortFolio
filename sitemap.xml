@@ -11,6 +11,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/" />
   </url>
   <url>
+    <loc>https://gillijules.com/jeux/hello-garden/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/hello-garden/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/hello-garden/" />
+  </url>
+  <url>
+    <loc>https://gillijules.com/en/jeux/hello-garden/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/hello-garden/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/hello-garden/" />
+  </url>
+  <url>
     <loc>https://gillijules.com/jeux/eco/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/eco/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/eco/" />
@@ -21,14 +31,14 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/eco/" />
   </url>
   <url>
-    <loc>https://gillijules.com/jeux/dig-or-die/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/dig-or-die/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/dig-or-die/" />
+    <loc>https://gillijules.com/jeux/hors-antenne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/hors-antenne/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/hors-antenne/" />
   </url>
   <url>
-    <loc>https://gillijules.com/en/jeux/dig-or-die/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/dig-or-die/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/dig-or-die/" />
+    <loc>https://gillijules.com/en/jeux/hors-antenne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/hors-antenne/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/hors-antenne/" />
   </url>
   <url>
     <loc>https://gillijules.com/jeux/color-gap/</loc>
@@ -39,16 +49,6 @@
     <loc>https://gillijules.com/en/jeux/color-gap/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/color-gap/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/color-gap/" />
-  </url>
-  <url>
-    <loc>https://gillijules.com/jeux/tour-infinie/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/tour-infinie/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/tour-infinie/" />
-  </url>
-  <url>
-    <loc>https://gillijules.com/en/jeux/tour-infinie/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gillijules.com/jeux/tour-infinie/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://gillijules.com/en/jeux/tour-infinie/" />
   </url>
   <url>
     <loc>https://gillijules.com/jeux/mirapyde/</loc>
